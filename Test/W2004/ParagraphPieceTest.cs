@@ -40,30 +40,29 @@ namespace Test.W2004
         public void testGetContentWithStyleALL()
         {
             IElement par = ParagraphPiece.with("piece01").withStyle().setBold(true)
-                    .setItalic(true).setUnderline(true).setFontSize("50")
-                    .setFont(Font.COURIER).setTextColor("008000").create();
+                .setItalic(true).setUnderline(true).setFontSize("50")
+                .setFont(Font.COURIER).setTextColor("008000").create();
 
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-            Assert.AreEqual(1,
-                    TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(),
-                    "<w:u w:val=\"single\"/>")); // underline
+                                                    "<w:u w:val=\"single\"/>")); // underline
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(),
-                    "w:color w:val=\"008000\"/>")); // underline
+                                                    "w:color w:val=\"008000\"/>")); // underline
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(),
-                    "<w:rFonts w:ascii=\"Courier Bold Italic\" w:h-ansi=\"Courier Bold Italic\"/>"));
+                                                    "<w:rFonts w:ascii=\"Courier Bold Italic\" w:h-ansi=\"Courier Bold Italic\"/>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(),
-                    "<wx:font wx:val=\"Courier Bold Italic\"/>"));
+                                                    "<wx:font wx:val=\"Courier Bold Italic\"/>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(),
-                    "<w:sz w:val=\"(.*)\" />"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(),
-                    "<w:sz-cs w:val=\"50\" />"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+                                                    "<w:sz w:val=\"(.*)\" />"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:sz-cs w:val=\"50\" />"));
+
         }
 
         [Test]
@@ -76,8 +75,9 @@ namespace Test.W2004
             Assert.AreEqual(1,
                     TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
 
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
@@ -94,9 +94,7 @@ namespace Test.W2004
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(),
                     "<w:sz-cs w:val=\"(.*)\" />"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
         }
-
         [Test]
         public void testGetContentWithStyleItalic()
         {
@@ -107,8 +105,9 @@ namespace Test.W2004
             Assert.AreEqual(1,
                     TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
 
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
@@ -126,9 +125,7 @@ namespace Test.W2004
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(),
                     "<w:sz-cs w:val=\"(.*)\" />"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
         }
-
         [Test]
         public void testGetContentWithStyleUnderline()
         {
@@ -139,8 +136,10 @@ namespace Test.W2004
             Assert.AreEqual(1,
                     TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+
+
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
 
@@ -157,9 +156,7 @@ namespace Test.W2004
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(),
                     "<w:sz-cs w:val=\"(.*)\" />"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
         }
-
         [Test]
         public void testGetContentWithStyleFont()
         {
@@ -170,8 +167,10 @@ namespace Test.W2004
             Assert.AreEqual(1,
                     TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+
+
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(),
@@ -187,9 +186,7 @@ namespace Test.W2004
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(),
                     "<w:sz-cs w:val=\"(.*)\" />"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
         }
-
         [Test]
         public void testGetContentWithStyleTextColor()
         {
@@ -202,8 +199,10 @@ namespace Test.W2004
             Assert.AreEqual(1,
                     TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+
+
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(),
@@ -218,9 +217,7 @@ namespace Test.W2004
                     "<w:sz w:val=\"(.*)\" />"));
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(),
                     "<w:sz-cs w:val=\"(.*)\" />"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
         }
-
         [Test]
         public void testGetContentWithStyleFontSize()
         {
@@ -234,8 +231,10 @@ namespace Test.W2004
             Assert.AreEqual(1,
                     TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+
+
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:u w:val=\"single\"/>")); // underline
@@ -248,9 +247,7 @@ namespace Test.W2004
                     "<w:sz w:val=\"(.*)\" />"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(),
                     "<w:sz-cs w:val=\"(.*)\" />"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
         }
-
         [Test]
         public void testNOsmartFont()
         {
@@ -264,8 +261,8 @@ namespace Test.W2004
             Assert.AreEqual(1,
                     TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
 
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
@@ -281,13 +278,12 @@ namespace Test.W2004
             IElement par = ParagraphPiece.with("piece01").withStyle().setFont(Font.ARIAL_NARROW_BOLD).create();
 
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-            Assert.AreEqual(1,
-                    TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
 
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
             Assert.AreEqual(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
         }
 
@@ -337,6 +333,22 @@ namespace Test.W2004
             Paragraph p2 = Paragraph.withPieces(ParagraphPiece.with("same").withStyle().setFont(Font.COURIER_BOLD_ITALIC).create());
 
             Assert.True(p1.getContent().Equals(p2.getContent()));
+        }
+
+        [Test]
+        public void testGetContentWithStyleBGcolor()
+        {
+            IElement par = ParagraphPiece.with("piece01").withStyle()
+            .setBgColor("FFFF00")
+            .create();
+
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+
+            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "FFFF00")); //Background Color
         }
     }
 }
