@@ -44,22 +44,46 @@
     <Compile Include="Api\Interfaces\ISuperStylin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
+    <Compile Include="Utils\TestUtils.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="W2004\Body2004.cs" />
     <Compile Include="W2004\Document2004.cs" />
+    <Compile Include="W2004\Elements\AbstractHeading.cs" />
+    <Compile Include="W2004\Elements\BreakLine.cs" />
+    <Compile Include="W2004\Elements\Heading1.cs" />
+    <Compile Include="W2004\Elements\Heading2.cs" />
+    <Compile Include="W2004\Elements\Heading3.cs" />
     <Compile Include="W2004\Elements\Image.cs" />
     <Compile Include="W2004\Elements\ImageLocation.cs" />
+    <Compile Include="W2004\Elements\PageBreak.cs" />
+    <Compile Include="W2004\Elements\Paragraph.cs" />
+    <Compile Include="W2004\Elements\ParagraphPiece.cs" />
+    <Compile Include="W2004\Elements\Table.cs" />
     <Compile Include="W2004\Elements\TableElements\ITableItemStrategy.cs" />
+    <Compile Include="W2004\Elements\TableElements\TableCol.cs" />
+    <Compile Include="W2004\Elements\TableElements\TableDefinition.cs" />
     <Compile Include="W2004\Elements\TableElements\TableEle.cs" />
+    <Compile Include="W2004\Elements\TableElements\TableFactoryMethod.cs" />
+    <Compile Include="W2004\Elements\TableElements\TableFooter.cs" />
+    <Compile Include="W2004\Elements\TableElements\TableHeader.cs" />
     <Compile Include="W2004\Footer2004.cs" />
     <Compile Include="W2004\Head2004.cs" />
     <Compile Include="W2004\Header2004.cs" />
     <Compile Include="W2004\Style\AbstractStyle.cs" />
+    <Compile Include="W2004\Style\Align.cs" />
     <Compile Include="W2004\Style\Color.cs" />
+    <Compile Include="W2004\Style\Font.cs" />
+    <Compile Include="W2004\Style\HeadingStyle.cs" />
+    <Compile Include="W2004\Style\ParagraphPieceStyle.cs" />
+    <Compile Include="W2004\Style\ParagraphStyle.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Utils\basicStyle.txt" />
+    <Content Include="W2004\styles2004.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
