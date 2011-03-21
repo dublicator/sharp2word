@@ -2,7 +2,7 @@ namespace Word.W2004.Style
 {
     public class Color
     {
-        private string value;
+        private readonly string value;
 
         private Color(string value)
         {

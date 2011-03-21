@@ -5,19 +5,19 @@ using Word.W2004.Style;
 namespace Word.W2004.Elements
 {
     /// <summary>
-    /// Use this class to create paragraphs. 
-    /// <see cref="ParagraphPiece"/>
+    ///   Use this class to create paragraphs. 
+    ///   <see cref = "ParagraphPiece" />
     /// </summary>
     public class Paragraph : IElement, IFluentElement<Paragraph>, IFluentElementStylable<ParagraphStyle>
     {
-        private ParagraphPiece[] pieces = null;
+        private readonly ParagraphPiece[] pieces;
 
-        private ParagraphStyle style = new ParagraphStyle();
+        private ParagraphStyle _style = new ParagraphStyle();
 
 
         /// <summary>
         /// </summary>
-        /// <param name="value">String for a simple Paragraph. Assuming that you don't want to apply style on part of this text.</param>
+        /// <param name = "value">String for a simple Paragraph. Assuming that you don't want to apply style on part of this text.</param>
         public Paragraph(string value)
         {
             if (value == null || "".Equals(value))
@@ -30,13 +30,23 @@ namespace Word.W2004.Elements
         }
 
         /// <summary>
-        /// It receives many ParagraphPieces with their own style/formating
+        ///   It receives many ParagraphPieces with their own style/formating
         /// </summary>
-        /// <param name="pieces"></param>
+        /// <param name = "pieces"></param>
         public Paragraph(params ParagraphPiece[] pieces)
         {
             this.pieces = pieces;
         }
+
+
+        //## Getters and Setters
+
+        public ParagraphStyle Style
+        {
+            get { return _style; }
+        }
+
+        #region IElement Members
 
         public string Content
         {
@@ -68,30 +78,37 @@ namespace Word.W2004.Elements
                 else
                 {
                     //For convention, it should be the last thing before returning the xml content.
-                    txt = style.getNewContentWithStyle(txt);
+                    txt = _style.getNewContentWithStyle(txt);
 
                     return txt.Replace("{value}", sb.ToString());
                 }
             }
         }
 
+        #endregion
 
-        //## Getters and Setters
+        #region IFluentElement<Paragraph> Members
 
-        public ParagraphStyle Style
+        public Paragraph create()
         {
-            get { return style; }
+            return this;
         }
 
-        public void setStyle(ParagraphStyle style)
-        {
-            this.style = style;
-        }
+        #endregion
+
+        #region IFluentElementStylable<ParagraphStyle> Members
 
         public ParagraphStyle withStyle()
         {
-            style.setElement(this);
-            return style;
+            _style.setElement(this);
+            return _style;
+        }
+
+        #endregion
+
+        public void setStyle(ParagraphStyle style)
+        {
+            this._style = style;
         }
 
         public static Paragraph with(string value)
@@ -102,11 +119,6 @@ namespace Word.W2004.Elements
         public static Paragraph withPieces(params ParagraphPiece[] pieces)
         {
             return new Paragraph(pieces);
-        }
-
-        public Paragraph create()
-        {
-            return this;
         }
     }
 }

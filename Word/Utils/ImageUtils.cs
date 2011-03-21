@@ -1,12 +1,11 @@
 using System;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using BufferedImage = System.Drawing.Image;
 
 namespace Word.Utils
 {
-    public class ImageUtils
+    public static class ImageUtils
     {
         private static string ImageToBase64(BufferedImage image, string imageformat)
         {
@@ -48,7 +47,7 @@ namespace Word.Utils
             }
         }
 
-        public static string getImageHexaBase64(Image bufferedImage, string imageformat)
+        public static string getImageHexaBase64(BufferedImage bufferedImage, string imageformat)
         {
             return ImageToBase64(bufferedImage, imageformat);
         }

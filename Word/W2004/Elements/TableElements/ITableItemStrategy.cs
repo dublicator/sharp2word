@@ -1,7 +1,7 @@
 namespace Word.W2004.Elements.TableElements
 {
     /// <summary>
-    /// Strategy Design Pattern
+    ///   Strategy Design Pattern
     /// </summary>
     public interface ITableItemStrategy
     {

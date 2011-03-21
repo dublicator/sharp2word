@@ -1,4 +1,3 @@
-using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Word.Utils
@@ -11,7 +10,7 @@ namespace Word.Utils
             {
                 throw new System.ArgumentNullException("Can't be null.");
             }
-            Regex pattern=new Regex(regex,RegexOptions.Compiled);
+            Regex pattern = new Regex(regex, RegexOptions.Compiled);
             MatchCollection matcher = pattern.Matches(text);
             return matcher.Count;
         }
@@ -19,6 +18,6 @@ namespace Word.Utils
         public static void createLocalDoc(string myDoc)
         {
             throw new System.NotImplementedException();
-        } 
+        }
     }
 }

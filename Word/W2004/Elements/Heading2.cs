@@ -10,16 +10,18 @@ namespace Word.W2004.Elements
         {
         }
 
-
-        public static Heading2 with(string @string)
-        {
-            return new Heading2(@string);
-        }
-
+        #region IFluentElement<Heading2> Members
 
         public Heading2 create()
         {
             return this;
+        }
+
+        #endregion
+
+        public static Heading2 with(string @string)
+        {
+            return new Heading2(@string);
         }
     }
 }

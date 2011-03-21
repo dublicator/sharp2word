@@ -6,6 +6,6 @@ namespace Word.Api.Interfaces
 
         bool getHideHeaderAndFooterFirstPage();
 
-        string getHideHeaderAndFooterFirstPageXml(); 
+        string getHideHeaderAndFooterFirstPageXml();
     }
 }
