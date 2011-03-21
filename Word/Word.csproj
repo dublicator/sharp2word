@@ -70,6 +70,7 @@
     <Compile Include="W2004\Footer2004.cs" />
     <Compile Include="W2004\Head2004.cs" />
     <Compile Include="W2004\Header2004.cs" />
+    <Compile Include="W2004\Properties.cs" />
     <Compile Include="W2004\Style\AbstractStyle.cs" />
     <Compile Include="W2004\Style\Align.cs" />
     <Compile Include="W2004\Style\Font.cs" />
@@ -84,6 +85,9 @@
   <ItemGroup>
     <Content Include="Utils\basicStyle.txt" />
     <Content Include="W2004\styles2004.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="W2004\Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

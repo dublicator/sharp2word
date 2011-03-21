@@ -8,8 +8,7 @@ namespace Word.W2004.Elements
     {
         private readonly StringBuilder txt = new StringBuilder("");
 
-        private bool hasBeenCalledBefore;
-                     // if getContent has already been called, I cached the result for future invocations
+        private bool hasBeenCalledBefore;// if getContent has already been called, I cached the result for future invocations
 
         private bool isRepeatTableHeaderOnEveryPage;
 

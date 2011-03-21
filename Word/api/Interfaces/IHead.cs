@@ -1,3 +1,5 @@
+using Word.W2004;
+
 namespace Word.Api.Interfaces
 {
     /// <summary>
@@ -5,5 +7,6 @@ namespace Word.Api.Interfaces
     /// </summary>
     public interface IHead : IElement
     {
+        Properties Properties { get; set; }
     }
 }

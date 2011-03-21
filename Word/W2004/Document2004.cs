@@ -94,7 +94,9 @@ namespace Word.W2004
 
         public IHeader Header
         {
-            get { return this.Body.Header; //forward it to the body
+            get
+            {
+                return this.Body.Header; //forward it to the body
             }
         }
 
