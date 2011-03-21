@@ -49,6 +49,7 @@
     <Compile Include="W2004\PageBreakTest.cs" />
     <Compile Include="W2004\ParagraphPieceTest.cs" />
     <Compile Include="W2004\ParagraphTest.cs" />
+    <Compile Include="W2004\PropertiesTest.cs" />
     <Compile Include="W2004\TableFactoryMethodTest.cs" />
     <Compile Include="W2004\TableTest.cs" />
   </ItemGroup>

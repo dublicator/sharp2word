@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using Word.Api.Interfaces;
@@ -16,6 +17,14 @@ namespace ConsoleTest
         static void Main(string[] args)
         {
             IDocument myDoc = new Document2004();
+
+            Properties prop = new Properties
+                                  {
+                                      //AppName = "Sharp2Word",
+                                      Author = "Dublicator",
+                                      LastSaved = new DateTime(2011, 11, 11)
+                                  };
+            myDoc.Head.Properties = prop;
 
             myDoc.addEle(BreakLine.times(1).create()); // this is one breakline
 
