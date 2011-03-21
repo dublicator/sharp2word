@@ -11,7 +11,9 @@ namespace Word.W2004.Elements
     public class Paragraph : IElement, IFluentElement<Paragraph>, IFluentElementStylable<ParagraphStyle>
     {
         private ParagraphPiece[] pieces = null;
+
         private ParagraphStyle style = new ParagraphStyle();
+
 
         /// <summary>
         /// </summary>
@@ -28,9 +30,9 @@ namespace Word.W2004.Elements
         }
 
         /// <summary>
-        /// 
+        /// It receives many ParagraphPieces with their own style/formating
         /// </summary>
-        /// <param name="pieces">It receives many ParagraphPieces with their own style/formating </param>
+        /// <param name="pieces"></param>
         public Paragraph(params ParagraphPiece[] pieces)
         {
             this.pieces = pieces;
@@ -47,17 +49,16 @@ namespace Word.W2004.Elements
             foreach (ParagraphPiece piece in pieces)
             {
                 sb.Append(piece.getContent());
-
             }
 
             string txt =
                 "	<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"
-                + "\n		{styleAlign}" // {styleText} is inside styleAlign
+                + "\n		{styleText}" // {styleText} is inside styleText
                 + "\n		{value}"
                 + "\n	</w:p>";
 
             if ("".Equals(sb.ToString()))
-            { //if there is no content in the pieces, there is no return - just empty string. 
+            { //if there is no content in the pieces, there is no return - just empty string.
                 return "";
             }
             else
@@ -68,6 +69,9 @@ namespace Word.W2004.Elements
                 return txt.Replace("{value}", sb.ToString());
             }
         }
+
+
+        //## Getters and Setters
 
         public ParagraphStyle getStyle()
         {
@@ -80,8 +84,8 @@ namespace Word.W2004.Elements
 
         public ParagraphStyle withStyle()
         {
-            this.style.setElement(this);
-            return this.style;
+            style.setElement(this);
+            return style;
         }
 
         public static Paragraph with(string value)

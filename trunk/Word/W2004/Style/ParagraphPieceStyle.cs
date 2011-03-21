@@ -17,6 +17,7 @@ namespace Word.W2004.Style
         private Color color;
         public Font font;
         private string fontSize = "";
+        private string bgColor = "";
 
         public override string getNewContentWithStyle(string txt)
         {
@@ -31,8 +32,33 @@ namespace Word.W2004.Style
             doStyleTextColorHexa(style);
             doStyleColorEnum(style);
             doStyleFontSize(style);
+            doStyleBgColor(style);
 
             return doStyleReplacement(style, txt);
+        }
+
+        private void doStyleBgColor(StringBuilder style)
+        {
+            if (!bgColor.Equals(""))
+            {
+                style.Append("\n            <w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"" + bgColor + "\" />\n");
+            }
+        }
+
+        /// <summary>
+        /// If you know the color code, just to straight to the point! Eg.: yellow:
+        /// FFFF00, black: 000000, red: FF0000, blue: 0000FF, green: 008000, etc...
+        /// 
+        /// If you want, you can use the class Color.whatever_color.
+        /// 
+        /// Hexadecimal color code
+        /// </summary>
+        /// <param name="bgColor"></param>
+        /// <returns></returns>
+        public ParagraphPieceStyle setBgColor(string bgColor)
+        {
+            this.bgColor = bgColor;
+            return this;
         }
 
         private void doStyleBold(StringBuilder style)
