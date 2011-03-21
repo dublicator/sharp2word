@@ -1,10 +1,13 @@
-﻿using System.IO;
+﻿using System.Drawing;
+using System.IO;
 using System.Text;
 using Word.Api.Interfaces;
 using Word.W2004;
 using Word.W2004.Elements;
 using Word.W2004.Elements.TableElements;
 using Word.W2004.Style;
+using Font = Word.W2004.Style.Font;
+using Image = Word.W2004.Elements.Image;
 
 namespace ConsoleTest
 {
@@ -65,7 +68,7 @@ namespace ConsoleTest
 
             //font size
             myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size").create(),
-                                              ParagraphPiece.with("I am size 50.").withStyle().setFontSize("50").create()));
+                                              ParagraphPiece.with("I am size 50.").withStyle().setFontSize(50).setTextColor(Color.Cyan).create()));
 
             //Document Header and Footer
             myDoc.addEle(BreakLine.times(2).create());

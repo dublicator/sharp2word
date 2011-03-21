@@ -1,3 +1,5 @@
+using System;
+using System.Drawing;
 using System.Text;
 using Word.Api.Interfaces;
 using Word.W2004.Elements;
@@ -97,11 +99,25 @@ namespace Word.W2004.Style
             }
         }
 
+        public static string ColorToHex(Color clr)
+        {
+            int red = clr.R;
+            int green = clr.G;
+            int blue = clr.B;
+
+            string colorHex = "";
+            colorHex += String.Format("{0:X02}", red);
+            colorHex += String.Format("{0:X02}", green);
+            colorHex += String.Format("{0:X02}", blue);
+            return colorHex;
+        }
+
         private void doStyleColorEnum(StringBuilder style)
         {
-            if (this._color != null && !this._color.Value.Equals(""))
+            var clr = ColorToHex(this._color);
+            if (!string.IsNullOrEmpty(clr) && !clr.Equals(""))
             {
-                style.Append("\n			<w:color w:val=\"" + _color.Value + "\"/>");
+                style.Append("\n			<w:color w:val=\"" + clr + "\"/>");
             }
         }
 
@@ -244,6 +260,12 @@ namespace Word.W2004.Style
         public ParagraphPieceStyle setFontSize(string fontSize)
         {
             this._fontSize = fontSize;
+            return this;
+        }
+
+        public ParagraphPieceStyle setFontSize(int size)
+        {
+            this._fontSize = (size*2).ToString();
             return this;
         }
     }

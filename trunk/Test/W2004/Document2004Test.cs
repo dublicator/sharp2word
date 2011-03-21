@@ -1,3 +1,4 @@
+using System.Drawing;
 using NUnit.Framework;
 using Word.Api.Interfaces;
 using Word.Utils;
@@ -144,7 +145,7 @@ namespace Test.W2004
             piece01.Style.setTextColor("FF0000");
 
             ParagraphPiece piece02 = new ParagraphPiece("22222");
-            piece02.Style.setTextColor(Color.RED);
+            piece02.Style.setTextColor(Color.Red);
 
             Paragraph p01 = new Paragraph(piece01, piece02);
 
