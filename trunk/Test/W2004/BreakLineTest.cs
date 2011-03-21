@@ -12,9 +12,9 @@ namespace Test.W2004
             BreakLine br = new BreakLine();
             Assert.AreEqual(
                     "\n<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>",
-                    br.getContent());
+                    br.Content);
             int tot = TestUtils
-                    .regexCount(br.getContent(),
+                    .regexCount(br.Content,
                             "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
             Assert.AreEqual(1, tot);
         }
@@ -24,7 +24,7 @@ namespace Test.W2004
         {
             BreakLine br = BreakLine.times(3).create();
             int tot = TestUtils
-                    .regexCount(br.getContent(),
+                    .regexCount(br.Content,
                             "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
             Assert.AreEqual(3, tot);
         }
@@ -35,9 +35,9 @@ namespace Test.W2004
             BreakLine br = new BreakLine(1);
             Assert.AreEqual(
                     "\n<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>",
-                    br.getContent());
+                    br.Content);
             int tot = TestUtils
-                    .regexCount(br.getContent(),
+                    .regexCount(br.Content,
                             "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
             Assert.AreEqual(1, tot);
         }
@@ -47,7 +47,7 @@ namespace Test.W2004
         {
             BreakLine br02 = new BreakLine(2);
             int tot = TestUtils
-                .regexCount(br02.getContent(),
+                .regexCount(br02.Content,
                             "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
             Assert.AreEqual(2, tot);
 

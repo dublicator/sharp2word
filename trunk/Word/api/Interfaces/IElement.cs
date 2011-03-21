@@ -20,7 +20,7 @@ namespace Word.Api.Interfaces
         ///     </code>
         /// </example>
         /// </summary>
-        /// <returns>This is the String value of the element ready to be appended/inserted in the Document.</returns>
-        string getContent();
+        /// <value>This is the String value of the element ready to be appended/inserted in the Document.</value>
+        string Content { get; }
     }
 }

@@ -15,8 +15,8 @@ namespace Test.W2004
         public void sanityTest()
         {
             IDocument myDoc = new Document2004();
-            Assert.AreEqual(myDoc.getContent(), myDoc.getContent());
-            Assert.AreEqual(myDoc.getContent(), myDoc.getContent());
+            Assert.AreEqual(myDoc.Content, myDoc.Content);
+            Assert.AreEqual(myDoc.Content, myDoc.Content);
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace Test.W2004
                 + " w:macrosPresent=\"no\" w:embeddedObjPresent=\"no\" w:ocxPresent=\"no\" "
                 + " xml:space=\"preserve\"> "
                 + " <w:ignoreSubtree w:val=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" /> ";
-            Assert.AreEqual(expected, myDoc.getUri());
+            Assert.AreEqual(expected, myDoc.Uri);
             //            Assert.AreEqual("Uri is not as expected: ", , );
         }
 
@@ -45,20 +45,20 @@ namespace Test.W2004
         public void testHead()
         {
             IDocument myDoc = new Document2004();
-            Assert.True(myDoc.getHead().getContent().Contains("<w:docPr>"));
-            Assert.True(myDoc.getHead().getContent()
+            Assert.True(myDoc.Head.Content.Contains("<w:docPr>"));
+            Assert.True(myDoc.Head.Content
                     .Contains("<w:view w:val=\"print\"/>"));
-            Assert.True(myDoc.getHead().getContent()
+            Assert.True(myDoc.Head.Content
                     .Contains("<w:zoom w:percent=\"100\"/>"));
-            Assert.True(myDoc.getHead().getContent().Contains("</w:docPr>"));
+            Assert.True(myDoc.Head.Content.Contains("</w:docPr>"));
         }
 
         [Test]
         public void testGetHeader()
         {
             IDocument myDoc = new Document2004();
-            Assert.True(myDoc.getBody().getContent().Contains("<w:body>"));
-            Assert.True(myDoc.getBody().getContent().Contains("</w:body>"));
+            Assert.True(myDoc.Body.Content.Contains("<w:body>"));
+            Assert.True(myDoc.Body.Content.Contains("</w:body>"));
         }
 
         [Test]
@@ -66,8 +66,8 @@ namespace Test.W2004
         {
             IDocument myDoc = new Document2004();
 
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.getBody().getContent(), "<w:body>"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.getBody().getContent(), "</w:body>"));
+            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Body.Content, "<w:body>"));
+            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Body.Content, "</w:body>"));
         }
 
         [Test]
@@ -75,14 +75,14 @@ namespace Test.W2004
         {
             IDocument myDoc = new Document2004();
 
-            Assert.AreEqual("", myDoc.getHeader().getContent());
+            Assert.AreEqual("", myDoc.Header.Content);
 
-            myDoc.getHeader().addEle(Paragraph.with("paragraph01").create());
+            myDoc.Header.addEle(Paragraph.with("paragraph01").create());
 
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.getHeader().getContent(), "<w:hdr w:type=\"odd\">"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.getHeader().getContent(), "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.getHeader().getContent(), "<w:t>paragraph01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.getHeader().getContent(), "</w:hdr>"));
+            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Header.Content, "<w:hdr w:type=\"odd\">"));
+            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Header.Content, "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
+            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Header.Content, "<w:t>paragraph01</w:t>"));
+            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Header.Content, "</w:hdr>"));
         }
 
         [Test]
@@ -90,14 +90,14 @@ namespace Test.W2004
         {
             IDocument myDoc = new Document2004();
 
-            Assert.AreEqual("", myDoc.getFooter().getContent());
+            Assert.AreEqual("", myDoc.Footer.Content);
 
-            myDoc.getFooter().addEle(Paragraph.with("paragraph01").create());
+            myDoc.Footer.addEle(Paragraph.with("paragraph01").create());
 
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "<w:ftr w:type=\"odd\">"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "<w:t>paragraph01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "</w:ftr>"));
+            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Footer.Content, "<w:ftr w:type=\"odd\">"));
+            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Footer.Content, "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
+            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Footer.Content, "<w:t>paragraph01</w:t>"));
+            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Footer.Content, "</w:ftr>"));
         }
 
         [Test] //TODO: make this useful with assertions
@@ -110,10 +110,10 @@ namespace Test.W2004
             headingStyle.setItalic(true);
 
             h1.setStyle(headingStyle);
-            myDoc.getBody().addEle(h1);
+            myDoc.Body.addEle(h1);
 
-            myDoc.getBody().addEle(new Heading2("Heading 222"));
-            myDoc.getBody().addEle(new Heading3("Heading 333"));
+            myDoc.Body.addEle(new Heading2("Heading 222"));
+            myDoc.Body.addEle(new Heading3("Heading 333"));
         }
 
         [Test] //TODO: make this useful with assertions
@@ -132,7 +132,7 @@ namespace Test.W2004
 
             Paragraph p02 = new Paragraph(piece01, piece02);
 
-            myDoc.getBody().addEle(p02);
+            myDoc.Body.addEle(p02);
         }
 
         [Test] //TODO: make this useful with assertions
@@ -141,14 +141,14 @@ namespace Test.W2004
             IDocument myDoc = new Document2004();
 
             ParagraphPiece piece01 = new ParagraphPiece("11111");
-            piece01.getStyle().setTextColor("FF0000");
+            piece01.Style.setTextColor("FF0000");
 
             ParagraphPiece piece02 = new ParagraphPiece("22222");
-            piece02.getStyle().setTextColor(Color.RED);
+            piece02.Style.setTextColor(Color.RED);
 
             Paragraph p01 = new Paragraph(piece01, piece02);
 
-            myDoc.getBody().addEle(p01);
+            myDoc.Body.addEle(p01);
         }
 
         [Test] //TODO: make this useful with assertions
@@ -162,9 +162,9 @@ namespace Test.W2004
             Heading2 h2 = (Heading2)Heading2.with("h222").withStyle()
                     .setBold(true).setItalic(true).create();
 
-            doc.getBody().addEle(h1);
-            doc.getBody().addEle(h2);
-            doc.getBody().addEle(
+            doc.Body.addEle(h1);
+            doc.Body.addEle(h2);
+            doc.Body.addEle(
                     Heading1.with("h3333").withStyle().setBold(true)
                             .setItalic(true).create()); // no cast...
         }
@@ -173,7 +173,7 @@ namespace Test.W2004
         public void testPageOrientationDefault()
         {
             IDocument doc = new Document2004();
-            Assert.AreEqual(0, TestUtils.regexCount(doc.getContent(), "landscape"));
+            Assert.AreEqual(0, TestUtils.regexCount(doc.Content, "landscape"));
         }
 
         [Test]
@@ -182,18 +182,18 @@ namespace Test.W2004
             IDocument doc = new Document2004();
             doc.setPageOrientationLandscape();
 
-            Assert.AreEqual(1, TestUtils.regexCount(doc.getContent(), "landscape"));
+            Assert.AreEqual(1, TestUtils.regexCount(doc.Content, "landscape"));
         }
 
         [Test]
         public void testAddElementAliasString()
         {
             IDocument myDoc = new Document2004();
-            myDoc.addEle(Heading1.with("heading1").create().getContent());
+            myDoc.addEle(Heading1.with("heading1").create().Content);
 
-            Assert.True(myDoc.getBody().getContent().Contains("<w:body>"));
-            Assert.True(myDoc.getBody().getContent().Contains("<w:t>heading1</w:t>"));
-            Assert.True(myDoc.getBody().getContent().Contains("</w:body>"));
+            Assert.True(myDoc.Body.Content.Contains("<w:body>"));
+            Assert.True(myDoc.Body.Content.Contains("<w:t>heading1</w:t>"));
+            Assert.True(myDoc.Body.Content.Contains("</w:body>"));
         }
 
 
@@ -366,7 +366,7 @@ namespace Test.W2004
             IDocument myDoc = new Document2004();
             //whatever...
 
-            TestUtils.createLocalDoc(myDoc.getContent());
+            TestUtils.createLocalDoc(myDoc.Content);
         }
 
         [Ignore]
@@ -380,7 +380,7 @@ namespace Test.W2004
             myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Zico|").create(), ParagraphPiece.with("Zico").withStyle().setBgColor("008000").create()).create());
             //        myDoc.addEle(Paragraph.with("Leonardo Pinho Correa").withStyle().set.create());
 
-            TestUtils.createLocalDoc(myDoc.getContent());
+            TestUtils.createLocalDoc(myDoc.Content);
         }
 
     }

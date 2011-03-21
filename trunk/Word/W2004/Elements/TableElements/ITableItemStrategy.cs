@@ -5,8 +5,8 @@ namespace Word.W2004.Elements.TableElements
     /// </summary>
     public interface ITableItemStrategy
     {
-        string getTop();
-        string getMiddle();
-        string getBottom();
+        string Top { get; }
+        string Middle { get; }
+        string Bottom { get; }
     }
 }

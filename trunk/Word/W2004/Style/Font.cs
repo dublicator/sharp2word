@@ -9,9 +9,9 @@ namespace Word.W2004.Style
             this.value = value;
         }
 
-        public string getValue()
+        public string Value
         {
-            return value;
+            get { return value; }
         }
 
         public static Font AGENCY_FB { get { return new Font("Agency FB"); } }

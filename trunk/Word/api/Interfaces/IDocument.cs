@@ -8,32 +8,32 @@ namespace Word.Api.Interfaces
         /// <summary>
         /// 
         /// </summary>
-        /// <returns>The URI ready to be added to the document</returns>
-        string getUri();
+        /// <value>The URI ready to be added to the document</value>
+        string Uri { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns>The body of the document</returns>
-        IBody getBody();
+        /// <value>The body of the document</value>
+        IBody Body { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns>The head that contains uri</returns>
-        IHead getHead();
+        /// <value>The head that contains uri</value>
+        IHead Head { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns>The header that may contain other elements</returns>
-        IHeader getHeader();
+        /// <value>The header that may contain other elements</value>
+        IHeader Header { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns>The Footer that may contain other elements</returns>
-        IFooter getFooter();
+        /// <value>The Footer that may contain other elements</value>
+        IFooter Footer { get; }
 
         /// <summary>
         /// Sets page orientation to Landscape. Default is Portrait

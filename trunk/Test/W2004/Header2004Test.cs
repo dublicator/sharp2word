@@ -11,7 +11,7 @@ namespace Test.W2004
         public void sanityTest()
         {
             Header2004 hd = new Header2004();
-            Assert.AreEqual("", hd.getContent());
+            Assert.AreEqual("", hd.Content);
         }
 
         [Test]
@@ -19,8 +19,8 @@ namespace Test.W2004
         {
             Header2004 hd = new Header2004();
             hd.addEle(new Paragraph("p1"));
-            Assert.AreEqual(2, TestUtils.regexCount(hd.getContent(), "<*w:hdr"));
-            Assert.AreEqual(1, TestUtils.regexCount(hd.getContent(), "<w:t>p1</w:t>"));
+            Assert.AreEqual(2, TestUtils.regexCount(hd.Content, "<*w:hdr"));
+            Assert.AreEqual(1, TestUtils.regexCount(hd.Content, "<w:t>p1</w:t>"));
         }
 
         [Test]
@@ -28,8 +28,8 @@ namespace Test.W2004
         {
             Header2004 hd = new Header2004();
             hd.addEle("<w:t>p1</w:t>");
-            Assert.AreEqual(2, TestUtils.regexCount(hd.getContent(), "<*w:hdr"));
-            Assert.AreEqual(1, TestUtils.regexCount(hd.getContent(), "<w:t>p1</w:t>"));
+            Assert.AreEqual(2, TestUtils.regexCount(hd.Content, "<*w:hdr"));
+            Assert.AreEqual(1, TestUtils.regexCount(hd.Content, "<w:t>p1</w:t>"));
         }
 
         [Test]

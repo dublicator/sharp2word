@@ -37,24 +37,28 @@ namespace Word.W2004.Elements
 
         private HeadingStyle style = new HeadingStyle();
 
-        public string getContent()
+        public string Content
         {
-            if ("".Equals(this.value))
+            get
             {
-                return "";
+                if ("".Equals(this.value))
+                {
+                    return "";
+                }
+
+                //For convention, it should be the last thing before returning the xml content.
+                string txt = style.getNewContentWithStyle(Template);
+
+                return txt.Replace("{value}", this.value);
             }
-
-            //For convention, it should be the last thing before returning the xml content.
-            string txt = style.getNewContentWithStyle(getTemplate());
-
-            return txt.Replace("{value}", this.value);
         }
 
 
-        public string getTemplate()
+        public string Template
         {
-            return this.template.Replace("{heading}", this.headingType);
+            get { return this.template.Replace("{heading}", this.headingType); }
         }
+
         public HeadingStyle getStyle()
         {
             return style;

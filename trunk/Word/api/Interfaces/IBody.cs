@@ -9,8 +9,8 @@ namespace Word.Api.Interfaces
          * Like Serializable, IBody has no methods or fields and serves only to identify the semantics of being IBody. 
          */
 
-        IHeader getHeader();
+        IHeader Header { get; }
 
-        IFooter getFooter();
+        IFooter Footer { get; }
     }
 }

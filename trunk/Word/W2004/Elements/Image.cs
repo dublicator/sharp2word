@@ -114,17 +114,20 @@ namespace Word.W2004.Elements
             return total_stream;
         }
 
-        public string getOriginalWidthHeight()
+        public string OriginalWidthHeight
         {
-            string res = bufferedImage.Width + "#" + bufferedImage.Height + "";
-            return res;
+            get
+            {
+                string res = bufferedImage.Width + "#" + bufferedImage.Height + "";
+                return res;
+            }
         }
 
         private void setUpSize()
         {
             if ("".Equals(this.width) || "".Equals(this.height))
             {
-                string[] wh = getOriginalWidthHeight().Split('#');
+                string[] wh = OriginalWidthHeight.Split('#');
                 string ww = wh[0];
                 string hh = wh[1];
                 if ("".Equals(this.width))
@@ -139,39 +142,42 @@ namespace Word.W2004.Elements
 
         }
 
-        public string getContent()
+        public string Content
         {
-            if (hasBeenCalledBefore)
+            get
             {
+                if (hasBeenCalledBefore)
+                {
+                    return txt.ToString();
+                }
+                else
+                {
+                    hasBeenCalledBefore = true;
+                }
+                // Placeholders: internalFileName, fileName, binary, width and height
+
+                string[] arr = path.Split('/');
+                string fileName = arr[arr.Length - 1];
+
+                string internalFileName = DateTime.Now.Millisecond + fileName;
+
+                // string binary = ImageUtils.getImageHexaBase64(path);
+                string imageformat = path.Substring(path.LastIndexOf('.') + 1);
+                string binary = ImageUtils.getImageHexaBase64(bufferedImage,
+                                                              imageformat);
+
+                setUpSize();
+
+                string res = img_template;
+                res = res.Replace("{fileName}", fileName);
+                res = res.Replace("{internalFileName}", internalFileName);
+                res = res.Replace("{binary}", binary);
+                res = res.Replace("{width}", this.width);
+                res = res.Replace("{height}", this.height);
+
+                txt.Append(res);
                 return txt.ToString();
             }
-            else
-            {
-                hasBeenCalledBefore = true;
-            }
-            // Placeholders: internalFileName, fileName, binary, width and height
-
-            string[] arr = path.Split('/');
-            string fileName = arr[arr.Length - 1];
-
-            string internalFileName = DateTime.Now.Millisecond + fileName;
-
-            // string binary = ImageUtils.getImageHexaBase64(path);
-            string imageformat = path.Substring(path.LastIndexOf('.') + 1);
-            string binary = ImageUtils.getImageHexaBase64(bufferedImage,
-                    imageformat);
-
-            setUpSize();
-
-            string res = img_template;
-            res = res.Replace("{fileName}", fileName);
-            res = res.Replace("{internalFileName}", internalFileName);
-            res = res.Replace("{binary}", binary);
-            res = res.Replace("{width}", this.width);
-            res = res.Replace("{height}", this.height);
-
-            txt.Append(res);
-            return txt.ToString();
         }
 
         public Image setWidth(string value)
