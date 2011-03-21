@@ -17,13 +17,13 @@ namespace Test.W2004
         {
             TableFactoryMethod instance = TableFactoryMethod.getInstance();
 
-            Assert.True(instance.getTableItem(TableEle.TABLE_DEF) is TableDefinition);
-            Assert.True(instance.getTableItem(TableEle.TH) is TableHeader);
-            Assert.True(instance.getTableItem(TableEle.TD) is TableCol);
-            Assert.True(instance.getTableItem(TableEle.TF) is TableFooter);
-            Assert.True(instance.getTableItem(TableEle.TD) is TableCol);
+            Assert.True(TableFactoryMethod.getTableItem(TableEle.TABLE_DEF) is TableDefinition);
+            Assert.True(TableFactoryMethod.getTableItem(TableEle.TH) is TableHeader);
+            Assert.True(TableFactoryMethod.getTableItem(TableEle.TD) is TableCol);
+            Assert.True(TableFactoryMethod.getTableItem(TableEle.TF) is TableFooter);
+            Assert.True(TableFactoryMethod.getTableItem(TableEle.TD) is TableCol);
 
-            Assert.Null(instance.getTableItem(null));
+            Assert.Null(TableFactoryMethod.getTableItem(null));
         }
     }
 }

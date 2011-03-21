@@ -6,10 +6,14 @@ namespace Word.W2004.Elements
 {
     public class Table : IElement
     {
-        StringBuilder txt = new StringBuilder("");
-        private bool hasBeenCalledBefore = false; // if getContent has already been called, I cached the result for future invocations
-        private bool isRepeatTableHeaderOnEveryPage = false;
+        private readonly StringBuilder txt = new StringBuilder("");
 
+        private bool hasBeenCalledBefore;
+                     // if getContent has already been called, I cached the result for future invocations
+
+        private bool isRepeatTableHeaderOnEveryPage;
+
+        #region IElement Members
 
         public string Content
         {
@@ -28,7 +32,7 @@ namespace Word.W2004.Elements
                     hasBeenCalledBefore = true;
                 }
 
-                ITableItemStrategy tableDef = TableFactoryMethod.getInstance().getTableItem(TableEle.TABLE_DEF);
+                ITableItemStrategy tableDef = TableFactoryMethod.getTableItem(TableEle.TABLE_DEF);
 
                 txt.Insert(0, tableDef.Top);
                 txt.Append("\n" + tableDef.Bottom);
@@ -37,13 +41,15 @@ namespace Word.W2004.Elements
             }
         }
 
+        #endregion
+
         public void addTableEle(TableEle tableEle, params string[] cols)
         {
             if (cols != null && cols.Length > 0)
             {
                 StringBuilder th = new StringBuilder("");
 
-                ITableItemStrategy item = TableFactoryMethod.getInstance().getTableItem(tableEle);
+                ITableItemStrategy item = TableFactoryMethod.getTableItem(tableEle);
 
                 for (int i = 0; i < cols.Length; i++)
                 {
@@ -61,15 +67,15 @@ namespace Word.W2004.Elements
 
                 string finalResult = setUpRepeatTableHeaderOnEveryPage(th);
 
-                txt.Append(finalResult);//final result appended
+                txt.Append(finalResult); //final result appended
             }
         }
 
         /// <summary>
-        /// Adds the repeat header code if this.isRepeatTableHeaderOnEveryPage is true.
-        /// If not, it removes {tblHeader} placeholder.
+        ///   Adds the repeat header code if this.isRepeatTableHeaderOnEveryPage is true.
+        ///   If not, it removes {tblHeader} placeholder.
         /// </summary>
-        /// <param name="th"></param>
+        /// <param name = "th"></param>
         /// <returns>The final string</returns>
         private string setUpRepeatTableHeaderOnEveryPage(StringBuilder th)
         {
@@ -85,8 +91,8 @@ namespace Word.W2004.Elements
         }
 
         /// <summary>
-        /// Pass 'true' if you want to repeat the table header when the table takes more than one page.
-        /// Default is false. 
+        ///   Pass 'true' if you want to repeat the table header when the table takes more than one page.
+        ///   Default is false.
         /// </summary>
         public void setRepeatTableHeaderOnEveryPage()
         {

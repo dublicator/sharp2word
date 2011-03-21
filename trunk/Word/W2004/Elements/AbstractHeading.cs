@@ -4,26 +4,23 @@ using Word.W2004.Style;
 namespace Word.W2004.Elements
 {
     /// <summary>
-    /// Heading is utilized to organize documents the same way you do for web pages. 
+    ///   Heading is utilized to organize documents the same way you do for web pages. 
     /// 
-    /// You can use Heading1 to 3. 
+    ///   You can use Heading1 to 3.
     /// </summary>
-    /// <typeparam name="E"></typeparam>
+    /// <typeparam name = "E"></typeparam>
     public class AbstractHeading<E> : IElement, IFluentElementStylable<E> where E : class
     {
         /// <summary>
-        /// This is actual heading1, heading2 or heading3. 
+        ///   This is actual heading1, heading2 or heading3.
         /// </summary>
-        private string headingType;
-        private string value; //value/text for the Heading
+        private readonly string headingType;
 
-        protected AbstractHeading(string headingType, string value)
-        {
-            this.headingType = headingType;
-            this.value = value;
-        }
+        private readonly string value; //value/text for the Heading
 
-        private string template =
+        private HeadingStyle _style = new HeadingStyle();
+
+        private const string template =
             "\n<w:p wsp:rsidR=\"004429ED\" wsp:rsidRDefault=\"00000000\" wsp:rsidP=\"004429ED\">"
             + "\n	<w:pPr>"
             + "\n		<w:pStyle w:val=\"{heading}\" />"
@@ -35,7 +32,19 @@ namespace Word.W2004.Elements
             + "\n	</w:r>"
             + "\n</w:p>";
 
-        private HeadingStyle style = new HeadingStyle();
+        protected AbstractHeading(string headingType, string value)
+        {
+            this.headingType = headingType;
+            this.value = value;
+        }
+
+
+        public string Template
+        {
+            get { return template.Replace("{heading}", this.headingType); }
+        }
+
+        #region IElement Members
 
         public string Content
         {
@@ -47,35 +56,36 @@ namespace Word.W2004.Elements
                 }
 
                 //For convention, it should be the last thing before returning the xml content.
-                string txt = style.getNewContentWithStyle(Template);
+                string txt = _style.getNewContentWithStyle(Template);
 
                 return txt.Replace("{value}", this.value);
             }
         }
 
+        #endregion
 
-        public string Template
-        {
-            get { return this.template.Replace("{heading}", this.headingType); }
-        }
-
-        public HeadingStyle getStyle()
-        {
-            return style;
-        }
-        public void setStyle(HeadingStyle style)
-        {
-            this.style = style;
-        }
+        #region IFluentElementStylable<E> Members
 
         /// <summary>
-        /// Implements the stylable and the heading classes reuse it
+        ///   Implements the stylable and the heading classes reuse it
         /// </summary>
         /// <returns></returns>
         public E withStyle()
         {
             this.getStyle().setElement(this); //, Heading1.class
             return this.getStyle() as E;
+        }
+
+        #endregion
+
+        public HeadingStyle getStyle()
+        {
+            return _style;
+        }
+
+        public void setStyle(HeadingStyle style)
+        {
+            this._style = style;
         }
     }
 }

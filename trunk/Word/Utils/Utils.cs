@@ -333,12 +333,10 @@ namespace Word.Utils
             + "                <w:lang w:val=\"EN-AU\"/> "
             + "            </w:rPr> "
             + "        </w:style> "
-
             //HEADER_N_FOOTER_STYLE
             + "        <w:style w:type=\"list\" w:default=\"on\" w:styleId=\"NoList\"> "
             + "            <w:name w:val=\"No List\"/> "
             + "        </w:style> "
-
             + "        <w:style w:type=\"paragraph\" w:styleId=\"Header\"> "
             + "            <w:name w:val=\"header\"/> "
             + "            <wx:uiName wx:val=\"Header\"/> "
@@ -397,7 +395,6 @@ namespace Word.Utils
             + "            <w:basedOn w:val=\"DefaultParagraphFont\"/> "
             + "            <w:rsid w:val=\"009F65CC\"/> "
             + "        </w:style> "
-
             + "    </w:styles> "
             + "    <w:docPr> "
             + "        <w:view w:val=\"print\"/> "

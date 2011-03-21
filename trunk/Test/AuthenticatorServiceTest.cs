@@ -9,7 +9,7 @@ namespace Test
 	[Test]
 	public void AuthenticatorServiceTestTest() {
 		AuthenticatorService @as = new AuthenticatorService();
-		Assert.True(@as.authenticate());
+		Assert.True(AuthenticatorService.authenticate());
 	}
 
 }

@@ -2,10 +2,9 @@ namespace Word.Security
 {
     public class AuthenticatorService
     {
-        public bool authenticate()
+        public static bool authenticate()
         {
             return true;
         }
-
     }
 }

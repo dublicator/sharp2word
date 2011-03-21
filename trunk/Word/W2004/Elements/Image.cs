@@ -9,30 +9,58 @@ using BufferedImage = System.Drawing.Image;
 namespace Word.W2004.Elements
 {
     /// <summary>
-    /// Use this class when you want to add images to your document.
-    /// You can insert images inside Paragraphs, Tables, Headings, Header, Footer and obviously, at the body of a Document.
+    ///   Use this class when you want to add images to your document.
+    ///   You can insert images inside Paragraphs, Tables, Headings, Header, Footer and obviously, at the body of a Document.
     /// </summary>
     public class Image : IImage, IFluentElement<Image>
     {
-        private StringBuilder txt = new StringBuilder("");
-        private bool hasBeenCalledBefore = false;
-        private string path = "";
-        private string width = ""; // to be able to set this to override default
+        private readonly BufferedImage bufferedImage;
+        private readonly string path = "";
+        private readonly StringBuilder txt = new StringBuilder("");
+        private bool hasBeenCalledBefore;
         // size
         private string height = ""; // to be able to set this to override default
+
+        private const string img_template = "\n<w:pict>"
+                                      +
+                                      "\n	<v:shapetype id=\"_x0000_t75\" coordsize=\"21600,21600\" o:spt=\"75\" o:preferrelative=\"t\" path=\"m@4@5l@4@11@9@11@9@5xe\" filled=\"f\" stroked=\"f\">"
+                                      + "		<v:stroke joinstyle=\"miter\"/>"
+                                      + "		<v:formulas>"
+                                      + "			<v:f eqn=\"if lineDrawn pixelLineWidth 0\"/>"
+                                      + "			<v:f eqn=\"sum @0 1 0\"/><v:f eqn=\"sum 0 0 @1\"/>"
+                                      + "			<v:f eqn=\"prod @2 1 2\"/>"
+                                      + "			<v:f eqn=\"prod @3 21600 pixelWidth\"/>"
+                                      + "			<v:f eqn=\"prod @3 21600 pixelHeight\"/>"
+                                      + "			<v:f eqn=\"sum @0 0 1\"/>"
+                                      + "			<v:f eqn=\"prod @6 1 2\"/>"
+                                      + "			<v:f eqn=\"prod @7 21600 pixelWidth\"/>"
+                                      + "			<v:f eqn=\"sum @8 21600 0\"/>"
+                                      + "			<v:f eqn=\"prod @7 21600 pixelHeight\"/>"
+                                      + "			<v:f eqn=\"sum @10 21600 0\"/>"
+                                      + "		</v:formulas>"
+                                      + "		<v:path o:extrusionok=\"f\" gradientshapeok=\"t\" o:connecttype=\"rect\"/>"
+                                      + "		<o:lock v:ext=\"edit\" aspectratio=\"t\"/>"
+                                      + "	</v:shapetype>"
+                                      +
+                                      "\n<w:binData w:name=\"wordml://{internalFileName}\" xml:space=\"preserve\">{binary}</w:binData>"
+                                      +
+                                      "\n	<v:shape id=\"_x0000_i1026\" type=\"#_x0000_t75\" style=\"width:{width}pt;height:{height}pt\"><v:imagedata src=\"wordml://{internalFileName}\" o:title=\"{fileName}\"/>"
+                                      + "\n	</v:shape>" + "\n</w:pict>";
+
+        private string width = ""; // to be able to set this to override default
+
         // size
-        BufferedImage bufferedImage;
 
         /// <summary>
-        /// This is the location on your image. If you specify  "imageLocation" as WEB_URL, your path should start with "http://..."
-        /// But if you choose "imageLocation" as FULL_LOCAL_PATH, you should specify path value as absolute path from the root of your server. Eg.: /Users/YourName/imgs/...
+        ///   This is the location on your image. If you specify  "imageLocation" as WEB_URL, your path should start with "http://..."
+        ///   But if you choose "imageLocation" as FULL_LOCAL_PATH, you should specify path value as absolute path from the root of your server. Eg.: /Users/YourName/imgs/...
         /// </summary>
-        /// <param name="path">Path of the image. It will depend on the location: web, local or classpath.</param>
-        /// <param name="imageLocation">
-        /// FULL_LOCAL_PATH:  Full path absolute (from the root of your server.) including file name and extension.
-        /// It has to start from the root of your system.
+        /// <param name = "path">Path of the image. It will depend on the location: web, local or classpath.</param>
+        /// <param name = "imageLocation">
+        ///   FULL_LOCAL_PATH:  Full path absolute (from the root of your server.) including file name and extension.
+        ///   It has to start from the root of your system.
         /// 
-        /// WEB_URL: It can be http://localhost/your_app/img/xxx.gif or http://google.com/img/logoWhatever.png
+        ///   WEB_URL: It can be http://localhost/your_app/img/xxx.gif or http://google.com/img/logoWhatever.png
         /// </param>
         public Image(string path, ImageLocation imageLocation)
         {
@@ -54,14 +82,87 @@ namespace Word.W2004.Elements
                     //InputStream is = getClass().getResourceAsStream(path);
                     //bufferedImage = ImageIO.read(is);
                 }
-
             }
             catch (IOException e)
             {
-                throw new Exception("Can't create ImageIO. Maybe the path is not valid. Path: \n" + path + "\nImageLocation: " + imageLocation.ToString(), e);
+                throw new Exception(
+                    "Can't create ImageIO. Maybe the path is not valid. Path: \n" + path + "\nImageLocation: " +
+                    imageLocation, e);
             }
         }
 
+
+        public string OriginalWidthHeight
+        {
+            get
+            {
+                string res = bufferedImage.Width + "#" + bufferedImage.Height + "";
+                return res;
+            }
+        }
+
+        #region IFluentElement<Image> Members
+
+        public Image create()
+        {
+            return this;
+        }
+
+        #endregion
+
+        #region IImage Members
+
+        public string Content
+        {
+            get
+            {
+                if (hasBeenCalledBefore)
+                {
+                    return txt.ToString();
+                }
+                else
+                {
+                    hasBeenCalledBefore = true;
+                }
+                // Placeholders: internalFileName, fileName, binary, width and height
+
+                string[] arr = path.Split('/');
+                string fileName = arr[arr.Length - 1];
+
+                string internalFileName = DateTime.Now.Millisecond + fileName;
+
+                // string binary = ImageUtils.getImageHexaBase64(path);
+                string imageformat = path.Substring(path.LastIndexOf('.') + 1);
+                string binary = ImageUtils.getImageHexaBase64(bufferedImage,
+                                                              imageformat);
+
+                setUpSize();
+
+                string res = img_template;
+                res = res.Replace("{fileName}", fileName);
+                res = res.Replace("{internalFileName}", internalFileName);
+                res = res.Replace("{binary}", binary);
+                res = res.Replace("{width}", this.width);
+                res = res.Replace("{height}", this.height);
+
+                txt.Append(res);
+                return txt.ToString();
+            }
+        }
+
+        public Image setWidth(string value)
+        {
+            this.width = value;
+            return this;
+        }
+
+        public Image setHeight(string value)
+        {
+            this.height = value;
+            return this;
+        }
+
+        #endregion
 
         private static BufferedImage ImageFromUrl(Uri url)
         {
@@ -114,15 +215,6 @@ namespace Word.W2004.Elements
             return total_stream;
         }
 
-        public string OriginalWidthHeight
-        {
-            get
-            {
-                string res = bufferedImage.Width + "#" + bufferedImage.Height + "";
-                return res;
-            }
-        }
-
         private void setUpSize()
         {
             if ("".Equals(this.width) || "".Equals(this.height))
@@ -139,90 +231,13 @@ namespace Word.W2004.Elements
                     this.height = hh;
                 }
             }
-
         }
-
-        public string Content
-        {
-            get
-            {
-                if (hasBeenCalledBefore)
-                {
-                    return txt.ToString();
-                }
-                else
-                {
-                    hasBeenCalledBefore = true;
-                }
-                // Placeholders: internalFileName, fileName, binary, width and height
-
-                string[] arr = path.Split('/');
-                string fileName = arr[arr.Length - 1];
-
-                string internalFileName = DateTime.Now.Millisecond + fileName;
-
-                // string binary = ImageUtils.getImageHexaBase64(path);
-                string imageformat = path.Substring(path.LastIndexOf('.') + 1);
-                string binary = ImageUtils.getImageHexaBase64(bufferedImage,
-                                                              imageformat);
-
-                setUpSize();
-
-                string res = img_template;
-                res = res.Replace("{fileName}", fileName);
-                res = res.Replace("{internalFileName}", internalFileName);
-                res = res.Replace("{binary}", binary);
-                res = res.Replace("{width}", this.width);
-                res = res.Replace("{height}", this.height);
-
-                txt.Append(res);
-                return txt.ToString();
-            }
-        }
-
-        public Image setWidth(string value)
-        {
-            this.width = value;
-            return this;
-        }
-
-        public Image setHeight(string value)
-        {
-            this.height = value;
-            return this;
-        }
-
-        private string img_template = "\n<w:pict>"
-                                      +
-                                      "\n	<v:shapetype id=\"_x0000_t75\" coordsize=\"21600,21600\" o:spt=\"75\" o:preferrelative=\"t\" path=\"m@4@5l@4@11@9@11@9@5xe\" filled=\"f\" stroked=\"f\">"
-                                      + "		<v:stroke joinstyle=\"miter\"/>"
-                                      + "		<v:formulas>"
-                                      + "			<v:f eqn=\"if lineDrawn pixelLineWidth 0\"/>"
-                                      + "			<v:f eqn=\"sum @0 1 0\"/><v:f eqn=\"sum 0 0 @1\"/>"
-                                      + "			<v:f eqn=\"prod @2 1 2\"/>"
-                                      + "			<v:f eqn=\"prod @3 21600 pixelWidth\"/>"
-                                      + "			<v:f eqn=\"prod @3 21600 pixelHeight\"/>"
-                                      + "			<v:f eqn=\"sum @0 0 1\"/>"
-                                      + "			<v:f eqn=\"prod @6 1 2\"/>"
-                                      + "			<v:f eqn=\"prod @7 21600 pixelWidth\"/>"
-                                      + "			<v:f eqn=\"sum @8 21600 0\"/>"
-                                      + "			<v:f eqn=\"prod @7 21600 pixelHeight\"/>"
-                                      + "			<v:f eqn=\"sum @10 21600 0\"/>"
-                                      + "		</v:formulas>"
-                                      + "		<v:path o:extrusionok=\"f\" gradientshapeok=\"t\" o:connecttype=\"rect\"/>"
-                                      + "		<o:lock v:ext=\"edit\" aspectratio=\"t\"/>"
-                                      + "	</v:shapetype>"
-                                      +
-                                      "\n<w:binData w:name=\"wordml://{internalFileName}\" xml:space=\"preserve\">{binary}</w:binData>"
-                                      +
-                                      "\n	<v:shape id=\"_x0000_i1026\" type=\"#_x0000_t75\" style=\"width:{width}pt;height:{height}pt\"><v:imagedata src=\"wordml://{internalFileName}\" o:title=\"{fileName}\"/>"
-                                      + "\n	</v:shape>" + "\n</w:pict>";
 
 
         /// <summary>
-        /// It creates an image from the Web.
+        ///   It creates an image from the Web.
         /// </summary>
-        /// <param name="path">Image full path. To know if it will work, you should be able to see this image in your browser</param>
+        /// <param name = "path">Image full path. To know if it will work, you should be able to see this image in your browser</param>
         /// <returns></returns>
         public static Image from_WEB_URL(string path)
         {
@@ -230,18 +245,13 @@ namespace Word.W2004.Elements
         }
 
         /// <summary>
-        /// It creates an image from your local machine.
+        ///   It creates an image from your local machine.
         /// </summary>
-        /// <param name="path">Image full path. To know if it will work, probably you should specify full path from the root of your system.</param>
+        /// <param name = "path">Image full path. To know if it will work, probably you should specify full path from the root of your system.</param>
         /// <returns></returns>
         public static Image from_FULL_LOCAL_PATHL(string path)
         {
             return new Image(path, ImageLocation.FULL_LOCAL_PATH);
-        }
-
-        public Image create()
-        {
-            return this;
         }
     }
 }

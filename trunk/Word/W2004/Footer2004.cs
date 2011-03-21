@@ -5,99 +5,10 @@ namespace Word.W2004
 {
     public class Footer2004 : IFooter
     {
-        StringBuilder txt = new StringBuilder("");
-        private bool hasBeenCalledBefore = false; // if getContent has already been called, I cached the result for future invocations
-        private bool _showPageNumber = true;
+        private const string HEADER_TOP = "\n	<w:ftr w:type=\"odd\">";
+        private const string HEADER_BOTTON = "\n	</w:ftr>";
 
-        #region Implementation of IElement
-
-        /// <summary>
-        /// <p>This method returns the content (XML or HTML) of the Element and the content.</p>
-        /// <p>If you are using W2004, the return will be the XML required to generate the element.</p>
-        /// 
-        /// <p>Important: Once you call this method, the Document value is cached an no elements can be added later.</p>
-        /// 
-        /// <example>
-        ///     <p>This is the XML that generates a <code>BreakLine</code>:</p>
-        ///     <code>
-        ///         <w:p wsp:rsidR='008979E8' wsp:rsidRDefault='008979E8'/>
-        ///     </code>
-        /// </example>
-        /// </summary>
-        /// <value>This is the String value of the element ready to be appended/inserted in the Document.</value>
-        public string Content
-        {
-            get
-            {
-                if ("".Equals(txt.ToString()))
-                {
-                    return "";
-                }
-                if (hasBeenCalledBefore)
-                {
-                    return txt.ToString();
-                }
-                else
-                {
-                    hasBeenCalledBefore = true;
-                }
-
-                txt.Insert(0, HEADER_TOP);
-                if (_showPageNumber)
-                {
-                    txt.Append(PAGE_NUMBER);
-                }
-                txt.Append(HEADER_BOTTON);
-
-                return txt.ToString();
-            }
-        }
-
-        #endregion
-
-        #region Implementation of IHasElement
-
-        /// <summary>
-        /// The content of the Element will be evaluated inside the object.
-        /// 
-        /// This is an alias to 'getBody().addEle'
-        /// </summary>
-        /// <param name="e"></param>
-        public void addEle(IElement e)
-        {
-            this.txt.Append("\n" + e.Content);
-        }
-
-        /// <summary>
-        /// In order to give flexibility, String methods was added.
-        /// Imagine you need to add an element which hasn't been implemented, for example, <b>Graphs</b>.
-        /// You know how to generate the XML to generate a Graph because you figured it out by yourself.
-        /// In this case you could do this:
-        /// <code>
-        ///     IDocument myDoc = new Document2004();
-        ///     string myXml = myMethodToReturnXML(); //This method return the XML to generate my graph - you have to write this one
-        ///     myDoc.getBody().addEle(new Paragraph("This is a my graph: " + myXml));
-        /// </code>
-        /// This is an alias to 'getBody().addEle'
-        /// </summary>
-        /// <param name="str"></param>
-        public void addEle(string str)
-        {
-            this.txt.Append("\n" + str);
-        }
-
-        public void showPageNumber(bool value)
-        {
-            this._showPageNumber = value;
-        }
-
-        #endregion
-
-
-        private static string HEADER_TOP = "\n	<w:ftr w:type=\"odd\">";
-        private static string HEADER_BOTTON = "\n	</w:ftr>";
-
-        private static string PAGE_NUMBER =
+        private const string PAGE_NUMBER =
             "\n                <wx:pBdrGroup> "
             + "\n                    <wx:apo> "
             + "\n                        <wx:jc wx:val=\"right\"/> "
@@ -145,5 +56,93 @@ namespace Word.W2004
             + "\n                    </w:p> "
             + "\n                </wx:pBdrGroup> \n";
 
+        private readonly StringBuilder txt = new StringBuilder("");
+        private bool _showPageNumber = true;
+
+        private bool hasBeenCalledBefore;
+                     // if getContent has already been called, I cached the result for future invocations
+
+        #region Implementation of IElement
+
+        /// <summary>
+        ///   <p>This method returns the content (XML or HTML) of the Element and the content.</p>
+        ///   <p>If you are using W2004, the return will be the XML required to generate the element.</p>
+        /// 
+        ///   <p>Important: Once you call this method, the Document value is cached an no elements can be added later.</p>
+        ///   <example>
+        ///     <p>This is the XML that generates a <code>BreakLine</code>:</p>
+        ///     <code>
+        ///       <w:p wsp:rsidR = '008979E8' wsp:rsidRDefault = '008979E8' />
+        ///     </code>
+        ///   </example>
+        /// </summary>
+        /// <value>This is the String value of the element ready to be appended/inserted in the Document.</value>
+        public string Content
+        {
+            get
+            {
+                if ("".Equals(txt.ToString()))
+                {
+                    return "";
+                }
+                if (hasBeenCalledBefore)
+                {
+                    return txt.ToString();
+                }
+                else
+                {
+                    hasBeenCalledBefore = true;
+                }
+
+                txt.Insert(0, HEADER_TOP);
+                if (_showPageNumber)
+                {
+                    txt.Append(PAGE_NUMBER);
+                }
+                txt.Append(HEADER_BOTTON);
+
+                return txt.ToString();
+            }
+        }
+
+        #endregion
+
+        #region Implementation of IHasElement
+
+        /// <summary>
+        ///   The content of the Element will be evaluated inside the object.
+        /// 
+        ///   This is an alias to 'getBody().addEle'
+        /// </summary>
+        /// <param name = "e"></param>
+        public void addEle(IElement e)
+        {
+            this.txt.Append("\n" + e.Content);
+        }
+
+        /// <summary>
+        ///   In order to give flexibility, String methods was added.
+        ///   Imagine you need to add an element which hasn't been implemented, for example, <b>Graphs</b>.
+        ///   You know how to generate the XML to generate a Graph because you figured it out by yourself.
+        ///   In this case you could do this:
+        ///   <code>
+        ///     IDocument myDoc = new Document2004();
+        ///     string myXml = myMethodToReturnXML(); //This method return the XML to generate my graph - you have to write this one
+        ///     myDoc.getBody().addEle(new Paragraph("This is a my graph: " + myXml));
+        ///   </code>
+        ///   This is an alias to 'getBody().addEle'
+        /// </summary>
+        /// <param name = "str"></param>
+        public void addEle(string str)
+        {
+            this.txt.Append("\n" + str);
+        }
+
+        public void showPageNumber(bool value)
+        {
+            this._showPageNumber = value;
+        }
+
+        #endregion
     }
 }

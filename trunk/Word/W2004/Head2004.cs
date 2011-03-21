@@ -6,7 +6,9 @@ namespace Word.W2004
 {
     public class Head2004 : IHead
     {
-        private StringBuilder content = new StringBuilder("");
+        private readonly StringBuilder content = new StringBuilder("");
+
+        #region IHead Members
 
         public string Content
         {
@@ -20,5 +22,7 @@ namespace Word.W2004
                 return content.ToString();
             }
         }
+
+        #endregion
     }
 }

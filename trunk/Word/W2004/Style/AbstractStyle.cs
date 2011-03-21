@@ -6,10 +6,12 @@ namespace Word.W2004.Style
     {
         private IElement _element;
 
+        #region ISuperStylin Members
+
         /// <summary>
-        /// This method will called by IElement.getContent();
+        ///   This method will called by IElement.getContent();
         /// </summary>
-        /// <param name="txt"></param>
+        /// <param name = "txt"></param>
         /// <returns></returns>
         public abstract string getNewContentWithStyle(string txt);
 
@@ -22,6 +24,7 @@ namespace Word.W2004.Style
         {
             return this._element;
         }
-        
+
+        #endregion
     }
 }

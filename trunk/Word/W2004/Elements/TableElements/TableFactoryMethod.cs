@@ -1,7 +1,7 @@
 namespace Word.W2004.Elements.TableElements
 {
     /// <summary>
-    /// Here is the logic to decide which instance create and return 
+    ///   Here is the logic to decide which instance create and return
     /// </summary>
     public class TableFactoryMethod
     {
@@ -13,14 +13,10 @@ namespace Word.W2004.Elements.TableElements
 
         public static TableFactoryMethod getInstance()
         {
-            if (instance == null)
-            {
-                instance = new TableFactoryMethod();
-            }
-            return instance;
+            return instance ?? (instance = new TableFactoryMethod());
         }
 
-        public ITableItemStrategy getTableItem(TableEle tableEle)
+        public static ITableItemStrategy getTableItem(TableEle tableEle)
         {
             if (tableEle == null)
             {
@@ -30,7 +26,7 @@ namespace Word.W2004.Elements.TableElements
             return getTableEle(tableEle);
         }
 
-        private ITableItemStrategy getTableEle(TableEle tableEle)
+        private static ITableItemStrategy getTableEle(TableEle tableEle)
         {
             if (tableEle.Value.Equals("tableDef"))
             {
@@ -45,9 +41,10 @@ namespace Word.W2004.Elements.TableElements
                 return new TableCol();
             }
             else
-            { //if (tableEle.getValue().equals("tf")) {
+            {
+                //if (tableEle.getValue().equals("tf")) {
                 return new TableFooter();
             }
-        } 
+        }
     }
 }

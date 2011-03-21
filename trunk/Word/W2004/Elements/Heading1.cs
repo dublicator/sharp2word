@@ -10,19 +10,23 @@ namespace Word.W2004.Elements
         {
         }
 
-        /// <summary>
-        /// This method is specific for each class. Constructor can be different...Don't know if we can make it generic
-        /// </summary>
-        /// <param name="?"></param>
-        /// <returns></returns>
-        public static Heading1 with(string @string)
-        {
-            return new Heading1(@string);
-        }
+        #region IFluentElement<Heading1> Members
 
         public Heading1 create()
         {
             return this;
+        }
+
+        #endregion
+
+        /// <summary>
+        ///   This method is specific for each class. Constructor can be different...Don't know if we can make it generic
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static Heading1 with(string value)
+        {
+            return new Heading1(value);
         }
     }
 }
