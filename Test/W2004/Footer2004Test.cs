@@ -10,24 +10,24 @@ namespace Test.W2004
         	[Test]
 	public void sanityTest(){
 		Footer2004 ft = new Footer2004();
-		Assert.AreEqual("", ft.getContent());
+		Assert.AreEqual("", ft.Content);
 	}
 
 	[Test]
 	public void testAddEle(){
 		Footer2004 ft = new Footer2004();
 		ft.addEle(new Paragraph("p1"));
-		Assert.AreEqual(2, TestUtils.regexCount(ft.getContent(), "<*w:ftr"));
-		Assert.AreEqual(1, TestUtils.regexCount(ft.getContent(), "<w:t>p1</w:t>"));	
-		Assert.AreEqual(6, TestUtils.regexCount(ft.getContent(), "<w:rStyle w:val=\"PageNumber\"/>"));	
+		Assert.AreEqual(2, TestUtils.regexCount(ft.Content, "<*w:ftr"));
+		Assert.AreEqual(1, TestUtils.regexCount(ft.Content, "<w:t>p1</w:t>"));	
+		Assert.AreEqual(6, TestUtils.regexCount(ft.Content, "<w:rStyle w:val=\"PageNumber\"/>"));	
 	}
 
 	[Test]
 	public void testAddEleString(){
 		Footer2004 ft = new Footer2004();
 		ft.addEle("<w:t>p1</w:t>");
-		Assert.AreEqual(2, TestUtils.regexCount(ft.getContent(), "<*w:ftr"));
-		Assert.AreEqual(1, TestUtils.regexCount(ft.getContent(), "<w:t>p1</w:t>"));	
+		Assert.AreEqual(2, TestUtils.regexCount(ft.Content, "<*w:ftr"));
+		Assert.AreEqual(1, TestUtils.regexCount(ft.Content, "<w:t>p1</w:t>"));	
 	}
 	
 	
@@ -36,9 +36,9 @@ namespace Test.W2004
 		Footer2004 ft = new Footer2004();
 		ft.showPageNumber(false);
 		ft.addEle(new Paragraph("p1"));
-		Assert.AreEqual(2, TestUtils.regexCount(ft.getContent(), "<*w:ftr"));
-		Assert.AreEqual(1, TestUtils.regexCount(ft.getContent(), "<w:t>p1</w:t>"));
-		Assert.AreEqual(0, TestUtils.regexCount(ft.getContent(), "<w:rStyle w:val=\"PageNumber\"/>"));
+		Assert.AreEqual(2, TestUtils.regexCount(ft.Content, "<*w:ftr"));
+		Assert.AreEqual(1, TestUtils.regexCount(ft.Content, "<w:t>p1</w:t>"));
+		Assert.AreEqual(0, TestUtils.regexCount(ft.Content, "<w:rStyle w:val=\"PageNumber\"/>"));
 	} 
     }
 }

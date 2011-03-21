@@ -24,30 +24,33 @@ namespace Word.W2004
         ///     </code>
         /// </example>
         /// </summary>
-        /// <returns>This is the String value of the element ready to be appended/inserted in the Document.</returns>
-        public string getContent()
+        /// <value>This is the String value of the element ready to be appended/inserted in the Document.</value>
+        public string Content
         {
-            if ("".Equals(txt.ToString()))
+            get
             {
-                return "";
-            }
-            if (hasBeenCalledBefore)
-            {
+                if ("".Equals(txt.ToString()))
+                {
+                    return "";
+                }
+                if (hasBeenCalledBefore)
+                {
+                    return txt.ToString();
+                }
+                else
+                {
+                    hasBeenCalledBefore = true;
+                }
+
+                txt.Insert(0, HEADER_TOP);
+                if (_showPageNumber)
+                {
+                    txt.Append(PAGE_NUMBER);
+                }
+                txt.Append(HEADER_BOTTON);
+
                 return txt.ToString();
             }
-            else
-            {
-                hasBeenCalledBefore = true;
-            }
-
-            txt.Insert(0, HEADER_TOP);
-            if (_showPageNumber)
-            {
-                txt.Append(PAGE_NUMBER);
-            }
-            txt.Append(HEADER_BOTTON);
-
-            return txt.ToString();
         }
 
         #endregion
@@ -62,7 +65,7 @@ namespace Word.W2004
         /// <param name="e"></param>
         public void addEle(IElement e)
         {
-            this.txt.Append("\n" + e.getContent());
+            this.txt.Append("\n" + e.Content);
         }
 
         /// <summary>

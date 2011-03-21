@@ -17,11 +17,14 @@ namespace Word.W2004.Elements
         /// </summary>
         private int _times = 1;
 
-        public string getContent()
+        public string Content
         {
-            StringBuilder res = new StringBuilder("");
-            applyBreakLineTimes(res);
-            return res.ToString();
+            get
+            {
+                StringBuilder res = new StringBuilder("");
+                applyBreakLineTimes(res);
+                return res.ToString();
+            }
         }
 
         /// <summary>

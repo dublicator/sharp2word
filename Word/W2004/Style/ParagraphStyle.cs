@@ -26,7 +26,7 @@ namespace Word.W2004.Style
 
         private void doStyleAlignment(StringBuilder style)
         {
-            style.Append("  <w:jc w:val=\"" + align.getValue() + "\"/> \n    " + "       {styleText}\n   ");
+            style.Append("  <w:jc w:val=\"" + align.Value + "\"/> \n    " + "       {styleText}\n   ");
         }
 
         private void doStyleBgColor(StringBuilder style)

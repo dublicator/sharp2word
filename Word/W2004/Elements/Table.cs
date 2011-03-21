@@ -11,27 +11,30 @@ namespace Word.W2004.Elements
         private bool isRepeatTableHeaderOnEveryPage = false;
 
 
-        public string getContent()
+        public string Content
         {
-            if ("".Equals(txt.ToString()))
+            get
             {
-                return "";
-            }
-            if (hasBeenCalledBefore)
-            {
+                if ("".Equals(txt.ToString()))
+                {
+                    return "";
+                }
+                if (hasBeenCalledBefore)
+                {
+                    return txt.ToString();
+                }
+                else
+                {
+                    hasBeenCalledBefore = true;
+                }
+
+                ITableItemStrategy tableDef = TableFactoryMethod.getInstance().getTableItem(TableEle.TABLE_DEF);
+
+                txt.Insert(0, tableDef.Top);
+                txt.Append("\n" + tableDef.Bottom);
+
                 return txt.ToString();
             }
-            else
-            {
-                hasBeenCalledBefore = true;
-            }
-
-            ITableItemStrategy tableDef = TableFactoryMethod.getInstance().getTableItem(TableEle.TABLE_DEF);
-
-            txt.Insert(0, tableDef.getTop());
-            txt.Append("\n" + tableDef.getBottom());
-
-            return txt.ToString();
         }
 
         public void addTableEle(TableEle tableEle, params string[] cols)
@@ -46,14 +49,14 @@ namespace Word.W2004.Elements
                 {
                     //### commented in order to render the cell regardless of null or empty string
                     //if(!"".Equals(cols[i])){ 
-                    th.Append("\n" + item.getMiddle().Replace("{value}", cols[i]));
+                    th.Append("\n" + item.Middle.Replace("{value}", cols[i]));
                     //}
                 }
 
                 if (!"".Equals(th.ToString()))
                 {
-                    th.Insert(0, item.getTop());
-                    th.Append(item.getBottom());
+                    th.Insert(0, item.Top);
+                    th.Append(item.Bottom);
                 }
 
                 string finalResult = setUpRepeatTableHeaderOnEveryPage(th);

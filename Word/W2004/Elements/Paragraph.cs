@@ -38,45 +38,51 @@ namespace Word.W2004.Elements
             this.pieces = pieces;
         }
 
-        public string getContent()
+        public string Content
         {
-            if (pieces == null)
-            {  // || pieces.length == 0){
-                return "";
-            }
-
-            StringBuilder sb = new StringBuilder("");
-            foreach (ParagraphPiece piece in pieces)
+            get
             {
-                sb.Append(piece.getContent());
-            }
+                if (pieces == null)
+                {
+                    // || pieces.length == 0){
+                    return "";
+                }
 
-            string txt =
-                "	<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"
-                + "\n		{styleText}" // {styleText} is inside styleText
-                + "\n		{value}"
-                + "\n	</w:p>";
+                StringBuilder sb = new StringBuilder("");
+                foreach (ParagraphPiece piece in pieces)
+                {
+                    sb.Append(piece.Content);
+                }
 
-            if ("".Equals(sb.ToString()))
-            { //if there is no content in the pieces, there is no return - just empty string.
-                return "";
-            }
-            else
-            {
-                //For convention, it should be the last thing before returning the xml content.
-                txt = style.getNewContentWithStyle(txt);
+                string txt =
+                    "	<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"
+                    + "\n		{styleText}" // {styleText} is inside styleText
+                    + "\n		{value}"
+                    + "\n	</w:p>";
 
-                return txt.Replace("{value}", sb.ToString());
+                if ("".Equals(sb.ToString()))
+                {
+                    //if there is no content in the pieces, there is no return - just empty string.
+                    return "";
+                }
+                else
+                {
+                    //For convention, it should be the last thing before returning the xml content.
+                    txt = style.getNewContentWithStyle(txt);
+
+                    return txt.Replace("{value}", sb.ToString());
+                }
             }
         }
 
 
         //## Getters and Setters
 
-        public ParagraphStyle getStyle()
+        public ParagraphStyle Style
         {
-            return style;
+            get { return style; }
         }
+
         public void setStyle(ParagraphStyle style)
         {
             this.style = style;

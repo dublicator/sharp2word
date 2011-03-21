@@ -7,9 +7,9 @@ namespace Word.W2004.Elements
     /// </summary>
     public class PageBreak : IElement
     {
-        public string getContent()
+        public string Content
         {
-            return "\n<w:br w:type=\"page\" />";
+            get { return "\n<w:br w:type=\"page\" />"; }
         }
 
         /// <summary>

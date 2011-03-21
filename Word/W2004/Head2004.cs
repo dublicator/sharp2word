@@ -8,14 +8,17 @@ namespace Word.W2004
     {
         private StringBuilder content = new StringBuilder("");
 
-        public string getContent()
+        public string Content
         {
-            if ("".Equals(this.content.ToString()))
+            get
             {
-                content.Append("\n" + Util.HEAD2004 + "\n");
-            }
+                if ("".Equals(this.content.ToString()))
+                {
+                    content.Append("\n" + Util.HEAD2004 + "\n");
+                }
 
-            return content.ToString();
+                return content.ToString();
+            }
         }
     }
 }

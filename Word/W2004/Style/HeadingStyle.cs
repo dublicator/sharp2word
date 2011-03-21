@@ -25,7 +25,7 @@ namespace Word.W2004.Style
         /// <returns></returns>
         public override string getNewContentWithStyle(string txt)
         {
-            string alignValue = "\n            	<w:jc w:val=\"" + align.getValue() + "\" />";
+            string alignValue = "\n            	<w:jc w:val=\"" + align.Value + "\" />";
             txt = txt.Replace("{styleAlign}", alignValue);
             StringBuilder sbText = new StringBuilder("");
 

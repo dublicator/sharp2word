@@ -86,12 +86,12 @@ namespace ConsoleTest
                     "you can also hide Header and Footer in the first Page. This is useful for when you have a cover page.: 'myDoc.getHeader().setHideHeaderAndFooterFirstPage(true)' ")
                     .create());
 
-            myDoc.getHeader().addEle(
+            myDoc.Header.addEle(
                 Paragraph.withPieces(ParagraphPiece.with("I am in the"),
                                      ParagraphPiece.with(" Header ").withStyle().setBold(true).create(),
                                      ParagraphPiece.with("of all pages")).create());
 
-            myDoc.getFooter().addEle(Paragraph.with("I am in the Footer of all pages").create());
+            myDoc.Footer.addEle(Paragraph.with("I am in the Footer of all pages").create());
 
 
             //Images
@@ -171,7 +171,7 @@ namespace ConsoleTest
             myDoc.addEle(Paragraph.with("There is a PAGE BREAK before this line:").create());
 
             //myDoc.Save(@"C:\testWord.doc");
-            string myWord = myDoc.getContent();
+            string myWord = myDoc.Content;
 
             using (FileStream fs = new FileStream(@"c:\mytest.doc", FileMode.Create))
             {

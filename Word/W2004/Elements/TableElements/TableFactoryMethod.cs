@@ -32,15 +32,15 @@ namespace Word.W2004.Elements.TableElements
 
         private ITableItemStrategy getTableEle(TableEle tableEle)
         {
-            if (tableEle.getValue().Equals("tableDef"))
+            if (tableEle.Value.Equals("tableDef"))
             {
                 return new TableDefinition();
             }
-            else if (tableEle.getValue().Equals("th"))
+            else if (tableEle.Value.Equals("th"))
             {
                 return new TableHeader();
             }
-            else if (tableEle.getValue().Equals("td"))
+            else if (tableEle.Value.Equals("td"))
             {
                 return new TableCol();
             }

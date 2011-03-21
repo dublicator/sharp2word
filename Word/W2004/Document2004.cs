@@ -13,48 +13,54 @@ namespace Word.W2004
 
         private bool hasBeenCalledBefore = false; // if getContent has already been called, I cached the result for future invocations
 
-        public string getUri()
+        public string Uri
         {
-            string uri = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
-                         + "<?mso-application progid=\"Word.Document\"?> "
-                         + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
-                         +
-                         " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
-                         + " xmlns:ve=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" "
-                         +
-                         " xmlns:mv=\"urn:schemas-microsoft-com:mac:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" "
-                         +
-                         " xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" "
-                         + " xmlns:w=\"http://schemas.microsoft.com/office/word/2003/wordml\" "
-                         + " xmlns:wx=\"http://schemas.microsoft.com/office/word/2003/auxHint\" "
-                         + " xmlns:wsp=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" "
-                         + " xmlns:sl=\"http://schemas.microsoft.com/schemaLibrary/2003/core\" "
-                         + " w:macrosPresent=\"no\" w:embeddedObjPresent=\"no\" w:ocxPresent=\"no\" "
-                         + " xml:space=\"preserve\"> "
-                         + " <w:ignoreSubtree w:val=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" /> ";
-            return uri;
+            get
+            {
+                string uri = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
+                             + "<?mso-application progid=\"Word.Document\"?> "
+                             + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
+                             +
+                             " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
+                             + " xmlns:ve=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" "
+                             +
+                             " xmlns:mv=\"urn:schemas-microsoft-com:mac:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" "
+                             +
+                             " xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" "
+                             + " xmlns:w=\"http://schemas.microsoft.com/office/word/2003/wordml\" "
+                             + " xmlns:wx=\"http://schemas.microsoft.com/office/word/2003/auxHint\" "
+                             + " xmlns:wsp=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" "
+                             + " xmlns:sl=\"http://schemas.microsoft.com/schemaLibrary/2003/core\" "
+                             + " w:macrosPresent=\"no\" w:embeddedObjPresent=\"no\" w:ocxPresent=\"no\" "
+                             + " xml:space=\"preserve\"> "
+                             + " <w:ignoreSubtree w:val=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" /> ";
+                return uri;
+            }
         }
 
-        public string getContent()
+        public string Content
         {
-            if (hasBeenCalledBefore)
+            get
             {
-                return txt.ToString();
+                if (hasBeenCalledBefore)
+                {
+                    return txt.ToString();
+                }
+                else
+                {
+                    hasBeenCalledBefore = true;
+                }
+                txt.Append(this.Uri);
+                txt.Append(this.Head.Content);
+
+                txt.Append(this.Body.Content);
+
+                txt.Append("\n</w:wordDocument>");
+
+                string finalString = setUpPageOrientation(txt.ToString());
+
+                return finalString;
             }
-            else
-            {
-                hasBeenCalledBefore = true;
-            }
-            txt.Append(this.getUri());
-            txt.Append(this.getHead().getContent());
-
-            txt.Append(this.getBody().getContent());
-
-            txt.Append("\n</w:wordDocument>");
-
-            string finalString = setUpPageOrientation(txt.ToString());
-
-            return finalString;
         }
 
         private string setUpPageOrientation(string txt)
@@ -77,24 +83,29 @@ namespace Word.W2004
             this.isLandscape = true;
         }
 
-        public IBody getBody()
+        public IBody Body
         {
-            return this.body;
+            get { return this.body; }
         }
 
-        public IHead getHead()
+        public IHead Head
         {
-            return this.head;
+            get { return this.head; }
         }
 
-        public IFooter getFooter()
+        public IFooter Footer
         {
-            //forward it to the body
-            return this.getBody().getFooter();
+            get
+            {
+                //forward it to the body
+                return this.Body.Footer;
+            }
         }
-        public IHeader getHeader()
+
+        public IHeader Header
         {
-            return this.getBody().getHeader(); //forward it to the body
+            get { return this.Body.Header; //forward it to the body
+            }
         }
 
         /// <summary>
@@ -103,17 +114,17 @@ namespace Word.W2004
         /// <param name="e"></param>
         public void addEle(IElement e)
         {
-            this.getBody().addEle(e);
+            this.Body.addEle(e);
         }
 
         public void addEle(string str)
         {
-            this.getBody().addEle(str);
+            this.Body.addEle(str);
         }
 
         public override string ToString()
         {
-            return this.getContent();
+            return this.Content;
         }
 
     }

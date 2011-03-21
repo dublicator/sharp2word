@@ -30,24 +30,28 @@ namespace Word.W2004.Elements
             this.value = value;
         }
 
-        public string getContent()
+        public string Content
         {
-            if ("".Equals(this.value) || this.value == null)
-            { // null is very unusual. That the reason null comparison is after empty verification. I am not sure if we use ApacheUtils we can achieve the same  
-                return "";
+            get
+            {
+                if ("".Equals(this.value) || this.value == null)
+                {
+                    // null is very unusual. That the reason null comparison is after empty verification. I am not sure if we use ApacheUtils we can achieve the same  
+                    return "";
+                }
+
+                //For convention, it should be the last thing before returning the xml content.
+                txt = style.getNewContentWithStyle(txt);
+
+                return txt.Replace("{value}", this.value);
             }
-
-            //For convention, it should be the last thing before returning the xml content.
-            txt = style.getNewContentWithStyle(txt);
-
-            return txt.Replace("{value}", this.value);
         }
 
-        //### Gettets and Setters
-        public ParagraphPieceStyle getStyle()
+        public ParagraphPieceStyle Style
         {
-            return style;
+            get { return style; }
         }
+
         public void setStyle(ParagraphPieceStyle style)
         {
             this.style = style;

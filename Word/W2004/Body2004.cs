@@ -25,34 +25,37 @@ namespace Word.W2004
         ///     </code>
         /// </example>
         /// </summary>
-        /// <returns>This is the String value of the element ready to be appended/inserted in the Document.</returns>
-        public string getContent()
+        /// <value>This is the String value of the element ready to be appended/inserted in the Document.</value>
+        public string Content
         {
-            StringBuilder res = new StringBuilder();
-            res.Append("\n<w:body>");
-
-            res.Append(txt.ToString());
-
-            string header = this.getHeader().getContent();
-            string footer = this.getFooter().getContent();
-            if (!"".Equals(header) || !"".Equals(footer))
+            get
             {
-                string header_footer_top = "<w:sectPr wsp:rsidR=\"00DB1FE5\" wsp:rsidSect=\"00471A86\">";
-                string header_footer_botton = "</w:sectPr>";
+                StringBuilder res = new StringBuilder();
+                res.Append("\n<w:body>");
 
-                res.Append("\n" + header_footer_top);
-                res.Append(header);//header has to be inside the w:body
-                res.Append(footer);//header has to be inside the w:body
-                if (this.getHeader().getHideHeaderAndFooterFirstPage())
+                res.Append(txt.ToString());
+
+                string header = this.Header.Content;
+                string footer = this.Footer.Content;
+                if (!"".Equals(header) || !"".Equals(footer))
                 {
-                    res.Append(this.getHeader().getHideHeaderAndFooterFirstPageXml());
+                    string header_footer_top = "<w:sectPr wsp:rsidR=\"00DB1FE5\" wsp:rsidSect=\"00471A86\">";
+                    string header_footer_botton = "</w:sectPr>";
+
+                    res.Append("\n" + header_footer_top);
+                    res.Append(header); //header has to be inside the w:body
+                    res.Append(footer); //header has to be inside the w:body
+                    if (this.Header.getHideHeaderAndFooterFirstPage())
+                    {
+                        res.Append(this.Header.getHideHeaderAndFooterFirstPageXml());
+                    }
+
+                    res.Append("\n" + header_footer_botton);
                 }
 
-                res.Append("\n" + header_footer_botton);
+                res.Append("\n</w:body>");
+                return res.ToString();
             }
-
-            res.Append("\n</w:body>");
-            return res.ToString();
         }
 
         #endregion
@@ -67,7 +70,7 @@ namespace Word.W2004
         /// <param name="e"></param>
         public void addEle(IElement e)
         {
-            this.txt.Append("\n" + e.getContent()); 
+            this.txt.Append("\n" + e.Content); 
         }
 
         /// <summary>
@@ -92,14 +95,14 @@ namespace Word.W2004
 
         #region Implementation of IBody
 
-        public IHeader getHeader()
+        public IHeader Header
         {
-            return header;
+            get { return header; }
         }
 
-        public IFooter getFooter()
+        public IFooter Footer
         {
-            return footer;
+            get { return footer; }
         }
 
         #endregion

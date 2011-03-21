@@ -12,21 +12,21 @@ namespace Test.W2004
         public void sanityTest()
         {
             IElement par = new Paragraph("");
-            Assert.AreEqual(par.getContent(), "");
+            Assert.AreEqual(par.Content, "");
         }
 
         [Test]
         public void sanityTest02()
         {
             IElement par = new Paragraph(new ParagraphPiece(""));
-            Assert.AreEqual(par.getContent(), "");
+            Assert.AreEqual(par.Content, "");
         }
 
         [Test]
         public void sanityTest03()
         {
             IElement par = Paragraph.withPieces(new ParagraphPiece(null)).create();
-            Assert.AreEqual(par.getContent(), "");
+            Assert.AreEqual(par.Content, "");
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace Test.W2004
         {
             IElement p01 = Paragraph.with("par01").withStyle().setBgColor("FFFF00").create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(p01.getContent(), "FFFF00")); //Background Color
+            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "FFFF00")); //Background Color
 
             basicParagraphCheckings(p01, "par01", "left");
         }
@@ -51,7 +51,7 @@ namespace Test.W2004
         public void testWithStyle()
         {
             IElement p01 = Paragraph.with("").withStyle().create();
-            Assert.AreEqual(p01.getContent(), "");
+            Assert.AreEqual(p01.Content, "");
         }
 
 
@@ -90,9 +90,9 @@ namespace Test.W2004
             style.setUnderline(true);
             piece01.setStyle(style);
 
-            Assert.AreEqual(1, TestUtils.regexCount(p01.getContent(), "<w:b/>")); //bold
-            Assert.AreEqual(1, TestUtils.regexCount(p01.getContent(), "<w:i/>")); //italic
-            Assert.AreEqual(1, TestUtils.regexCount(p01.getContent(), "<w:u w:val=\"single\"/>")); //underline
+            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:b/>")); //bold
+            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:i/>")); //italic
+            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:u w:val=\"single\"/>")); //underline
 
             basicParagraphCheckings(p01, "Piece01", null);
         }
@@ -111,14 +111,14 @@ namespace Test.W2004
             Paragraph p01 = Paragraph.withPieces(piece01, piece02);
 
 
-            Assert.AreEqual(1, TestUtils.regexCount(p01.getContent(), "<w:t>Piece11111</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(p01.getContent(), "<w:t>Piece22222</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(p01.getContent(), "<w:p wsp:rsidR="));
-            Assert.AreEqual(4, TestUtils.regexCount(p01.getContent(), "<*w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(p01.getContent(), "</w:p>"));
+            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:t>Piece11111</w:t>"));
+            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:t>Piece22222</w:t>"));
+            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:p wsp:rsidR="));
+            Assert.AreEqual(4, TestUtils.regexCount(p01.Content, "<*w:r>"));
+            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "</w:p>"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(p01.getContent(), "<w:b/>"));
-            Assert.AreEqual(1, TestUtils.regexCount(p01.getContent(), "<w:i/>"));
+            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:b/>"));
+            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:i/>"));
 
         }
 
@@ -128,7 +128,7 @@ namespace Test.W2004
             ParagraphPiece piece01 = new ParagraphPiece("");
             ParagraphPiece piece02 = new ParagraphPiece("");
             Paragraph p01 = new Paragraph(piece01, piece02);
-            Assert.AreEqual("", p01.getContent());
+            Assert.AreEqual("", p01.Content);
         }
 
         [Test]
@@ -173,13 +173,13 @@ namespace Test.W2004
                 align = "left"; //the default
             }
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:t>" + parValue + "</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:p wsp:rsidR="));
-            Assert.AreEqual(2, TestUtils.regexCount(par.getContent(), "<*w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "</w:p>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:t>" + parValue + "</w:t>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:p wsp:rsidR="));
+            Assert.AreEqual(2, TestUtils.regexCount(par.Content, "<*w:r>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:p>"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.getContent(), "<w:jc w:val=\"" + align + "\"/>"));
-            Assert.AreEqual(2, TestUtils.regexCount(par.getContent(), "<*w:pPr>"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:jc w:val=\"" + align + "\"/>"));
+            Assert.AreEqual(2, TestUtils.regexCount(par.Content, "<*w:pPr>"));
 
         }
     }

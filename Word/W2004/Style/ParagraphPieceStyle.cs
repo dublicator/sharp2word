@@ -95,9 +95,9 @@ namespace Word.W2004.Style
 
         private void doStyleColorEnum(StringBuilder style)
         {
-            if (this.color != null && !this.color.getValue().Equals(""))
+            if (this.color != null && !this.color.Value.Equals(""))
             {
-                style.Append("\n			<w:color w:val=\"" + color.getValue() + "\"/>");
+                style.Append("\n			<w:color w:val=\"" + color.Value + "\"/>");
             }
         }
 
@@ -108,7 +108,7 @@ namespace Word.W2004.Style
             string fontName = "";
             if (this.font != null)
             {
-                fontName = this.font.getValue();
+                fontName = this.font.Value;
                 if (fontName.Contains("Bold"))
                 {
                     this.bold = true;

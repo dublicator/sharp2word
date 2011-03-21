@@ -9,9 +9,9 @@ namespace Word.W2004.Elements.TableElements
             this._value = value;
         }
 
-        public string getValue()
+        public string Value
         {
-            return this._value;
+            get { return this._value; }
         }
 
         public static TableEle TH
