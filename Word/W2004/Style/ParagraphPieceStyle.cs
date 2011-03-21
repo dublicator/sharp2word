@@ -5,7 +5,8 @@ using Word.W2004.Elements;
 namespace Word.W2004.Style
 {
     /// <summary>
-    /// Use this class in order to apply specifics style to paragraph. Eg.: one word in bold, other in italic. 
+    /// Use this class in order to apply specifics style to paragraph. Eg.:
+    /// one word in bold, other in italic.    
     /// </summary>
     public class ParagraphPieceStyle : AbstractStyle, ISuperStylin
     {
@@ -14,19 +15,21 @@ namespace Word.W2004.Style
         private bool underline = false;
         private string textColor = "";
         private Color color;
-        private Font font;
+        public Font font;
         private string fontSize = "";
 
         public override string getNewContentWithStyle(string txt)
         {
             StringBuilder style = new StringBuilder("");
 
+            // 'doStyleFont' has to be before 'doStyleBold' and 'doStyleItalic'
+            // because of the 'smart bold/italic' based on font type.
+            doStyleFont(style);
             doStyleBold(style);
             doStyleItalic(style);
             doStyleUnderline(style);
             doStyleTextColorHexa(style);
             doStyleColorEnum(style);
-            doStyleFont(style);
             doStyleFontSize(style);
 
             return doStyleReplacement(style, txt);
@@ -74,10 +77,42 @@ namespace Word.W2004.Style
 
         private void doStyleFont(StringBuilder style)
         {
+            // Smart Italic/Bold: This will make the font bold/italic according to
+            // this.font
+            string fontName = "";
             if (this.font != null)
             {
-                style.Append("\n			<w:rFonts w:ascii=\"" + font.getValue() + "\" w:h-ansi=\"" + font.getValue() + "\"/>\n");
-                style.Append("\n			<wx:font wx:val=\"" + font.getValue() + "\"/>");
+                fontName = this.font.getValue();
+                if (fontName.Contains("Bold"))
+                {
+                    this.bold = true;
+                }
+                else
+                {
+                    //if is manually 'bold', I also change the font name
+                    if (this.bold)
+                    {
+                        fontName += " Bold";
+                    }
+                }
+
+                if (fontName.Contains("Italic"))
+                {
+                    this.italic = true;
+                }
+                else
+                {
+                    if (this.italic)
+                    {
+                        fontName += " Italic";
+                    }
+                }
+            }
+
+            if (this.font != null)
+            {
+                style.Append("\n			<w:rFonts w:ascii=\"" + fontName + "\" w:h-ansi=\"" + fontName + "\"/>\n");
+                style.Append("\n			<wx:font wx:val=\"" + fontName + "\"/>");
             }
         }
 
@@ -85,8 +120,10 @@ namespace Word.W2004.Style
         {
             if (!"".Equals(this.fontSize))
             {
-                string ffsize = "\n               <w:sz w:val=\"" + this.fontSize + "\" />\n";
-                ffsize += "\n               <w:sz-cs w:val=\"" + this.fontSize + "\" />\n";
+                string ffsize = "\n               <w:sz w:val=\"" + this.fontSize
+                        + "\" />\n";
+                ffsize += "\n               <w:sz-cs w:val=\"" + this.fontSize
+                        + "\" />\n";
                 style.Append(ffsize);
             }
         }
@@ -97,14 +134,13 @@ namespace Word.W2004.Style
             {
                 style.Insert(0, "\n	 <w:rPr>");
                 style.Append("\n	 </w:rPr>");
-                txt = txt.Replace("{styleText}", style.ToString());//Convention: apply styles
+                txt = txt.Replace("{styleText}", style.ToString());// Convention:
+                // apply styles
             }
-            //Convention: Replace unused styles after...
+            // Convention: replace unused styles after...
             txt = txt.Replace("[{]style(.*)[}]", "");
             return txt;
         }
-
-        //### Getters and setters... ###
 
         /**
          * 
@@ -165,6 +201,12 @@ namespace Word.W2004.Style
         * Pass '50' for something quite big. I am not sure if the unit is pixels or what... 
         * find out later. sorry about that. 
         */
+        /// <summary>
+        /// Pass '50' for something quite big. I am not sure if the unit is pixels or what... 
+        /// find out later. sorry about that. 
+        /// </summary>
+        /// <param name="fontSize"></param>
+        /// <returns></returns>
         public ParagraphPieceStyle setFontSize(string fontSize)
         {
             this.fontSize = fontSize;
