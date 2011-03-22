@@ -1,7 +1,28 @@
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+
 namespace Word.Utils
 {
     public class Util
     {
+        /// <summary>
+        /// The root of the app as String. 
+        /// </summary>
+        /// <returns></returns>
+        public static string getAppRoot()
+        {
+            try
+            {
+                return Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName);
+            }
+            catch (IOException e)
+            {
+                Trace.Write(e.StackTrace);
+                throw new IOException("Can't get app root directory", e);
+            }
+        } 
+
         public const string HEAD2004 =
         /*    "    <o:DocumentProperties> "
             + "        <o:Author>{Author}</o:Author> "

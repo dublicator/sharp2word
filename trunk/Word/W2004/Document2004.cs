@@ -1,4 +1,6 @@
 using System.Text;
+using System.Xml;
+using System.Xml.Schema;
 using Word.Api.Interfaces;
 
 namespace Word.W2004
@@ -134,5 +136,37 @@ namespace Word.W2004
         {
             return this.Content;
         }
+
+        public bool Validate()
+        {
+            // Set the validation settings.
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.ValidationType = ValidationType.Schema;
+            settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessInlineSchema;
+            settings.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
+            settings.ValidationEventHandler += ValidationCallBack;
+
+            
+            // Create the XmlReader object.
+            XmlReader reader = XmlReader.Create("inlineSchema.xml", settings);
+            
+            // Parse the file. 
+            while (reader.Read()||!_validated) ;
+            return _validated;
+        }
+
+        private static bool _validated = true;
+
+        // Display any warnings or errors.
+        private static void ValidationCallBack(object sender, ValidationEventArgs args)
+        {
+            if (args.Severity == XmlSeverityType.Warning)
+            {
+            }
+            else
+            {
+                _validated = false;
+            }
+        }  
     }
 }
