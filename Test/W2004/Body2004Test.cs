@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using Word.Api.Interfaces;
 using Word.Utils;
@@ -57,7 +58,7 @@ namespace Test.W2004
 		bd.Footer.addEle(new Paragraph("footer01"));
 		Assert.AreEqual(1, TestUtils.regexCount(bd.Content, "<w:t>header01</w:t>"));
 		Assert.AreEqual(1, TestUtils.regexCount(bd.Content, "<w:t>footer01</w:t>"));
-		//System.out.println(bd.getContent());
+	    Console.WriteLine(bd.Content);
 	}
 	
 	[Test]
@@ -67,7 +68,7 @@ namespace Test.W2004
 		bd.Header.setHideHeaderAndFooterFirstPage(true);
 		Assert.True(bd.Header.getHideHeaderAndFooterFirstPage());
 		bd.Header.addEle(new Paragraph("p1"));
-		//System.out.println(bd.getContent());
+	    Console.WriteLine(bd.Content);
 		
 		Assert.AreEqual(1, TestUtils.regexCount(bd.Content, "<w:t>p1</w:t>"));
 		Assert.AreEqual(2, TestUtils.regexCount(bd.Content, "<*w:sectPr"));

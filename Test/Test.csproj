@@ -77,6 +77,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ReleaseNotesTemplate.doc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\base2logo.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\dtpick.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -60,10 +60,24 @@ namespace Test.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap base2logo {
+            get {
+                object obj = ResourceManager.GetObject("base2logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap dtpick {
             get {
                 object obj = ResourceManager.GetObject("dtpick", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static byte[] ReleaseNotesTemplate {
+            get {
+                object obj = ResourceManager.GetObject("ReleaseNotesTemplate", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

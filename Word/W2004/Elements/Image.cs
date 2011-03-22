@@ -79,6 +79,7 @@ namespace Word.W2004.Elements
                 else if (imageLocation.Equals(ImageLocation.CLASSPATH))
                 {
                     throw new NotImplementedException();
+                    
                     //InputStream is = getClass().getResourceAsStream(path);
                     //bufferedImage = ImageIO.read(is);
                 }
