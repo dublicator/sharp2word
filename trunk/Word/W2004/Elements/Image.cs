@@ -78,6 +78,7 @@ namespace Word.W2004.Elements
                 }
                 else if (imageLocation.Equals(ImageLocation.CLASSPATH))
                 {
+                    
                     throw new NotImplementedException();
                     
                     //InputStream is = getClass().getResourceAsStream(path);
@@ -89,6 +90,19 @@ namespace Word.W2004.Elements
                 throw new Exception(
                     "Can't create ImageIO. Maybe the path is not valid. Path: \n" + path + "\nImageLocation: " +
                     imageLocation, e);
+            }
+        }
+
+        public Image(byte[] path)
+        {
+            try
+            {
+            }
+            catch (IOException e)
+            {
+                throw new Exception(
+                    "Can't create ImageIO. Maybe the path is not valid. Path: \n" +  "\nImageLocation: " +
+                     e);
             }
         }
 
