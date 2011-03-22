@@ -377,9 +377,9 @@ namespace Test.W2004
             IDocument myDoc = new Document2004();
             //whatever...
 
-            myDoc.addEle(Paragraph.with("Leonardo Pinho Correa").withStyle().setAlign(Align.CENTER).create());
-            myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Zico|").create(), ParagraphPiece.with("Zico").withStyle().setBgColor("008000").create()).create());
-            //        myDoc.addEle(Paragraph.with("Leonardo Pinho Correa").withStyle().set.create());
+            myDoc.addEle(Paragraph.withPieces(
+                        ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFontSize("32").create()
+                    ).create());
 
             TestUtils.createLocalDoc(myDoc.Content);
         }

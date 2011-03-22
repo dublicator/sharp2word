@@ -63,7 +63,7 @@ namespace Word.W2004.Elements
         /// <summary>
         ///   Apply the repetition of break lines.
         /// </summary>
-        /// <param name = "res">String to be added content</param>
+        /// <param name = "res">string to be added content</param>
         private void applyBreakLineTimes(StringBuilder res)
         {
             for (int i = 0; i < this._times; i++)

@@ -79,7 +79,7 @@ namespace Word.W2004
         ///     </code>
         ///   </example>
         /// </summary>
-        /// <value>This is the String value of the element ready to be appended/inserted in the Document.</value>
+        /// <value>This is the string value of the element ready to be appended/inserted in the Document.</value>
         public string Content
         {
             get 

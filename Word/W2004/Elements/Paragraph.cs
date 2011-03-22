@@ -17,7 +17,7 @@ namespace Word.W2004.Elements
 
         /// <summary>
         /// </summary>
-        /// <param name = "value">String for a simple Paragraph. Assuming that you don't want to apply style on part of this text.</param>
+        /// <param name = "value">string for a simple Paragraph. Assuming that you don't want to apply style on part of this text.</param>
         public Paragraph(string value)
         {
             if (value == null || "".Equals(value))
