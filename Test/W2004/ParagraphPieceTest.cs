@@ -40,7 +40,7 @@ namespace Test.W2004
         public void testGetContentWithStyleALL()
         {
             IElement par = ParagraphPiece.with("piece01").withStyle().setBold(true)
-                .setItalic(true).setUnderline(true).setFontSize("50")
+                .setItalic(true).setUnderline(true).setFontSize(24)
                 .setFont(Font.COURIER).setTextColor("008000").create();
 
             Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
@@ -61,7 +61,7 @@ namespace Test.W2004
                                                     "<wx:font wx:val=\"Courier Bold Italic\"/>"));
             Assert.AreEqual(1, TestUtils.regexCount(par.Content,
                                                     "<w:sz w:val=\"(.*)\" />"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:sz-cs w:val=\"50\" />"));
+            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:sz-cs w:val=\"48\" />"));
 
         }
 

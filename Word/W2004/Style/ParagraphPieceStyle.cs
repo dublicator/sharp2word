@@ -259,6 +259,11 @@ namespace Word.W2004.Style
             return this;
         }
 
+        /// <summary>
+        /// Specify the font size the same way you see on MW Word.
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public ParagraphPieceStyle setFontSize(int size)
         {
             this._fontSize = (size*2).ToString();
