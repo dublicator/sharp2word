@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using Word.Utils;
 using Word.W2004.Elements;
@@ -6,23 +7,25 @@ namespace Test.W2004
 {
     public class ImageTest:Assert
     {
-            [Test]
-    public void sanityTest(){
-       /* Image img = new Image(Util.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH);
-        //Image img = new Image(Utils.getAppRoot() + "/src/test/resources/base2logo.png");
-        // Image("/Users/leonardo_correa/Desktop/icons_corrup/quote.gif");
+        [Test]
+        public void sanityTest()
+        {
+            Image img = new Image(Util.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH);
+            //Image img = new Image(Utils.getAppRoot() + "/src/test/resources/base2logo.png");
+            // Image("/Users/leonardo_correa/Desktop/icons_corrup/quote.gif");
 
-        //System.out.println(img.getContent());
-        Assert.AreEqual(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
-        Assert.AreEqual(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
-        Assert.AreEqual(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
-        Assert.AreEqual(2, TestUtils.regexCount(img.getContent(), "wordml"));
-        //for dtPicker.gif
-        Assert.AreEqual(1, TestUtils.regexCount(img.getContent(), "R0lGODlhEAAQAPMAAKVNSkpNpUpNSqWmpdbT1v///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\nAAAAACH5BAEAAAYALAAAAAAQABAAQwRI0MhJqxmlkLwLyF8hYBpnluJArGzbjkEsB0NtD6PLAjyw\njqeOMANEDVGjm1IJm8WWONLxWDyGQjkdoecjVIOnrzEsKJvPaEEEADs="));
-                */
-    }
+            Console.WriteLine(img.Content);
+            Assert.AreEqual(2, TestUtils.regexCount(img.Content, "<*w:pict>"));
+            Assert.AreEqual(2, TestUtils.regexCount(img.Content, "<*v:shapetype"));
+            Assert.AreEqual(2, TestUtils.regexCount(img.Content, "<*v:shape[ >]")); //white space or >
+            Assert.AreEqual(2, TestUtils.regexCount(img.Content, "wordml"));
+            //for dtPicker.gif
+            Assert.AreEqual(1,
+                            TestUtils.regexCount(img.Content,
+                                                 "R0lGODlhEAAQAPMAAKVNSkpNpUpNSqWmpdbT1v///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\nAAAAACH5BAEAAAYALAAAAAAQABAAQwRI0MhJqxmlkLwLyF8hYBpnluJArGzbjkEsB0NtD6PLAjyw\njqeOMANEDVGjm1IJm8WWONLxWDyGQjkdoecjVIOnrzEsKJvPaEEEADs="));
+        }
 
-    [Test]
+        [Test]
     public void testLocalImage(){
         /*
     	Image img = new Image(Util.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH);
