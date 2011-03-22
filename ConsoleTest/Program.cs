@@ -2,7 +2,9 @@
 using System.Drawing;
 using System.IO;
 using System.Text;
+using Word;
 using Word.Api.Interfaces;
+using Word.Utils;
 using Word.W2004;
 using Word.W2004.Elements;
 using Word.W2004.Elements.TableElements;
@@ -184,6 +186,11 @@ namespace ConsoleTest
 
             //myDoc.Save(@"C:\testWord.doc");
             string myWord = myDoc.Content;
+           // string msg = "";
+           // bool b=XmlValidator.ValidateXml(myWord, ref msg, Util.getAppRoot() + "\\Schemas\\wordml.xsd");
+           // Console.WriteLine("Result -" + b);
+            //Console.WriteLine(msg);
+            Console.ReadKey();
 
             using (FileStream fs = new FileStream(@"c:\mytest.doc", FileMode.Create))
             {
