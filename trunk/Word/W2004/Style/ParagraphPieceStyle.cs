@@ -106,9 +106,9 @@ namespace Word.W2004.Style
             int blue = clr.B;
 
             string colorHex = "";
-            colorHex += String.Format("{0:X02}", red);
-            colorHex += String.Format("{0:X02}", green);
-            colorHex += String.Format("{0:X02}", blue);
+            colorHex += string.Format("{0:X02}", red);
+            colorHex += string.Format("{0:X02}", green);
+            colorHex += string.Format("{0:X02}", blue);
             return colorHex;
         }
 
@@ -246,16 +246,12 @@ namespace Word.W2004.Style
             return this;
         }
 
-        /***
-        * Pass '50' for something quite big. I am not sure if the unit is pixels or what... 
-        * find out later. sorry about that. 
-        */
 
         /// <summary>
-        ///   Pass '50' for something quite big. I am not sure if the unit is pixels or what... 
-        ///   find out later. sorry about that.
+        /// It should be the double of you would normally do in the MS Word. Eg.:
+        /// Default fontsize is 12. If you want to do it via Java2word, specify 24.
         /// </summary>
-        /// <param name = "fontSize"></param>
+        /// <param name="fontSize"></param>
         /// <returns></returns>
         public ParagraphPieceStyle setFontSize(string fontSize)
         {

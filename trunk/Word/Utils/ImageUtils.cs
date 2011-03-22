@@ -41,7 +41,7 @@ namespace Word.Utils
                 image.Save(ms, format);
                 byte[] imageBytes = ms.ToArray();
 
-                // Convert byte[] to Base64 String
+                // Convert byte[] to Base64 string
                 string base64String = Convert.ToBase64String(imageBytes);
                 return base64String;
             }

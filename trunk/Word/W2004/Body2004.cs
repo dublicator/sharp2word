@@ -23,7 +23,7 @@ namespace Word.W2004
         ///     </code>
         ///   </example>
         /// </summary>
-        /// <value>This is the String value of the element ready to be appended/inserted in the Document.</value>
+        /// <value>This is the string value of the element ready to be appended/inserted in the Document.</value>
         public string Content
         {
             get
@@ -72,7 +72,7 @@ namespace Word.W2004
         }
 
         /// <summary>
-        ///   In order to give flexibility, String methods was added.
+        ///   In order to give flexibility, string methods was added.
         ///   Imagine you need to add an element which hasn't been implemented, for example, <b>Graphs</b>.
         ///   You know how to generate the XML to generate a Graph because you figured it out by yourself.
         ///   In this case you could do this:

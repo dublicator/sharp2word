@@ -31,7 +31,7 @@ namespace Word.Api.Interfaces
         void addEle(IElement e);
 
         /// <summary>
-        ///   In order to give flexibility, String methods was added.
+        ///   In order to give flexibility, string methods was added.
         ///   Imagine you need to add an element which hasn't been implemented, for example, <b>Graphs</b>.
         ///   You know how to generate the XML to generate a Graph because you figured it out by yourself.
         ///   In this case you could do this:
