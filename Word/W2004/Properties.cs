@@ -7,33 +7,33 @@ namespace Word.W2004
     public class Properties : IElement
     {
         private const string _props =
-            "    <o:DocumentProperties> \n"
-            + "        <o:Title>{Title}</o:Title> \n"
-            + "        <o:Subject>{Subject}</o:Subject> \n"
-            + "        <o:Keywords>{Keywords}</o:Keywords> \n"
-            + "        <o:Description>{Description}</o:Description> \n"
-            + "        <o:Category>{Category}</o:Category> \n"
-            + "        <o:Author>{Author}</o:Author> \n"
-            + "        <o:LastAuthor>{LastAuthor}</o:LastAuthor> \n"
-            + "        <o:Manager>{Manager}</o:Manager> \n"
-            + "        <o:Company>{Company}</o:Company> \n"
-            + "        <o:HyperlinkBase>{HyperlinkBase}</o:HyperlinkBase> \n"
-            + "        <o:Revision>{Revision}</o:Revision> \n"
-            + "        <o:PresentationFormat>{PresentationFormat}</o:PresentationFormat> \n"
-            + "        <o:Guid>{Guid}</o:Guid> \n"
-            //+ "        <o:AppName>{AppName}</o:AppName> \n"
-            + "        <o:Version>{Version}</o:Version> \n"
-            + "        <o:TotalTime>{TotalTime}</o:TotalTime> \n"
-            + "        <o:LastPrinted>{LastPrinted}</o:LastPrinted> \n"
-            + "        <o:Created>{Created}</o:Created> \n"
-            + "        <o:LastSaved>{LastSaved}</o:LastSaved> \n"
-            + "        <o:Pages>{Pages}</o:Pages> \n"
-            + "        <o:Words>{Words}</o:Words> \n"
-            + "        <o:Characters>{Characters}</o:Characters> \n"
-            + "        <o:CharactersWithSpaces>{CharactersWithSpaces}</o:CharactersWithSpaces> \n"
-            + "        <o:Bytes>{Bytes}</o:Bytes> \n"
-            + "        <o:Lines>{Lines}</o:Lines> \n"
-            + "        <o:Paragraphs>{Paragraphs}</o:Paragraphs> \n"
+            "    <o:DocumentProperties> "
+            + "        <o:Title>{Title}</o:Title> "
+            + "        <o:Subject>{Subject}</o:Subject> "
+            + "        <o:Keywords>{Keywords}</o:Keywords> "
+            + "        <o:Description>{Description}</o:Description> "
+            + "        <o:Category>{Category}</o:Category> "
+            + "        <o:Author>{Author}</o:Author> "
+            + "        <o:LastAuthor>{LastAuthor}</o:LastAuthor> "
+            + "        <o:Manager>{Manager}</o:Manager> "
+            + "        <o:Company>{Company}</o:Company> "
+            + "        <o:HyperlinkBase>{HyperlinkBase}</o:HyperlinkBase> "
+            + "        <o:Revision>{Revision}</o:Revision> "
+            + "        <o:PresentationFormat>{PresentationFormat}</o:PresentationFormat> "
+            + "        <o:Guid>{Guid}</o:Guid> "
+            //+ "        <o:AppName>{AppName}</o:AppName> "
+            + "        <o:Version>{Version}</o:Version> "
+            + "        <o:TotalTime>{TotalTime}</o:TotalTime> "
+            + "        <o:LastPrinted>{LastPrinted}</o:LastPrinted> "
+            + "        <o:Created>{Created}</o:Created> "
+            + "        <o:LastSaved>{LastSaved}</o:LastSaved> "
+            + "        <o:Pages>{Pages}</o:Pages> "
+            + "        <o:Words>{Words}</o:Words> "
+            + "        <o:Characters>{Characters}</o:Characters> "
+            + "        <o:CharactersWithSpaces>{CharactersWithSpaces}</o:CharactersWithSpaces> "
+            + "        <o:Bytes>{Bytes}</o:Bytes> "
+            + "        <o:Lines>{Lines}</o:Lines> "
+            + "        <o:Paragraphs>{Paragraphs}</o:Paragraphs> "
             + "    </o:DocumentProperties> ";
 
         private readonly StringBuilder content = new StringBuilder("");
@@ -59,7 +59,7 @@ namespace Word.W2004
             {
                 if ("".Equals(this.content.ToString()))
                 {
-                    content.Append("\n" + _props + "\n");
+                    content.Append("" + _props + "");
                     content.Replace("{Title}", Title);
                     content.Replace("{Subject}", Subject);
                     content.Replace("{Keywords}", Keywords);

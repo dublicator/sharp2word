@@ -87,9 +87,7 @@
     <Content Include="Utils\basicStyle.txt" />
     <Content Include="W2004\styles2004.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="W2004\Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

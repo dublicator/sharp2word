@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Text;
+using System.Xml;
 
 namespace Word.Utils
 {
@@ -21,7 +23,28 @@ namespace Word.Utils
                 Trace.Write(e.StackTrace);
                 throw new IOException("Can't get app root directory", e);
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="file">It is the full path to the file</param>
+        /// <returns>String with the content of the file</returns>
+        public static string readFile(string file)
+        {
+            return File.ReadAllText(file);
         } 
+
+        public static string pretty(string xml)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml);
+            StringBuilder sb=new StringBuilder();
+            XmlWriter xw = XmlTextWriter.Create(sb, new XmlWriterSettings() {Indent = true});
+            doc.WriteTo(xw);
+            xw.Flush();
+            return sb.ToString();
+        }
 
         public const string HEAD2004 =
         /*    "    <o:DocumentProperties> "

@@ -41,16 +41,16 @@ namespace Test
 
 	[Test]
 	public void prettyTest01() {
-	//	string str = Util.pretty("<leo><nada></nada></leo>");
-		//Assert.True(str.Contains("<leo>\n    <nada/>"));
-		//Assert.AreEqual(2, TestUtils.regexCount(str, "<*leo>"));
-		//Assert.AreEqual(1, TestUtils.regexCount(str, "<nada/>"));
+		string str = Util.pretty("<leo><nada></nada></leo>");
+        Assert.True(str.Contains("<leo>\r\n  <nada/>"));
+		Assert.AreEqual(2, TestUtils.regexCount(str, "<*leo>"));
+		Assert.AreEqual(1, TestUtils.regexCount(str, "<nada/>"));
 	}
 	
 	[Test]
 	public void prettyTestException() {
 		string crap = "<leo><nada></leo>";
-		//string str = Util.pretty(crap);
+		string str = Util.pretty(crap);
 		Assert.AreEqual(crap, crap); // the same crap...
 	}
     }

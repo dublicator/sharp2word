@@ -190,13 +190,13 @@ namespace ConsoleTest
            // bool b=XmlValidator.ValidateXml(myWord, ref msg, Util.getAppRoot() + "\\Schemas\\wordml.xsd");
            // Console.WriteLine("Result -" + b);
             //Console.WriteLine(msg);
-            Console.ReadKey();
+            //Console.ReadKey();
 
             using (FileStream fs = new FileStream(@"c:\mytest.doc", FileMode.Create))
             {
                 using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                 {
-                    w.Write(myWord);
+                    w.Write(Util.pretty(myWord));
                 }
             }
 
