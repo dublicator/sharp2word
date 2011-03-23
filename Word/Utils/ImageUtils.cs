@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using BufferedImage = System.Drawing.Image;
@@ -50,6 +51,19 @@ namespace Word.Utils
         public static string GetImageHexaBase64(BufferedImage bufferedImage, string imageformat)
         {
             return ImageToBase64(bufferedImage, imageformat);
+        }
+
+        public static string ColorToHex(Color clr)
+        {
+            int red = clr.R;
+            int green = clr.G;
+            int blue = clr.B;
+
+            string colorHex = "";
+            colorHex += String.Format("{0:X02}", red);
+            colorHex += String.Format("{0:X02}", green);
+            colorHex += String.Format("{0:X02}", blue);
+            return colorHex;
         }
     }
 }

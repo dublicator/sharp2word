@@ -59,7 +59,6 @@
     <Compile Include="W2004\Elements\PageBreak.cs" />
     <Compile Include="W2004\Elements\Paragraph.cs" />
     <Compile Include="W2004\Elements\ParagraphPiece.cs" />
-    <Compile Include="W2004\Elements\Shape.cs" />
     <Compile Include="W2004\Elements\Table.cs" />
     <Compile Include="W2004\Elements\TableElements\ITableItemStrategy.cs" />
     <Compile Include="W2004\Elements\TableElements\TableCol.cs" />
@@ -68,6 +67,7 @@
     <Compile Include="W2004\Elements\TableElements\TableFactoryMethod.cs" />
     <Compile Include="W2004\Elements\TableElements\TableFooter.cs" />
     <Compile Include="W2004\Elements\TableElements\TableHeader.cs" />
+    <Compile Include="W2004\Elements\WordArt.cs" />
     <Compile Include="W2004\Footer2004.cs" />
     <Compile Include="W2004\Head2004.cs" />
     <Compile Include="W2004\Header2004.cs" />

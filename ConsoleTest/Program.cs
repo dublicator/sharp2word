@@ -28,6 +28,10 @@ namespace ConsoleTest
                                   };
             myDoc.Head.Properties = prop;
 
+            WordArt wa = new WordArt {Font = Font.TIMES_NEW_ROMAN, Text = "Testing WordArt",FillColor = Color.Red};
+            myDoc.AddEle(wa);
+
+
             myDoc.AddEle(BreakLine.SetTimes(1).Create()); // this is one breakline
 
             //Headings
