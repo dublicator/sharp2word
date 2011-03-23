@@ -59,7 +59,7 @@ namespace Word.W2004
         private readonly StringBuilder _txt = new StringBuilder("");
 
         private bool _hasBeenCalledBefore;
-        private bool _showPageNumber = true;
+        private bool _showPageNumber = false;
 
         #region Implementation of IElement
 
@@ -137,9 +137,9 @@ namespace Word.W2004
             this._txt.Append("\n" + str);
         }
 
-        public void ShowPageNumber(bool value)
+        public void ShowPageNumber()
         {
-            this._showPageNumber = value;
+            this._showPageNumber = true;
         }
 
         #endregion

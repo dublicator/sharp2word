@@ -16,7 +16,7 @@ namespace Test.W2004
         [Test]
         public void testPageBreakFluent()
         {
-            PageBreak pb = PageBreak.create();
+            PageBreak pb = PageBreak.Create();
             Assert.AreEqual(1, TestUtils.RegexCount(pb.Content, "<w:br w:type=\"page\" />"));
         }
     }

@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.IO;
 using System.Text;
-using Word;
 using Word.Api.Interfaces;
 using Word.Utils;
 using Word.W2004;
@@ -58,9 +57,9 @@ namespace ConsoleTest
 
             myDoc.AddEle(Heading1.With("Heading01 without styling").Create());
             myDoc.AddEle(Heading2.With("Heading02 with styling").WithStyle()
-                             .SetAlign(Align.CENTER).SetItalic().Create());
-            myDoc.AddEle(Heading3.With("Heading03").WithStyle().SetBold()
-                             .SetAlign(Align.RIGHT).Create());
+                             .Align(Align.CENTER).Italic().Create());
+            myDoc.AddEle(Heading3.With("Heading03").WithStyle().Bold()
+                             .Align(Align.RIGHT).Create());
 
             //Paragraph and ParagrapPiece
             myDoc.AddEle(Heading2.With("===== Paragraph and ParagrapPiece ======").Create());
@@ -190,7 +189,7 @@ namespace ConsoleTest
             //PageBreaks
             myDoc.AddEle(Heading2.With("===== PageBreak ======").Create());
             myDoc.AddEle(Paragraph.With("There is a PAGE BREAK after this line:").Create());
-            myDoc.AddEle(PageBreak.create());
+            myDoc.AddEle(PageBreak.Create());
             myDoc.AddEle(Paragraph.With("There is a PAGE BREAK before this line:").Create());
 
             //myDoc.Save(@"C:\testWord.doc");

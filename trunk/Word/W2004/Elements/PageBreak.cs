@@ -22,7 +22,7 @@ namespace Word.W2004.Elements
         ///   Notice that this class doesn't implement IFluentInterface.
         /// </summary>
         /// <returns></returns>
-        public static PageBreak create()
+        public static PageBreak Create()
         {
             return new PageBreak();
         }

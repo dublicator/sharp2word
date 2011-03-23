@@ -15,9 +15,9 @@ namespace Word.W2004.Style
         /// <returns></returns>
         public abstract string GetNewContentWithStyle(string txt);
 
-        public void SetElement(IElement element)
+        public IElement Element
         {
-            this._element = element;
+            set { this._element = value; }
         }
 
         public IElement Create()

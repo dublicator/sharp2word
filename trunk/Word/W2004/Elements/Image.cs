@@ -48,7 +48,7 @@ namespace Word.W2004.Elements
         private string _height = ""; // to be able to set this to override default
 
         private string _width = ""; // to be able to set this to override default
-        private bool hasBeenCalledBefore;
+        private bool _hasBeenCalledBefore;
 
         // size
 
@@ -131,13 +131,13 @@ namespace Word.W2004.Elements
         {
             get
             {
-                if (hasBeenCalledBefore)
+                if (_hasBeenCalledBefore)
                 {
                     return _txt.ToString();
                 }
                 else
                 {
-                    hasBeenCalledBefore = true;
+                    _hasBeenCalledBefore = true;
                 }
                 // Placeholders: internalFileName, fileName, binary, width and height
 
