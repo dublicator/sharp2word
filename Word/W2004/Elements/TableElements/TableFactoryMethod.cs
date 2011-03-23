@@ -5,7 +5,7 @@ namespace Word.W2004.Elements.TableElements
     /// </summary>
     public class TableFactoryMethod
     {
-        private static TableFactoryMethod instance;
+        private static TableFactoryMethod _instance;
 
         private TableFactoryMethod()
         {
@@ -13,7 +13,7 @@ namespace Word.W2004.Elements.TableElements
 
         public static TableFactoryMethod getInstance()
         {
-            return instance ?? (instance = new TableFactoryMethod());
+            return _instance ?? (_instance = new TableFactoryMethod());
         }
 
         public static ITableItemStrategy getTableItem(TableEle tableEle)

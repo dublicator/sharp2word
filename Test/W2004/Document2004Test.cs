@@ -110,7 +110,7 @@ namespace Test.W2004
             headingStyle.SetAlign(Align.CENTER);
             headingStyle.SetItalic(true);
 
-            h1.setStyle(headingStyle);
+            h1.Style=headingStyle;
             myDoc.Body.AddEle(h1);
 
             myDoc.Body.AddEle(new Heading2("Heading 222"));
@@ -123,13 +123,13 @@ namespace Test.W2004
             IDocument myDoc = new Document2004();
 
             ParagraphPieceStyle style = new ParagraphPieceStyle();
-            style.setBold(true);
-            style.setItalic(true);
+            style.SetBold(true);
+            style.SetItalic(true);
 
             ParagraphPiece piece01 = new ParagraphPiece("222222");
             ParagraphPiece piece02 = new ParagraphPiece("333333");
 
-            piece01.setStyle(style);
+            piece01.Style = style;
 
             Paragraph p02 = new Paragraph(piece01, piece02);
 
@@ -142,10 +142,10 @@ namespace Test.W2004
             IDocument myDoc = new Document2004();
 
             ParagraphPiece piece01 = new ParagraphPiece("11111");
-            piece01.Style.setTextColor("FF0000");
+            piece01.Style.SetTextColor("FF0000");
 
             ParagraphPiece piece02 = new ParagraphPiece("22222");
-            piece02.Style.setTextColor(Color.Red);
+            piece02.Style.SetTextColor(Color.Red);
 
             Paragraph p01 = new Paragraph(piece01, piece02);
 
@@ -156,17 +156,17 @@ namespace Test.W2004
         public void testBasicHeadingFluent()
         {
             IDocument doc = new Document2004();
-            Heading1 h1 = (Heading1)Heading1.with("h111").WithStyle()
+            Heading1 h1 = (Heading1)Heading1.With("h111").WithStyle()
                     .SetBold(true).SetItalic(true)
                     .SetAlign(Align.CENTER).Create();
 
-            Heading2 h2 = (Heading2)Heading2.with("h222").WithStyle()
+            Heading2 h2 = (Heading2)Heading2.With("h222").WithStyle()
                     .SetBold(true).SetItalic(true).Create();
 
             doc.Body.AddEle(h1);
             doc.Body.AddEle(h2);
             doc.Body.AddEle(
-                    Heading1.with("h3333").WithStyle().SetBold(true)
+                    Heading1.With("h3333").WithStyle().SetBold(true)
                             .SetItalic(true).Create()); // no cast...
         }
 
@@ -190,7 +190,7 @@ namespace Test.W2004
         public void testAddElementAliasString()
         {
             IDocument myDoc = new Document2004();
-            myDoc.AddEle(Heading1.with("heading1").Create().Content);
+            myDoc.AddEle(Heading1.With("heading1").Create().Content);
 
             Assert.True(myDoc.Body.Content.Contains("<w:body>"));
             Assert.True(myDoc.Body.Content.Contains("<w:t>heading1</w:t>"));
@@ -378,7 +378,7 @@ namespace Test.W2004
             //whatever...
 
             myDoc.AddEle(Paragraph.withPieces(
-                        ParagraphPiece.with("Leonardo Pinho Correa").WithStyle().setFontSize("32").create()
+                        ParagraphPiece.With("Leonardo Pinho Correa").WithStyle().SetFontSize("32").Create()
                     ).Create());
 
             TestUtils.createLocalDoc(myDoc.Content);

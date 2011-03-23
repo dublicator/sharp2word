@@ -21,10 +21,10 @@ namespace Test.W2004
                 Assert.AreEqual(1, TestUtils.regexCount(heading1.Template, "</w:p>"));
                 Assert.AreEqual(1, TestUtils.regexCount(heading1.Template, "<w:pStyle w:val=\"Heading1\" />")); // it has to replace the Type of Heading
 		
-                Assert.NotNull(heading1.getStyle());
+                Assert.NotNull(heading1.Style);
                 HeadingStyle style = new HeadingStyle();
-                heading1.setStyle(style);
-                Assert.NotNull(heading1.getStyle());
+                heading1.Style=style;
+                Assert.NotNull(heading1.Style);
                 
         }
     }

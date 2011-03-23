@@ -14,9 +14,9 @@ namespace Word.W2004.Elements
         /// <summary>
         ///   This is actual heading1, heading2 or heading3.
         /// </summary>
-        private readonly string headingType;
+        private readonly string _headingType;
 
-        private readonly string value; //value/text for the Heading
+        private readonly string _value; //value/text for the Heading
 
         private HeadingStyle _style = new HeadingStyle();
 
@@ -34,14 +34,14 @@ namespace Word.W2004.Elements
 
         protected AbstractHeading(string headingType, string value)
         {
-            this.headingType = headingType;
-            this.value = value;
+            this._headingType = headingType;
+            this._value = value;
         }
 
 
         public string Template
         {
-            get { return template.Replace("{heading}", this.headingType); }
+            get { return template.Replace("{heading}", this._headingType); }
         }
 
         #region IElement Members
@@ -50,7 +50,7 @@ namespace Word.W2004.Elements
         {
             get
             {
-                if ("".Equals(this.value))
+                if ("".Equals(this._value))
                 {
                     return "";
                 }
@@ -58,7 +58,7 @@ namespace Word.W2004.Elements
                 //For convention, it should be the last thing before returning the xml content.
                 string txt = _style.GetNewContentWithStyle(Template);
 
-                return txt.Replace("{value}", this.value);
+                return txt.Replace("{value}", this._value);
             }
         }
 
@@ -72,20 +72,17 @@ namespace Word.W2004.Elements
         /// <returns></returns>
         public E WithStyle()
         {
-            this.getStyle().SetElement(this); //, Heading1.class
-            return this.getStyle() as E;
+            this.Style.SetElement(this); //, Heading1.class
+            return this.Style as E;
         }
 
         #endregion
 
-        public HeadingStyle getStyle()
+        public HeadingStyle Style
         {
-            return _style;
+            get { return _style; }
+            set { this._style = value; }
         }
 
-        public void setStyle(HeadingStyle style)
-        {
-            this._style = style;
-        }
     }
 }

@@ -8,9 +8,9 @@ namespace Word.W2004.Elements
     {
         private readonly StringBuilder txt = new StringBuilder("");
 
-        private bool hasBeenCalledBefore;// if getContent has already been called, I cached the result for future invocations
+        private bool _hasBeenCalledBefore;// if getContent has already been called, I cached the result for future invocations
 
-        private bool isRepeatTableHeaderOnEveryPage;
+        private bool _isRepeatTableHeaderOnEveryPage;
 
         #region IElement Members
 
@@ -22,13 +22,13 @@ namespace Word.W2004.Elements
                 {
                     return "";
                 }
-                if (hasBeenCalledBefore)
+                if (_hasBeenCalledBefore)
                 {
                     return txt.ToString();
                 }
                 else
                 {
-                    hasBeenCalledBefore = true;
+                    _hasBeenCalledBefore = true;
                 }
 
                 ITableItemStrategy tableDef = TableFactoryMethod.getTableItem(TableEle.TABLE_DEF);
@@ -42,7 +42,7 @@ namespace Word.W2004.Elements
 
         #endregion
 
-        public void addTableEle(TableEle tableEle, params string[] cols)
+        public void AddTableEle(TableEle tableEle, params string[] cols)
         {
             if (cols != null && cols.Length > 0)
             {
@@ -64,7 +64,7 @@ namespace Word.W2004.Elements
                     th.Append(item.Bottom);
                 }
 
-                string finalResult = setUpRepeatTableHeaderOnEveryPage(th);
+                string finalResult = SetUpRepeatTableHeaderOnEveryPage(th);
 
                 txt.Append(finalResult); //final result appended
             }
@@ -76,10 +76,10 @@ namespace Word.W2004.Elements
         /// </summary>
         /// <param name = "th"></param>
         /// <returns>The final string</returns>
-        private string setUpRepeatTableHeaderOnEveryPage(StringBuilder th)
+        private string SetUpRepeatTableHeaderOnEveryPage(StringBuilder th)
         {
             string res = th.ToString();
-            if (this.isRepeatTableHeaderOnEveryPage)
+            if (this._isRepeatTableHeaderOnEveryPage)
             {
                 res = res.Replace("{tblHeader}", "  \n<w:trPr>\n        <w:tblHeader/>\n    </w:trPr>\n ");
             }
@@ -93,9 +93,9 @@ namespace Word.W2004.Elements
         ///   Pass 'true' if you want to repeat the table header when the table takes more than one page.
         ///   Default is false.
         /// </summary>
-        public void setRepeatTableHeaderOnEveryPage()
+        public void SetRepeatTableHeaderOnEveryPage()
         {
-            this.isRepeatTableHeaderOnEveryPage = true;
+            this._isRepeatTableHeaderOnEveryPage = true;
         }
     }
 }

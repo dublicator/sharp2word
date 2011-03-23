@@ -36,7 +36,7 @@ namespace Word.W2004
             + "        <o:Paragraphs>{Paragraphs}</o:Paragraphs> "
             + "    </o:DocumentProperties> ";
 
-        private readonly StringBuilder content = new StringBuilder("");
+        private readonly StringBuilder _content = new StringBuilder("");
 
         #region Implementation of IElement
 
@@ -57,37 +57,37 @@ namespace Word.W2004
         {
             get
             {
-                if ("".Equals(this.content.ToString()))
+                if ("".Equals(this._content.ToString()))
                 {
-                    content.Append("" + _props + "");
-                    content.Replace("{Title}", Title);
-                    content.Replace("{Subject}", Subject);
-                    content.Replace("{Keywords}", Keywords);
-                    content.Replace("{Description}", Description);
-                    content.Replace("{Category}", Category);
-                    content.Replace("{Author}", Author);
-                    content.Replace("{LastAuthor}", LastAuthor);
-                    content.Replace("{Manager}", Manager);
-                    content.Replace("{Company}", Company);
-                    content.Replace("{HyperlinkBase}", HyperlinkBase);
-                    content.Replace("{Revision}", Revision.ToString());
-                    content.Replace("{PresentationFormat}", PresentationFormat);
-                    content.Replace("{Guid}", Guid);
+                    _content.Append("" + _props + "");
+                    _content.Replace("{Title}", Title);
+                    _content.Replace("{Subject}", Subject);
+                    _content.Replace("{Keywords}", Keywords);
+                    _content.Replace("{Description}", Description);
+                    _content.Replace("{Category}", Category);
+                    _content.Replace("{Author}", Author);
+                    _content.Replace("{LastAuthor}", LastAuthor);
+                    _content.Replace("{Manager}", Manager);
+                    _content.Replace("{Company}", Company);
+                    _content.Replace("{HyperlinkBase}", HyperlinkBase);
+                    _content.Replace("{Revision}", Revision.ToString());
+                    _content.Replace("{PresentationFormat}", PresentationFormat);
+                    _content.Replace("{Guid}", Guid);
                     //content.Replace("{AppName}", AppName);
-                    content.Replace("{Version}", Version);
-                    content.Replace("{TotalTime}", TotalTime.ToString());
-                    content.Replace("{LastPrinted}", FormatDate(LastPrinted));
-                    content.Replace("{Created}", FormatDate(Created));
-                    content.Replace("{LastSaved}", FormatDate(LastSaved));
-                    content.Replace("{Pages}", Pages.ToString());
-                    content.Replace("{Words}", Words.ToString());
-                    content.Replace("{Characters}", Characters.ToString());
-                    content.Replace("{CharactersWithSpaces}", CharactersWithSpaces.ToString());
-                    content.Replace("{Bytes}", Bytes.ToString());
-                    content.Replace("{Lines}", Lines.ToString());
-                    content.Replace("{Paragraphs}", Paragraphs.ToString());
+                    _content.Replace("{Version}", Version);
+                    _content.Replace("{TotalTime}", TotalTime.ToString());
+                    _content.Replace("{LastPrinted}", FormatDate(LastPrinted));
+                    _content.Replace("{Created}", FormatDate(Created));
+                    _content.Replace("{LastSaved}", FormatDate(LastSaved));
+                    _content.Replace("{Pages}", Pages.ToString());
+                    _content.Replace("{Words}", Words.ToString());
+                    _content.Replace("{Characters}", Characters.ToString());
+                    _content.Replace("{CharactersWithSpaces}", CharactersWithSpaces.ToString());
+                    _content.Replace("{Bytes}", Bytes.ToString());
+                    _content.Replace("{Lines}", Lines.ToString());
+                    _content.Replace("{Paragraphs}", Paragraphs.ToString());
                 }
-                return content.ToString();
+                return _content.ToString();
             }
         }
 

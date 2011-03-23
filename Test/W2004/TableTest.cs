@@ -19,7 +19,7 @@ namespace Test.W2004
     public void testTableWithArray() {
         Table tbl01 = new Table();
         string[] cols = { "aaa", "bbb" };
-        tbl01.addTableEle(TableEle.TH, cols);
+        tbl01.AddTableEle(TableEle.TH, cols);
         Assert.True(tbl01.Content.Contains("<w:tbl>"));
         Assert.True(tbl01.Content.Contains("<w:tblPr>"));
         Assert.True(tbl01.Content.Contains("</w:tblPr>"));
@@ -36,10 +36,10 @@ namespace Test.W2004
     [Test]
     public void testCreateTableEmptyTH() {
         Table tbl03 = new Table();
-        tbl03.addTableEle(TableEle.TH, null);
+        tbl03.AddTableEle(TableEle.TH, null);
         Assert.AreEqual("", tbl03.Content);
 
-        tbl03.addTableEle(TableEle.TH, "");
+        tbl03.AddTableEle(TableEle.TH, "");
         Assert.AreEqual(2, TestUtils.regexCount(tbl03.Content, "<*w:tbl>"));
         Assert.AreEqual(1, TestUtils.regexCount(tbl03.Content, "<w:r wsp:rsidRPr=\"004374EC\"> "));
         Assert.AreEqual(1, TestUtils.regexCount(tbl03.Content, "<w:t></w:t>"));
@@ -48,16 +48,16 @@ namespace Test.W2004
     [Test]
     public void testTableHeaderNoRepeat() {
         Table tbl = new Table();
-        tbl.addTableEle(TableEle.TH, "Name");
+        tbl.AddTableEle(TableEle.TH, "Name");
         Assert.AreEqual(0, TestUtils.regexCount(tbl.Content, "[{]tblHeader[}]"));
     }
     
     [Test]
     public void testTableHeaderWITHRepeatHeader() {
         Table tbl = new Table();
-        tbl.setRepeatTableHeaderOnEveryPage();
+        tbl.SetRepeatTableHeaderOnEveryPage();
         
-        tbl.addTableEle(TableEle.TH, "Name");
+        tbl.AddTableEle(TableEle.TH, "Name");
         Assert.AreEqual(0, TestUtils.regexCount(tbl.Content, "[{]tblHeader[}]"));
         Assert.AreEqual(2, TestUtils.regexCount(tbl.Content, "<*w:trPr>"));
         Assert.AreEqual(1, TestUtils.regexCount(tbl.Content, "<w:tblHeader/>"));
@@ -106,7 +106,7 @@ namespace Test.W2004
     [Test]
     public void testNull() {
         Table tbl = new Table();
-        tbl.addTableEle(TableEle.TABLE_DEF, null);
+        tbl.AddTableEle(TableEle.TABLE_DEF, null);
         Assert.AreEqual("", tbl.Content);
     }
 
@@ -114,7 +114,7 @@ namespace Test.W2004
     public void testEmpty() {
         Table tbl = new Table();
         string[] arr = {};
-        tbl.addTableEle(TableEle.TABLE_DEF, arr);
+        tbl.AddTableEle(TableEle.TABLE_DEF, arr);
         Assert.AreEqual("", tbl.Content);
     }
 
@@ -122,12 +122,12 @@ namespace Test.W2004
     [Test]
     public void testCreateFullTable() {
         Table tbl = new Table();
-        tbl.addTableEle(TableEle.TH, "Name", "Salary");
+        tbl.AddTableEle(TableEle.TH, "Name", "Salary");
 
-        tbl.addTableEle(TableEle.TD, "Leonardo", "100,000.00");
-        tbl.addTableEle(TableEle.TD, "Romario", "1,000,000.00");
+        tbl.AddTableEle(TableEle.TD, "Leonardo", "100,000.00");
+        tbl.AddTableEle(TableEle.TD, "Romario", "1,000,000.00");
 
-        tbl.addTableEle(TableEle.TF, "Total", "1,100,000.00");
+        tbl.AddTableEle(TableEle.TF, "Total", "1,100,000.00");
 
         Assert.AreEqual(1, TestUtils.regexCount(tbl.Content, "<w:tbl>"));
 
@@ -165,7 +165,7 @@ namespace Test.W2004
     [Test]
     public void testCreateEmptyCell() {
         Table tbl = new Table();
-        tbl.addTableEle(TableEle.TD, "Leonardo", "");
+        tbl.AddTableEle(TableEle.TD, "Leonardo", "");
         
         Assert.AreEqual(1,
                 TestUtils.regexCount(tbl.Content, "<w:t>Leonardo</w:t>"));

@@ -7,14 +7,14 @@ namespace Word.W2004
 {
     public class Document2004 : IDocument, IElement
     {
-        private readonly IBody body = new Body2004();
-        private readonly IHead head = new Head2004();
+        private readonly IBody _body = new Body2004();
+        private readonly IHead _head = new Head2004();
         private readonly StringBuilder _txt = new StringBuilder();
 
-        private bool hasBeenCalledBefore;
+        private bool _hasBeenCalledBefore;
                      // if getContent has already been called, I cached the result for future invocations
 
-        private bool isLandscape;
+        private bool _isLandscape;
 
         #region IDocument Members
 
@@ -48,13 +48,13 @@ namespace Word.W2004
         {
             get
             {
-                if (hasBeenCalledBefore)
+                if (_hasBeenCalledBefore)
                 {
                     return _txt.ToString();
                 }
                 else
                 {
-                    hasBeenCalledBefore = true;
+                    _hasBeenCalledBefore = true;
                 }
                 _txt.Append(this.Uri);
                 _txt.Append(this.Head.Content);
@@ -63,7 +63,7 @@ namespace Word.W2004
 
                 _txt.Append("\n</w:wordDocument>");
 
-                string finalString = setUpPageOrientation(_txt.ToString());
+                string finalString = SetUpPageOrientation(_txt.ToString());
 
                 return finalString;
             }
@@ -72,17 +72,17 @@ namespace Word.W2004
 
         public void SetPageOrientationLandscape()
         {
-            this.isLandscape = true;
+            this._isLandscape = true;
         }
 
         public IBody Body
         {
-            get { return this.body; }
+            get { return this._body; }
         }
 
         public IHead Head
         {
-            get { return this.head; }
+            get { return this._head; }
         }
 
         public IFooter Footer
@@ -118,9 +118,9 @@ namespace Word.W2004
 
         #endregion
 
-        private string setUpPageOrientation(string txt)
+        private string SetUpPageOrientation(string txt)
         {
-            if (this.isLandscape)
+            if (this._isLandscape)
             {
                 const string orientation = "    <w:sectPr wsp:rsidR=\"00F04FB2\" wsp:rsidSect=\"00146B2A\">\n"
                                            + "      <w:pgSz w:w=\"16834\" w:h=\"11904\" w:orient=\"landscape\"/>\n"

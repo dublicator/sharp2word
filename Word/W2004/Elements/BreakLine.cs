@@ -40,7 +40,7 @@ namespace Word.W2004.Elements
             get
             {
                 StringBuilder res = new StringBuilder("");
-                applyBreakLineTimes(res);
+                ApplyBreakLineTimes(res);
                 return res.ToString();
             }
         }
@@ -64,7 +64,7 @@ namespace Word.W2004.Elements
         ///   Apply the repetition of break lines.
         /// </summary>
         /// <param name = "res">string to be added content</param>
-        private void applyBreakLineTimes(StringBuilder res)
+        private void ApplyBreakLineTimes(StringBuilder res)
         {
             for (int i = 0; i < this._times; i++)
             {
@@ -77,7 +77,7 @@ namespace Word.W2004.Elements
         /// </summary>
         /// <param name = "value">Number of times</param>
         /// <returns>The Breakline object ready to go!</returns>
-        public static BreakLine times(int value)
+        public static BreakLine SetTimes(int value)
         {
             return new BreakLine(value);
         }

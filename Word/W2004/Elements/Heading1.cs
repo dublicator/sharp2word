@@ -24,7 +24,7 @@ namespace Word.W2004.Elements
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Heading1 with(string value)
+        public static Heading1 With(string value)
         {
             return new Heading1(value);
         }

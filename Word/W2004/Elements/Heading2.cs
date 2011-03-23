@@ -19,9 +19,9 @@ namespace Word.W2004.Elements
 
         #endregion
 
-        public static Heading2 with(string @string)
+        public static Heading2 With(string value)
         {
-            return new Heading2(@string);
+            return new Heading2(value);
         }
     }
 }

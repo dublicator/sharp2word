@@ -2,16 +2,16 @@ namespace Word.W2004.Style
 {
     public class Font
     {
-        private readonly string value;
+        private readonly string _value;
 
         private Font(string value)
         {
-            this.value = value;
+            this._value = value;
         }
 
         public string Value
         {
-            get { return value; }
+            get { return _value; }
         }
 
         public static Font AGENCY_FB

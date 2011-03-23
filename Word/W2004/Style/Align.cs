@@ -2,11 +2,11 @@ namespace Word.W2004.Style
 {
     public class Align
     {
-        private readonly string value;
+        private readonly string _value;
 
         private Align(string value)
         {
-            this.value = value;
+            this._value = value;
         }
 
         public static Align CENTER
@@ -31,7 +31,7 @@ namespace Word.W2004.Style
 
         public string Value
         {
-            get { return value; }
+            get { return _value; }
         }
     }
 }

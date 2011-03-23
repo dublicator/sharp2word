@@ -16,10 +16,10 @@ namespace Word.W2004.Elements
     /// </summary>
     public class ParagraphPiece : IElement, IFluentElement<ParagraphPiece>, IFluentElementStylable<ParagraphPieceStyle>
     {
-        private readonly string value = "";
+        private readonly string _value = "";
         private ParagraphPieceStyle _style = new ParagraphPieceStyle();
 
-        private string txt =
+        private string _txt =
             "\n		<w:r>"
             + "\n			{styleText}"
             + "\n			<w:t>{value}</w:t>"
@@ -27,12 +27,13 @@ namespace Word.W2004.Elements
 
         public ParagraphPiece(string value)
         {
-            this.value = value;
+            this._value = value;
         }
 
         public ParagraphPieceStyle Style
         {
             get { return _style; }
+            set { this._style = value; }
         }
 
         #region IElement Members
@@ -41,16 +42,16 @@ namespace Word.W2004.Elements
         {
             get
             {
-                if ("".Equals(this.value) || this.value == null)
+                if ("".Equals(this._value) || this._value == null)
                 {
                     // null is very unusual. That the reason null comparison is after empty verification. I am not sure if we use ApacheUtils we can achieve the same  
                     return "";
                 }
 
                 //For convention, it should be the last thing before returning the xml content.
-                txt = _style.GetNewContentWithStyle(txt);
+                _txt = _style.GetNewContentWithStyle(_txt);
 
-                return txt.Replace("{value}", this.value);
+                return _txt.Replace("{value}", this._value);
             }
         }
 
@@ -75,12 +76,7 @@ namespace Word.W2004.Elements
 
         #endregion
 
-        public void setStyle(ParagraphPieceStyle style)
-        {
-            this._style = style;
-        }
-
-        public static ParagraphPiece with(string value)
+        public static ParagraphPiece With(string value)
         {
             return new ParagraphPiece(value);
         }
