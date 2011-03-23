@@ -67,8 +67,8 @@ namespace Test.W2004
         {
             IDocument myDoc = new Document2004();
 
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Body.Content, "<w:body>"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Body.Content, "</w:body>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Body.Content, "<w:body>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Body.Content, "</w:body>"));
         }
 
         [Test]
@@ -80,10 +80,10 @@ namespace Test.W2004
 
             myDoc.Header.AddEle(Paragraph.with("paragraph01").Create());
 
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Header.Content, "<w:hdr w:type=\"odd\">"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Header.Content, "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Header.Content, "<w:t>paragraph01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Header.Content, "</w:hdr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Header.Content, "<w:hdr w:type=\"odd\">"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Header.Content, "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Header.Content, "<w:t>paragraph01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Header.Content, "</w:hdr>"));
         }
 
         [Test]
@@ -95,10 +95,10 @@ namespace Test.W2004
 
             myDoc.Footer.AddEle(Paragraph.with("paragraph01").Create());
 
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Footer.Content, "<w:ftr w:type=\"odd\">"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Footer.Content, "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Footer.Content, "<w:t>paragraph01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(myDoc.Footer.Content, "</w:ftr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "<w:ftr w:type=\"odd\">"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "<w:t>paragraph01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "</w:ftr>"));
         }
 
         [Test] //TODO: make this useful with assertions
@@ -174,7 +174,7 @@ namespace Test.W2004
         public void testPageOrientationDefault()
         {
             IDocument doc = new Document2004();
-            Assert.AreEqual(0, TestUtils.regexCount(doc.Content, "landscape"));
+            Assert.AreEqual(0, TestUtils.RegexCount(doc.Content, "landscape"));
         }
 
         [Test]
@@ -183,7 +183,7 @@ namespace Test.W2004
             IDocument doc = new Document2004();
             doc.SetPageOrientationLandscape();
 
-            Assert.AreEqual(1, TestUtils.regexCount(doc.Content, "landscape"));
+            Assert.AreEqual(1, TestUtils.RegexCount(doc.Content, "landscape"));
         }
 
         [Test]
@@ -367,7 +367,7 @@ namespace Test.W2004
             IDocument myDoc = new Document2004();
             //whatever...
 
-            TestUtils.createLocalDoc(myDoc.Content);
+            TestUtils.CreateLocalDoc(myDoc.Content);
         }
 
         [Ignore]
@@ -381,7 +381,7 @@ namespace Test.W2004
                         ParagraphPiece.With("Leonardo Pinho Correa").WithStyle().SetFontSize("32").Create()
                     ).Create());
 
-            TestUtils.createLocalDoc(myDoc.Content);
+            TestUtils.CreateLocalDoc(myDoc.Content);
         }
 
     }

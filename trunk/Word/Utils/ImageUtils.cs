@@ -47,7 +47,7 @@ namespace Word.Utils
             }
         }
 
-        public static string getImageHexaBase64(BufferedImage bufferedImage, string imageformat)
+        public static string GetImageHexaBase64(BufferedImage bufferedImage, string imageformat)
         {
             return ImageToBase64(bufferedImage, imageformat);
         }

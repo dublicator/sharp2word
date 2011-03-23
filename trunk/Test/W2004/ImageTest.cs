@@ -10,18 +10,18 @@ namespace Test.W2004
         [Test]
         public void sanityTest()
         {
-            Image img = new Image(Util.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH);
+            Image img = new Image(Util.AppRoot + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH);
             //Image img = new Image(Utils.getAppRoot() + "/src/test/resources/base2logo.png");
             // Image("/Users/leonardo_correa/Desktop/icons_corrup/quote.gif");
 
             Console.WriteLine(img.Content);
-            Assert.AreEqual(2, TestUtils.regexCount(img.Content, "<*w:pict>"));
-            Assert.AreEqual(2, TestUtils.regexCount(img.Content, "<*v:shapetype"));
-            Assert.AreEqual(2, TestUtils.regexCount(img.Content, "<*v:shape[ >]")); //white space or >
-            Assert.AreEqual(2, TestUtils.regexCount(img.Content, "wordml"));
+            Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*w:pict>"));
+            Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shapetype"));
+            Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shape[ >]")); //white space or >
+            Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "wordml"));
             //for dtPicker.gif
             Assert.AreEqual(1,
-                            TestUtils.regexCount(img.Content,
+                            TestUtils.RegexCount(img.Content,
                                                  "R0lGODlhEAAQAPMAAKVNSkpNpUpNSqWmpdbT1v///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\nAAAAACH5BAEAAAYALAAAAAAQABAAQwRI0MhJqxmlkLwLyF8hYBpnluJArGzbjkEsB0NtD6PLAjyw\njqeOMANEDVGjm1IJm8WWONLxWDyGQjkdoecjVIOnrzEsKJvPaEEEADs="));
         }
 
@@ -71,12 +71,12 @@ namespace Test.W2004
     [Test]
     public void testWebImage(){
         Image img = new Image("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png", ImageLocation.WEB_URL);
-        Assert.AreEqual(2, TestUtils.regexCount(img.Content, "<*w:pict>"));
-        Assert.AreEqual(2, TestUtils.regexCount(img.Content, "<*v:shapetype"));
-        Assert.AreEqual(2, TestUtils.regexCount(img.Content, "<*v:shape[ >]")); //white space or >
-        Assert.AreEqual(2, TestUtils.regexCount(img.Content, "wordml"));
-        Assert.AreEqual(1, TestUtils.regexCount(img.Content, "width:275pt;height:95pt"));
-        Assert.AreEqual(1, TestUtils.regexCount(img.Content, "BiGQFiipCSS8DCm1Cya1FiyNKzexKTjDDSrLDSvUDi3MEyzHFSvUFC3TGi7bGi/aEi7dGzLcFzPN"));
+        Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*w:pict>"));
+        Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shapetype"));
+        Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shape[ >]")); //white space or >
+        Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "wordml"));
+        Assert.AreEqual(1, TestUtils.RegexCount(img.Content, "width:275pt;height:95pt"));
+        Assert.AreEqual(1, TestUtils.RegexCount(img.Content, "BiGQFiipCSS8DCm1Cya1FiyNKzexKTjDDSrLDSvUDi3MEyzHFSvUFC3TGi7bGi/aEi7dGzLcFzPN"));
     }
 
     [Test]

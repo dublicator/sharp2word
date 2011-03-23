@@ -19,8 +19,8 @@ namespace Test.W2004
         {
             Header2004 hd = new Header2004();
             hd.AddEle(new Paragraph("p1"));
-            Assert.AreEqual(2, TestUtils.regexCount(hd.Content, "<*w:hdr"));
-            Assert.AreEqual(1, TestUtils.regexCount(hd.Content, "<w:t>p1</w:t>"));
+            Assert.AreEqual(2, TestUtils.RegexCount(hd.Content, "<*w:hdr"));
+            Assert.AreEqual(1, TestUtils.RegexCount(hd.Content, "<w:t>p1</w:t>"));
         }
 
         [Test]
@@ -28,8 +28,8 @@ namespace Test.W2004
         {
             Header2004 hd = new Header2004();
             hd.AddEle("<w:t>p1</w:t>");
-            Assert.AreEqual(2, TestUtils.regexCount(hd.Content, "<*w:hdr"));
-            Assert.AreEqual(1, TestUtils.regexCount(hd.Content, "<w:t>p1</w:t>"));
+            Assert.AreEqual(2, TestUtils.RegexCount(hd.Content, "<*w:hdr"));
+            Assert.AreEqual(1, TestUtils.RegexCount(hd.Content, "<w:t>p1</w:t>"));
         }
 
         [Test]

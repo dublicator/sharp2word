@@ -16,10 +16,10 @@ namespace Test.W2004
         public void sanityTest()
         {
             Heading1 heading1 = new Heading1("h111");
-            	Assert.AreEqual(1, TestUtils.regexCount(heading1.Template, "<w:p wsp:rsidR*"));
-                Assert.AreEqual(1, TestUtils.regexCount(heading1.Template, "<w:t>[{]value[}]</w:t>")); //it has to have the pace holder
-                Assert.AreEqual(1, TestUtils.regexCount(heading1.Template, "</w:p>"));
-                Assert.AreEqual(1, TestUtils.regexCount(heading1.Template, "<w:pStyle w:val=\"Heading1\" />")); // it has to replace the Type of Heading
+            	Assert.AreEqual(1, TestUtils.RegexCount(heading1.Template, "<w:p wsp:rsidR*"));
+                Assert.AreEqual(1, TestUtils.RegexCount(heading1.Template, "<w:t>[{]value[}]</w:t>")); //it has to have the pace holder
+                Assert.AreEqual(1, TestUtils.RegexCount(heading1.Template, "</w:p>"));
+                Assert.AreEqual(1, TestUtils.RegexCount(heading1.Template, "<w:pStyle w:val=\"Heading1\" />")); // it has to replace the Type of Heading
 		
                 Assert.NotNull(heading1.Style);
                 HeadingStyle style = new HeadingStyle();

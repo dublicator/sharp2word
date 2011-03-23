@@ -27,13 +27,13 @@ namespace Test.W2004
         {
             IElement par = ParagraphPiece.With("piece01");
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
-                    TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
+                    TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
 
             // if there is no style, shouldn't have this
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<*w:rPr>"));
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<*w:rPr>"));
         }
 
         [Test]
@@ -43,25 +43,25 @@ namespace Test.W2004
                 .SetItalic(true).SetUnderline(true).SetFontSize(24)
                 .SetFont(Font.COURIER).SetTextColor("008000").Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:b/>")); // bold
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:i/>")); // italic
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content,
                                                     "<w:u w:val=\"single\"/>")); // underline
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content,
                                                     "w:color w:val=\"008000\"/>")); // underline
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content,
                                                     "<w:rFonts w:ascii=\"Courier Bold Italic\" w:h-ansi=\"Courier Bold Italic\"/>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content,
                                                     "<wx:font wx:val=\"Courier Bold Italic\"/>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content,
                                                     "<w:sz w:val=\"(.*)\" />"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:sz-cs w:val=\"48\" />"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:sz-cs w:val=\"48\" />"));
 
         }
 
@@ -71,27 +71,27 @@ namespace Test.W2004
             IElement par = ParagraphPiece.With("piece01").WithStyle().SetBold(true)
                     .SetItalic(false).SetUnderline(false).Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
-                    TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:rPr>"));
+                    TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:b/>")); // bold
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
 
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:i/>")); // italic
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:u w:val=\"single\"/>")); // underline
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "w:color w:val=\"008000\"/>")); // underline
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:rFonts w:ascii=\"Courier\" w:h-ansi=\"Courier\"/>"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<wx:font wx:val=\"Courier\"/>"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:sz w:val=\"(.*)\" />"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:sz-cs w:val=\"(.*)\" />"));
 
         }
@@ -101,28 +101,28 @@ namespace Test.W2004
             IElement par = ParagraphPiece.With("piece01").WithStyle()
                     .SetItalic(true).Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
-                    TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:rPr>"));
+                    TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
 
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:b/>")); // bold
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:i/>")); // italic
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
 
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:u w:val=\"single\"/>")); // underline
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "w:color w:val=\"008000\"/>")); // underline
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:rFonts w:ascii=\"Courier\" w:h-ansi=\"Courier\"/>"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<wx:font wx:val=\"Courier\"/>"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:sz w:val=\"(.*)\" />"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:sz-cs w:val=\"(.*)\" />"));
 
         }
@@ -132,28 +132,28 @@ namespace Test.W2004
             IElement par = ParagraphPiece.With("piece01").WithStyle()
                     .SetUnderline(true).Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
-                    TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:rPr>"));
+                    TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
 
 
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:b/>")); // bold
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:i/>")); // italic
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content,
                     "<w:u w:val=\"single\"/>")); // underline
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "w:color w:val=\"008000\"/>")); // underline
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:rFonts w:ascii=\"Courier\" w:h-ansi=\"Courier\"/>"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<wx:font wx:val=\"Courier\"/>"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:sz w:val=\"(.*)\" />"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:sz-cs w:val=\"(.*)\" />"));
 
         }
@@ -163,27 +163,27 @@ namespace Test.W2004
             IElement par = ParagraphPiece.With("piece01").WithStyle()
                     .SetFont(Font.COURIER).Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
-                    TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:rPr>"));
+                    TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
 
 
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:b/>")); // bold
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:i/>")); // italic
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:u w:val=\"single\"/>")); // underline
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "w:color w:val=\"008000\"/>")); // underline
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content,
                     "<w:rFonts w:ascii=\"Courier\" w:h-ansi=\"Courier\"/>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content,
                     "<wx:font wx:val=\"Courier\"/>"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:sz w:val=\"(.*)\" />"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:sz-cs w:val=\"(.*)\" />"));
 
         }
@@ -194,27 +194,27 @@ namespace Test.W2004
                     .SetItalic(false).SetUnderline(false)
                     .SetTextColor("008000").Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
-                    TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:rPr>"));
+                    TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
 
 
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:b/>")); // bold
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:i/>")); // italic
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:u w:val=\"single\"/>")); // underline
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content,
                     "w:color w:val=\"008000\"/>")); // underline
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:rFonts w:ascii=\"Courier\" w:h-ansi=\"Courier\"/>"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<wx:font wx:val=\"Courier\"/>"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:sz w:val=\"(.*)\" />"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:sz-cs w:val=\"(.*)\" />"));
         }
         [Test]
@@ -225,25 +225,25 @@ namespace Test.W2004
                     .SetUnderline(false)
                     .SetFontSize("50").Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
-                    TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:rPr>"));
+                    TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
 
 
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:b/>")); // bold
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:i/>")); // italic
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:u w:val=\"single\"/>")); // underline
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "w:color w:val=\"008000\"/>")); // underline
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:u w:val=\"single\"/>")); // underline
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "w:color w:val=\"008000\"/>")); // underline
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<w:rFonts w:ascii=\"Courier\" w:h-ansi=\"Courier\"/>"));
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content,
                     "<wx:font wx:val=\"Courier\"/>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content,
                     "<w:sz w:val=\"(.*)\" />"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content,
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content,
                     "<w:sz-cs w:val=\"(.*)\" />"));
         }
         [Test]
@@ -255,15 +255,15 @@ namespace Test.W2004
 
             IElement par = ParagraphPiece.With("piece01").WithStyle().SetFont(Font.ARIAL_NARROW).Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
-                    TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
+                    TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
 
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:b/>")); // bold
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
 
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:i/>")); // italic
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
         }
 
         [Test]
@@ -275,14 +275,14 @@ namespace Test.W2004
              */
             IElement par = ParagraphPiece.With("piece01").WithStyle().SetFont(Font.ARIAL_NARROW_BOLD).Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
 
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:b/>")); // bold
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:i/>")); // italic
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
         }
 
         [Test]
@@ -294,15 +294,15 @@ namespace Test.W2004
              */
             IElement par = ParagraphPiece.With("piece01").WithStyle().SetFont(Font.ARIAL_NARROW_ITALIC).Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
-                    TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
+                    TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
 
-            Assert.AreEqual(0, TestUtils.regexCount(par.Content, "<w:b/>")); // bold
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:i/>")); // italic
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
         }
 
         [Test]
@@ -313,15 +313,15 @@ namespace Test.W2004
              */
             IElement par = ParagraphPiece.With("piece01").WithStyle().SetFont(Font.ARIAL_NARROW_BOLD_ITALIC).Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
-                            TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
+                            TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:b/>")); // bold
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:i/>")); // italic
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
         }
 
         [Test]
@@ -340,13 +340,13 @@ namespace Test.W2004
             .SetBgColor("FFFF00")
             .Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "FFFF00")); //Background Color
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "FFFF00")); //Background Color
         }
     }
 }

@@ -14,65 +14,65 @@ namespace Test.W2004
 		h1.Style.SetBold(true);
 		h1.Style.SetItalic(true);
 		
-		Assert.AreEqual(2, TestUtils.regexCount(h1.Content, "<*w:rPr>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h1.Content, "<w:jc w:val=\"left\" />")); //default is left
-		Assert.AreEqual(1, TestUtils.regexCount(h1.Content, "<w:b/>")); 
-		Assert.AreEqual(1, TestUtils.regexCount(h1.Content, "<w:i/>")); 
+		Assert.AreEqual(2, TestUtils.RegexCount(h1.Content, "<*w:rPr>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:jc w:val=\"left\" />")); //default is left
+		Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:b/>")); 
+		Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:i/>")); 
 		
 	}
 
 	[Test]
 	public void testH1(){
 		Heading1 h1 = new Heading1("h1");
-		Assert.AreEqual(1, TestUtils.regexCount(h1.Content, "<w:p wsp:rsidR*"));
-		Assert.AreEqual(1, TestUtils.regexCount(h1.Content, "<w:t>h1</w:t>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h1.Content, "</w:p>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h1.Content, "<w:pStyle w:val=\"Heading1\" />"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:p wsp:rsidR*"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:t>h1</w:t>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "</w:p>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:pStyle w:val=\"Heading1\" />"));
 	}
 	
 	[Test]
 	public void testH1fluent(){
 		Heading1 h1 = Heading1.With("h1").Create();
-		Assert.AreEqual(1, TestUtils.regexCount(h1.Content, "<w:p wsp:rsidR*"));
-		Assert.AreEqual(1, TestUtils.regexCount(h1.Content, "<w:t>h1</w:t>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h1.Content, "</w:p>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h1.Content, "<w:pStyle w:val=\"Heading1\" />"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:p wsp:rsidR*"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:t>h1</w:t>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "</w:p>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:pStyle w:val=\"Heading1\" />"));
 	}
 	
 	[Test]
 	public void testH2(){
 		Heading2 h2 = new Heading2("h2");
-		Assert.AreEqual(1, TestUtils.regexCount(h2.Content, "<w:p wsp:rsidR*"));
-		Assert.AreEqual(1, TestUtils.regexCount(h2.Content, "<w:t>h2</w:t>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h2.Content, "</w:p>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h2.Content, "<w:pStyle w:val=\"Heading2\" />"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h2.Content, "<w:p wsp:rsidR*"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h2.Content, "<w:t>h2</w:t>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h2.Content, "</w:p>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h2.Content, "<w:pStyle w:val=\"Heading2\" />"));
 	}
 	
 	[Test]
 	public void testH2Fluent(){
 		Heading2 h2 = Heading2.With("h2").Create();
-		Assert.AreEqual(1, TestUtils.regexCount(h2.Content, "<w:p wsp:rsidR*"));
-		Assert.AreEqual(1, TestUtils.regexCount(h2.Content, "<w:t>h2</w:t>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h2.Content, "</w:p>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h2.Content, "<w:pStyle w:val=\"Heading2\" />"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h2.Content, "<w:p wsp:rsidR*"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h2.Content, "<w:t>h2</w:t>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h2.Content, "</w:p>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h2.Content, "<w:pStyle w:val=\"Heading2\" />"));
 	}
 	
 	[Test]
 	public void testH3(){
 		Heading3 h3 = new Heading3("h3");
-		Assert.AreEqual(1, TestUtils.regexCount(h3.Content, "<w:p wsp:rsidR*"));
-		Assert.AreEqual(1, TestUtils.regexCount(h3.Content, "<w:t>h3</w:t>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h3.Content, "</w:p>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h3.Content, "<w:pStyle w:val=\"Heading3\" />"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h3.Content, "<w:p wsp:rsidR*"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h3.Content, "<w:t>h3</w:t>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h3.Content, "</w:p>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h3.Content, "<w:pStyle w:val=\"Heading3\" />"));
 	}
 	
 	[Test]
 	public void testH3Fluent(){
 		Heading3 h3 = Heading3.With("h3").Create();
-		Assert.AreEqual(1, TestUtils.regexCount(h3.Content, "<w:p wsp:rsidR*"));
-		Assert.AreEqual(1, TestUtils.regexCount(h3.Content, "<w:t>h3</w:t>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h3.Content, "</w:p>"));
-		Assert.AreEqual(1, TestUtils.regexCount(h3.Content, "<w:pStyle w:val=\"Heading3\" />"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h3.Content, "<w:p wsp:rsidR*"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h3.Content, "<w:t>h3</w:t>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h3.Content, "</w:p>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(h3.Content, "<w:pStyle w:val=\"Heading3\" />"));
 	}
 
 	[Test]
@@ -98,10 +98,10 @@ namespace Test.W2004
 	}
 
 	private void verifyStyles(IElement e) {
-		Assert.AreEqual(2, TestUtils.regexCount(e.Content, "<*w:rPr>"));
-		Assert.AreEqual(1, TestUtils.regexCount(e.Content, "<w:jc w:val=\"center\" />")); //default is left
-		Assert.AreEqual(1, TestUtils.regexCount(e.Content, "<w:b/>")); 
-		Assert.AreEqual(1, TestUtils.regexCount(e.Content, "<w:i/>"));
+		Assert.AreEqual(2, TestUtils.RegexCount(e.Content, "<*w:rPr>"));
+		Assert.AreEqual(1, TestUtils.RegexCount(e.Content, "<w:jc w:val=\"center\" />")); //default is left
+		Assert.AreEqual(1, TestUtils.RegexCount(e.Content, "<w:b/>")); 
+		Assert.AreEqual(1, TestUtils.RegexCount(e.Content, "<w:i/>"));
 	} 
     }
 }

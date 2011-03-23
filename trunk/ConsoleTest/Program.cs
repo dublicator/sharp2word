@@ -196,7 +196,7 @@ namespace ConsoleTest
             {
                 using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                 {
-                    w.Write(Util.pretty(myWord));
+                    w.Write(Util.Pretty(myWord));
                 }
             }
 
