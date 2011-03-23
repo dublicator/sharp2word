@@ -6,7 +6,7 @@ namespace Word.W2004
 {
     public class Head2004 : IHead
     {
-        private readonly StringBuilder content = new StringBuilder("");
+        private readonly StringBuilder _content = new StringBuilder("");
 
         public Properties Properties { get; set; }
 
@@ -16,12 +16,12 @@ namespace Word.W2004
         {
             get
             {
-                if ("".Equals(this.content.ToString()))
+                if ("".Equals(this._content.ToString()))
                 {
-                    content.Append("\n" + this.Properties.Content + Util.HEAD2004 + "\n");
+                    _content.Append("\n" + this.Properties.Content + Util.HEAD2004 + "\n");
                 }
 
-                return content.ToString();
+                return _content.ToString();
             }
         }
 

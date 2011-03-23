@@ -56,10 +56,10 @@ namespace Word.W2004
             + "\n                    </w:p> "
             + "\n                </wx:pBdrGroup> \n";
 
-        private readonly StringBuilder txt = new StringBuilder("");
+        private readonly StringBuilder _txt = new StringBuilder("");
         private bool _showPageNumber = true;
 
-        private bool hasBeenCalledBefore;
+        private bool _hasBeenCalledBefore;
                      // if getContent has already been called, I cached the result for future invocations
 
         #region Implementation of IElement
@@ -81,27 +81,27 @@ namespace Word.W2004
         {
             get
             {
-                if ("".Equals(txt.ToString()))
+                if ("".Equals(_txt.ToString()))
                 {
                     return "";
                 }
-                if (hasBeenCalledBefore)
+                if (_hasBeenCalledBefore)
                 {
-                    return txt.ToString();
+                    return _txt.ToString();
                 }
                 else
                 {
-                    hasBeenCalledBefore = true;
+                    _hasBeenCalledBefore = true;
                 }
 
-                txt.Insert(0, HEADER_TOP);
+                _txt.Insert(0, HEADER_TOP);
                 if (_showPageNumber)
                 {
-                    txt.Append(PAGE_NUMBER);
+                    _txt.Append(PAGE_NUMBER);
                 }
-                txt.Append(HEADER_BOTTON);
+                _txt.Append(HEADER_BOTTON);
 
-                return txt.ToString();
+                return _txt.ToString();
             }
         }
 
@@ -117,7 +117,7 @@ namespace Word.W2004
         /// <param name = "e"></param>
         public void AddEle(IElement e)
         {
-            this.txt.Append("\n" + e.Content);
+            this._txt.Append("\n" + e.Content);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Word.W2004
         /// <param name = "str"></param>
         public void AddEle(string str)
         {
-            this.txt.Append("\n" + str);
+            this._txt.Append("\n" + str);
         }
 
         public void ShowPageNumber(bool value)

@@ -7,7 +7,7 @@ namespace Word.W2004
     {
         private readonly IFooter _footer = new Footer2004();
         private readonly IHeader _header = new Header2004();
-        private readonly StringBuilder txt = new StringBuilder("");
+        private readonly StringBuilder _txt = new StringBuilder("");
 
         #region Implementation of IElement
 
@@ -31,7 +31,7 @@ namespace Word.W2004
                 StringBuilder res = new StringBuilder();
                 res.Append("\n<w:body>");
 
-                res.Append(txt.ToString());
+                res.Append(_txt.ToString());
 
                 string header = this.Header.Content;
                 string footer = this.Footer.Content;
@@ -68,7 +68,7 @@ namespace Word.W2004
         /// <param name = "e"></param>
         public void AddEle(IElement e)
         {
-            this.txt.Append("\n" + e.Content);
+            this._txt.Append("\n" + e.Content);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Word.W2004
         /// <param name = "str"></param>
         public void AddEle(string str)
         {
-            this.txt.Append("\n" + str);
+            this._txt.Append("\n" + str);
         }
 
         #endregion

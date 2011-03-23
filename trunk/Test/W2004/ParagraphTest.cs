@@ -41,9 +41,9 @@ namespace Test.W2004
         public void testTab()
         {
             Paragraph p01 = Paragraph.withPieces(
-                    ParagraphPiece.with("Bloc 1 Price :").WithStyle().setFont(Font.CALIBRI).setFontSize(11).create(),
-                    ParagraphPiece.with(" \t 3 200,00 $").WithStyle().setFont(Font.CALIBRI).setFontSize(11).create()
-            ).addTab(Paragraph.TabAlign.RIGHT, 8931).Create();
+                    ParagraphPiece.With("Bloc 1 Price :").WithStyle().SetFont(Font.CALIBRI).SetFontSize(11).Create(),
+                    ParagraphPiece.With(" \t 3 200,00 $").WithStyle().SetFont(Font.CALIBRI).SetFontSize(11).Create()
+            ).AddTab(Paragraph.TabAlign.RIGHT, 8931).Create();
 
             Assert.AreEqual(2, TestUtils.regexCount(p01.Content, "<w:pPr>"));
             Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:tabs>"));
@@ -99,10 +99,10 @@ namespace Test.W2004
             ParagraphPiece piece01 = new ParagraphPiece("Piece01");
             Paragraph p01 = new Paragraph(piece01);
             ParagraphPieceStyle style = new ParagraphPieceStyle();
-            style.setBold(true);
-            style.setItalic(true);
-            style.setUnderline(true);
-            piece01.setStyle(style);
+            style.SetBold(true);
+            style.SetItalic(true);
+            style.SetUnderline(true);
+            piece01.Style = style;
 
             Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:b/>")); //bold
             Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:i/>")); //italic
@@ -118,9 +118,9 @@ namespace Test.W2004
             ParagraphPiece piece02 = new ParagraphPiece("Piece22222");
 
             ParagraphPieceStyle style = new ParagraphPieceStyle();
-            style.setBold(true);
-            style.setItalic(true);
-            piece02.setStyle(style);
+            style.SetBold(true);
+            style.SetItalic(true);
+            piece02.Style = style;
 
             Paragraph p01 = Paragraph.withPieces(piece01, piece02);
 

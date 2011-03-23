@@ -29,21 +29,21 @@ namespace Word.W2004.Style
 
             // 'doStyleFont' has to be before 'doStyleBold' and 'doStyleItalic'
             // because of the 'smart bold/italic' based on font type.
-            doStyleFont(style);
-            doStyleBold(style);
-            doStyleItalic(style);
-            doStyleUnderline(style);
-            doStyleTextColorHexa(style);
-            doStyleColorEnum(style);
-            doStyleFontSize(style);
-            doStyleBgColor(style);
+            DoStyleFont(style);
+            DoStyleBold(style);
+            DoStyleItalic(style);
+            DoStyleUnderline(style);
+            DoStyleTextColorHexa(style);
+            DoStyleColorEnum(style);
+            DoStyleFontSize(style);
+            DoStyleBgColor(style);
 
-            return doStyleReplacement(style, txt);
+            return DoStyleReplacement(style, txt);
         }
 
         #endregion
 
-        private void doStyleBgColor(StringBuilder style)
+        private void DoStyleBgColor(StringBuilder style)
         {
             if (!_bgColor.Equals(""))
             {
@@ -61,13 +61,13 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name = "bgColor"></param>
         /// <returns></returns>
-        public ParagraphPieceStyle setBgColor(string bgColor)
+        public ParagraphPieceStyle SetBgColor(string bgColor)
         {
             this._bgColor = bgColor;
             return this;
         }
 
-        private void doStyleBold(StringBuilder style)
+        private void DoStyleBold(StringBuilder style)
         {
             if (this._bold)
             {
@@ -75,7 +75,7 @@ namespace Word.W2004.Style
             }
         }
 
-        private void doStyleItalic(StringBuilder style)
+        private void DoStyleItalic(StringBuilder style)
         {
             if (this._italic)
             {
@@ -83,7 +83,7 @@ namespace Word.W2004.Style
             }
         }
 
-        private void doStyleUnderline(StringBuilder style)
+        private void DoStyleUnderline(StringBuilder style)
         {
             if (this._underline)
             {
@@ -91,7 +91,7 @@ namespace Word.W2004.Style
             }
         }
 
-        private void doStyleTextColorHexa(StringBuilder style)
+        private void DoStyleTextColorHexa(StringBuilder style)
         {
             if (!this._textColor.Equals(""))
             {
@@ -112,7 +112,7 @@ namespace Word.W2004.Style
             return colorHex;
         }
 
-        private void doStyleColorEnum(StringBuilder style)
+        private void DoStyleColorEnum(StringBuilder style)
         {
             var clr = ColorToHex(this._color);
             if (!string.IsNullOrEmpty(clr) && !clr.Equals(""))
@@ -121,7 +121,7 @@ namespace Word.W2004.Style
             }
         }
 
-        private void doStyleFont(StringBuilder style)
+        private void DoStyleFont(StringBuilder style)
         {
             // Smart Italic/Bold: This will make the font bold/italic according to
             // this.font
@@ -162,7 +162,7 @@ namespace Word.W2004.Style
             }
         }
 
-        private void doStyleFontSize(StringBuilder style)
+        private void DoStyleFontSize(StringBuilder style)
         {
             if (!"".Equals(this._fontSize))
             {
@@ -174,7 +174,7 @@ namespace Word.W2004.Style
             }
         }
 
-        private static string doStyleReplacement(StringBuilder style, string txt)
+        private static string DoStyleReplacement(StringBuilder style, string txt)
         {
             if (!"".Equals(style.ToString()))
             {
@@ -196,31 +196,31 @@ namespace Word.W2004.Style
          * 
          */
 
-        public new ParagraphPiece create()
+        public new ParagraphPiece Create()
         {
             return (ParagraphPiece) base.Create();
         }
 
-        public ParagraphPieceStyle setBold(bool bold)
+        public ParagraphPieceStyle SetBold(bool bold)
         {
             //this._bold = bold;
-            this.bold();
+            this.Bold();
             return this;
         }
 
-        public ParagraphPieceStyle bold()
+        public ParagraphPieceStyle Bold()
         {
             _bold = true;
             return this;
         }
 
-        public ParagraphPieceStyle setItalic(bool italic)
+        public ParagraphPieceStyle SetItalic(bool italic)
         {
             this._italic = italic;
             return this;
         }
 
-        public ParagraphPieceStyle setUnderline(bool underline)
+        public ParagraphPieceStyle SetUnderline(bool underline)
         {
             this._underline = underline;
             return this;
@@ -235,7 +235,7 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name = "textColor">Hexadecimal color code</param>
         /// <returns></returns>
-        public ParagraphPieceStyle setTextColor(string textColor)
+        public ParagraphPieceStyle SetTextColor(string textColor)
         {
             this._textColor = textColor;
             return this;
@@ -246,13 +246,13 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
-        public ParagraphPieceStyle setTextColor(Color color)
+        public ParagraphPieceStyle SetTextColor(Color color)
         {
             this._color = color;
             return this;
         }
 
-        public ParagraphPieceStyle setFont(Font font)
+        public ParagraphPieceStyle SetFont(Font font)
         {
             this._font = font;
             return this;
@@ -265,7 +265,7 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name="fontSize"></param>
         /// <returns></returns>
-        public ParagraphPieceStyle setFontSize(string fontSize)
+        public ParagraphPieceStyle SetFontSize(string fontSize)
         {
             this._fontSize = fontSize;
             return this;
@@ -276,7 +276,7 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name="size"></param>
         /// <returns></returns>
-        public ParagraphPieceStyle setFontSize(int size)
+        public ParagraphPieceStyle SetFontSize(int size)
         {
             this._fontSize = (size*2).ToString();
             return this;

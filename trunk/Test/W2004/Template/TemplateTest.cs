@@ -22,10 +22,10 @@ namespace Test
         xmlTemplate = replacePh(xmlTemplate, "phProjectLeader", "Leonardo Correa");
         
         Table tbl = new Table();
-        tbl.addTableEle(TableEle.TH, "Jira Number", "Description");
+        tbl.AddTableEle(TableEle.TH, "Jira Number", "Description");
 
-        tbl.addTableEle(TableEle.TD, "J2W-1234", "Read Templates nicelly");
-        tbl.addTableEle(TableEle.TD, "J2W-9999", "Make Java2word funky!!!");
+        tbl.AddTableEle(TableEle.TD, "J2W-1234", "Read Templates nicelly");
+        tbl.AddTableEle(TableEle.TD, "J2W-9999", "Make Java2word funky!!!");
 
         xmlTemplate = replacePh(xmlTemplate, "phTableIssues", tbl.Content);
         

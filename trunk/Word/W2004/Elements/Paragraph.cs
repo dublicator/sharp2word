@@ -89,7 +89,7 @@ namespace Word.W2004.Elements
                         addTab = "  <w:pPr>" + "\n    <w:tabs>";
                         foreach (Tab tab in _tabs)
                         {
-                            addTab += "\n        <w:tab w:val=\"" + tab.getAlign().getValue() + "\" w:pos=\"" + tab.getPosition() + "\" />";
+                            addTab += "\n        <w:tab w:val=\"" + tab.Align.getValue() + "\" w:pos=\"" + tab.Position + "\" />";
                         }
                         addTab += "\n    </w:tabs>" + "\n </w:pPr>";
                     }
@@ -143,7 +143,7 @@ namespace Word.W2004.Elements
         /// <param name="tabAlign">Right or Left according to the Enum @TabAlign</param>
         /// <param name="position">Kind of size of EACH tab or each '\t'</param>
         /// <returns>The fluent actual paragraph</returns>
-        public Paragraph addTab(TabAlign tabAlign, int position)
+        public Paragraph AddTab(TabAlign tabAlign, int position)
         {
             _tabs.Add(new Tab(tabAlign, position));
             return this;
@@ -161,39 +161,39 @@ namespace Word.W2004.Elements
                 get { return new TabAlign("right"); }
             }
 
-            private string value;
+            private readonly string _value;
 
 
             private TabAlign(string value)
             {
-                this.value = value;
+                this._value = value;
             }
 
             public string getValue()
             {
-                return value;
+                return _value;
             }
         }
 
         private class Tab
         {
-            private TabAlign align;
-            private int position;
+            private readonly TabAlign _align;
+            private readonly int _position;
 
             public Tab(TabAlign pAlign, int pPosition)
             {
-                align = pAlign;
-                position = pPosition;
+                _align = pAlign;
+                _position = pPosition;
             }
 
-            public TabAlign getAlign()
+            public TabAlign Align
             {
-                return align;
+                get { return _align; }
             }
 
-            public int getPosition()
+            public int Position
             {
-                return position;
+                get { return _position; }
             }
         }
     }

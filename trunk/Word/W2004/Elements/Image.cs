@@ -14,9 +14,9 @@ namespace Word.W2004.Elements
     /// </summary>
     public class Image : IImage, IFluentElement<Image>
     {
-        private readonly BufferedImage bufferedImage;
-        private readonly string path = "";
-        private readonly StringBuilder txt = new StringBuilder("");
+        private readonly BufferedImage _bufferedImage;
+        private readonly string _path = "";
+        private readonly StringBuilder _txt = new StringBuilder("");
         private bool hasBeenCalledBefore;
         // size
         private string _height = ""; // to be able to set this to override default
@@ -64,17 +64,17 @@ namespace Word.W2004.Elements
         /// </param>
         public Image(string path, ImageLocation imageLocation)
         {
-            this.path = path;
+            this._path = path;
             try
             {
                 if (imageLocation.Equals(ImageLocation.FULL_LOCAL_PATH))
                 {
-                    bufferedImage = BufferedImage.FromFile(path);
+                    _bufferedImage = BufferedImage.FromFile(path);
                 }
                 else if (imageLocation.Equals(ImageLocation.WEB_URL))
                 {
                     Uri url = new Uri(path);
-                    bufferedImage = ImageFromUrl(url);
+                    _bufferedImage = ImageFromUrl(url);
                 }
                 else if (imageLocation.Equals(ImageLocation.CLASSPATH))
                 {
@@ -111,7 +111,7 @@ namespace Word.W2004.Elements
         {
             get
             {
-                string res = bufferedImage.Width + "#" + bufferedImage.Height + "";
+                string res = _bufferedImage.Width + "#" + _bufferedImage.Height + "";
                 return res;
             }
         }
@@ -133,7 +133,7 @@ namespace Word.W2004.Elements
             {
                 if (hasBeenCalledBefore)
                 {
-                    return txt.ToString();
+                    return _txt.ToString();
                 }
                 else
                 {
@@ -141,17 +141,17 @@ namespace Word.W2004.Elements
                 }
                 // Placeholders: internalFileName, fileName, binary, width and height
 
-                string[] arr = path.Split('/');
+                string[] arr = _path.Split('/');
                 string fileName = arr[arr.Length - 1];
 
                 string internalFileName = DateTime.Now.Millisecond + fileName;
 
                 // string binary = ImageUtils.getImageHexaBase64(path);
-                string imageformat = path.Substring(path.LastIndexOf('.') + 1);
-                string binary = ImageUtils.getImageHexaBase64(bufferedImage,
+                string imageformat = _path.Substring(_path.LastIndexOf('.') + 1);
+                string binary = ImageUtils.getImageHexaBase64(_bufferedImage,
                                                               imageformat);
 
-                setUpSize();
+                SetUpSize();
 
                 string res = img_template;
                 res = res.Replace("{fileName}", fileName);
@@ -160,8 +160,8 @@ namespace Word.W2004.Elements
                 res = res.Replace("{width}", this._width);
                 res = res.Replace("{height}", this._height);
 
-                txt.Append(res);
-                return txt.ToString();
+                _txt.Append(res);
+                return _txt.ToString();
             }
         }
 
@@ -230,7 +230,7 @@ namespace Word.W2004.Elements
             return total_stream;
         }
 
-        private void setUpSize()
+        private void SetUpSize()
         {
             if ("".Equals(this._width) || "".Equals(this._height))
             {
@@ -254,7 +254,7 @@ namespace Word.W2004.Elements
         /// </summary>
         /// <param name = "path">Image full path. To know if it will work, you should be able to see this image in your browser</param>
         /// <returns></returns>
-        public static Image from_WEB_URL(string path)
+        public static Image From_WEB_URL(string path)
         {
             return new Image(path, ImageLocation.WEB_URL);
         }
@@ -264,7 +264,7 @@ namespace Word.W2004.Elements
         /// </summary>
         /// <param name = "path">Image full path. To know if it will work, probably you should specify full path from the root of your system.</param>
         /// <returns></returns>
-        public static Image from_FULL_LOCAL_PATHL(string path)
+        public static Image From_FULL_LOCAL_PATHL(string path)
         {
             return new Image(path, ImageLocation.FULL_LOCAL_PATH);
         }
