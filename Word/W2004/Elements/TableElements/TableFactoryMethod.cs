@@ -11,22 +11,22 @@ namespace Word.W2004.Elements.TableElements
         {
         }
 
-        public static TableFactoryMethod getInstance()
+        public static TableFactoryMethod Instance
         {
-            return _instance ?? (_instance = new TableFactoryMethod());
+            get { return _instance ?? (_instance = new TableFactoryMethod()); }
         }
 
-        public static ITableItemStrategy getTableItem(TableEle tableEle)
+        public static ITableItemStrategy GetTableItem(TableEle tableEle)
         {
             if (tableEle == null)
             {
                 return null;
             }
 
-            return getTableEle(tableEle);
+            return GetTableEle(tableEle);
         }
 
-        private static ITableItemStrategy getTableEle(TableEle tableEle)
+        private static ITableItemStrategy GetTableEle(TableEle tableEle)
         {
             if (tableEle.Value.Equals("tableDef"))
             {

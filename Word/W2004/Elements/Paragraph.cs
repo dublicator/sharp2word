@@ -43,7 +43,7 @@ namespace Word.W2004.Elements
 
         public ParagraphStyle Style
         {
-            get { return _style; }
+            set { this._style = value; }
         }
 
         #region IElement Members
@@ -115,16 +115,11 @@ namespace Word.W2004.Elements
 
         public ParagraphStyle WithStyle()
         {
-            _style.SetElement(this);
+            _style.Element = this;
             return _style;
         }
 
         #endregion
-
-        public void SetStyle(ParagraphStyle style)
-        {
-            this._style = style;
-        }
 
         /// <summary>
         /// Created a Paragraph with a simple @ParagraphPiece inside

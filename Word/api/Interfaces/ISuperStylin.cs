@@ -9,7 +9,7 @@ namespace Word.Api.Interfaces
         /// <returns></returns>
         string GetNewContentWithStyle(string txt);
 
-        void SetElement(IElement element);
+        IElement Element { set; }
 
         /// <summary>
         ///   This method returns the element. There should be a cast for the return.

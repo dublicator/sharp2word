@@ -78,7 +78,7 @@ namespace Word.W2004.Elements
         /// <returns></returns>
         public E WithStyle()
         {
-            this.Style.SetElement(this); //, Heading1.class
+            this.Style.Element = this; //, Heading1.class
             return this.Style as E;
         }
 

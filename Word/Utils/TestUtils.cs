@@ -21,7 +21,7 @@ namespace Word.Utils
         {
             string doc = Util.AppRoot + "\\Sharp2word_allInOne.doc";
 
-            using (FileStream fs = new FileStream(myDoc, FileMode.Create))
+            using (FileStream fs = new FileStream(doc, FileMode.Create))
             {
                 using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                 {

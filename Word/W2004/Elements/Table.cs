@@ -6,7 +6,7 @@ namespace Word.W2004.Elements
 {
     public class Table : IElement
     {
-        private readonly StringBuilder txt = new StringBuilder("");
+        private readonly StringBuilder _txt = new StringBuilder("");
 
         private bool _hasBeenCalledBefore;
                      // if getContent has already been called, I cached the result for future invocations
@@ -19,25 +19,25 @@ namespace Word.W2004.Elements
         {
             get
             {
-                if ("".Equals(txt.ToString()))
+                if ("".Equals(_txt.ToString()))
                 {
                     return "";
                 }
                 if (_hasBeenCalledBefore)
                 {
-                    return txt.ToString();
+                    return _txt.ToString();
                 }
                 else
                 {
                     _hasBeenCalledBefore = true;
                 }
 
-                ITableItemStrategy tableDef = TableFactoryMethod.getTableItem(TableEle.TABLE_DEF);
+                ITableItemStrategy tableDef = TableFactoryMethod.GetTableItem(TableEle.TABLE_DEF);
 
-                txt.Insert(0, tableDef.Top);
-                txt.Append("\n" + tableDef.Bottom);
+                _txt.Insert(0, tableDef.Top);
+                _txt.Append("\n" + tableDef.Bottom);
 
-                return txt.ToString();
+                return _txt.ToString();
             }
         }
 
@@ -49,7 +49,7 @@ namespace Word.W2004.Elements
             {
                 StringBuilder th = new StringBuilder("");
 
-                ITableItemStrategy item = TableFactoryMethod.getTableItem(tableEle);
+                ITableItemStrategy item = TableFactoryMethod.GetTableItem(tableEle);
 
                 for (int i = 0; i < cols.Length; i++)
                 {
@@ -67,7 +67,7 @@ namespace Word.W2004.Elements
 
                 string finalResult = SetUpRepeatTableHeaderOnEveryPage(th);
 
-                txt.Append(finalResult); //final result appended
+                _txt.Append(finalResult); //final result appended
             }
         }
 

@@ -8,22 +8,22 @@ namespace Test.W2004
         [Test]
         public void testGetInstance()
         {
-            TableFactoryMethod instance = TableFactoryMethod.getInstance();
+            TableFactoryMethod instance = TableFactoryMethod.Instance;
             Assert.NotNull(instance);
         }
 
         [Test]
         public void testGetTableItem()
         {
-            TableFactoryMethod instance = TableFactoryMethod.getInstance();
+            TableFactoryMethod instance = TableFactoryMethod.Instance;
 
-            Assert.True(TableFactoryMethod.getTableItem(TableEle.TABLE_DEF) is TableDefinition);
-            Assert.True(TableFactoryMethod.getTableItem(TableEle.TH) is TableHeader);
-            Assert.True(TableFactoryMethod.getTableItem(TableEle.TD) is TableCol);
-            Assert.True(TableFactoryMethod.getTableItem(TableEle.TF) is TableFooter);
-            Assert.True(TableFactoryMethod.getTableItem(TableEle.TD) is TableCol);
+            Assert.True(TableFactoryMethod.GetTableItem(TableEle.TABLE_DEF) is TableDefinition);
+            Assert.True(TableFactoryMethod.GetTableItem(TableEle.TH) is TableHeader);
+            Assert.True(TableFactoryMethod.GetTableItem(TableEle.TD) is TableCol);
+            Assert.True(TableFactoryMethod.GetTableItem(TableEle.TF) is TableFooter);
+            Assert.True(TableFactoryMethod.GetTableItem(TableEle.TD) is TableCol);
 
-            Assert.Null(TableFactoryMethod.getTableItem(null));
+            Assert.Null(TableFactoryMethod.GetTableItem(null));
         }
     }
 }

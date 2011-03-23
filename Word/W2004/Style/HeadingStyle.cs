@@ -12,7 +12,7 @@ namespace Word.W2004.Style
         /// <summary>
         ///   Default align is left
         /// </summary>
-        private Align _align = Align.LEFT;
+        private Align _align = Style.Align.LEFT;
 
         private bool _bold;
         private bool _italic;
@@ -61,19 +61,19 @@ namespace Word.W2004.Style
         }
 
 
-        public HeadingStyle SetAlign(Align align)
+        public HeadingStyle Align(Align align)
         {
             this._align = align;
             return this;
         }
 
-        public HeadingStyle SetBold()
+        public HeadingStyle Bold()
         {
             this._bold = true;
             return this;
         }
 
-        public HeadingStyle SetItalic()
+        public HeadingStyle Italic()
         {
             this._italic = true;
             return this;

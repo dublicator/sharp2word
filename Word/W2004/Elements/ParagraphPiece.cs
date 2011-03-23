@@ -75,7 +75,7 @@ namespace Word.W2004.Elements
 
         public ParagraphPieceStyle WithStyle()
         {
-            this._style.SetElement(this);
+            this._style.Element = this;
             return this._style;
         }
 
