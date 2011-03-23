@@ -1,3 +1,5 @@
+
+using System.Collections;
 using System.Text;
 using Word.Api.Interfaces;
 using Word.W2004.Style;
@@ -13,6 +15,8 @@ namespace Word.W2004.Elements
         private readonly ParagraphPiece[] pieces;
 
         private ParagraphStyle _style = new ParagraphStyle();
+
+        private ArrayList tabs = new ArrayList();
 
 
         /// <summary>
@@ -67,6 +71,7 @@ namespace Word.W2004.Elements
                 string txt =
                     "	<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"
                     + "\n		{styleText}" // {styleText} is inside styleText
+                    + "\n		{tabs}"
                     + "\n		{value}"
                     + "\n	</w:p>";
 
@@ -79,6 +84,19 @@ namespace Word.W2004.Elements
                 {
                     //For convention, it should be the last thing before returning the xml content.
                     txt = _style.getNewContentWithStyle(txt);
+
+                    string addTab = "";
+                    if (tabs != null && !(tabs.Count == 0))
+                    {
+                        addTab = "  <w:pPr>" + "\n    <w:tabs>";
+                        foreach (Tab tab in tabs)
+                        {
+                            addTab += "\n        <w:tab w:val=\"" + tab.getAlign().getValue() + "\" w:pos=\"" + tab.getPosition() + "\" />";
+                        }
+                        addTab += "\n    </w:tabs>" + "\n </w:pPr>";
+                    }
+                    txt = txt.Replace("{tabs}", addTab);
+
 
                     return txt.Replace("{value}", sb.ToString());
                 }
@@ -119,6 +137,66 @@ namespace Word.W2004.Elements
         public static Paragraph withPieces(params ParagraphPiece[] pieces)
         {
             return new Paragraph(pieces);
+        }
+
+        /// <summary>
+        /// Configures the Align and position of the tabs ('\t'). Position is pretty much the size of EACH tab or each '\t'.
+        /// </summary>
+        /// <param name="tabAlign">Right or Left according to the Enum @TabAlign</param>
+        /// <param name="position">Kind of size of EACH tab or each '\t'</param>
+        /// <returns>The fluent actual paragraph</returns>
+        public Paragraph addTab(TabAlign tabAlign, int position)
+        {
+            tabs.Add(new Tab(tabAlign, position));
+            return this;
+        }
+
+        public class TabAlign
+        {
+            public static TabAlign LEFT
+            {
+                get { return new TabAlign("left"); }
+            }
+
+            public static TabAlign RIGHT
+            {
+                get { return new TabAlign("right"); }
+            }
+
+            private string value;
+
+
+            private TabAlign(string value)
+            {
+                this.value = value;
+            }
+
+            public string getValue()
+            {
+                return value;
+            }
+        }
+
+        private class Tab
+        {
+            private TabAlign align;
+            private int position;
+
+            public Tab(TabAlign pAlign, int pPosition)
+            {
+                align = pAlign;
+                position = pPosition;
+            }
+
+            public TabAlign getAlign()
+            {
+                return align;
+            }
+
+            public int getPosition()
+            {
+                return position;
+            }
         }
     }
 }
