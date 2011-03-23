@@ -203,7 +203,14 @@ namespace Word.W2004.Style
 
         public ParagraphPieceStyle setBold(bool bold)
         {
-            this._bold = bold;
+            //this._bold = bold;
+            this.bold();
+            return this;
+        }
+
+        public ParagraphPieceStyle bold()
+        {
+            _bold = true;
             return this;
         }
 
@@ -234,6 +241,11 @@ namespace Word.W2004.Style
             return this;
         }
 
+        /// <summary>
+        /// Set text color from the Enum @Color, case you don't know any hexa code color
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
         public ParagraphPieceStyle setTextColor(Color color)
         {
             this._color = color;

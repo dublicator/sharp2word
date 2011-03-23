@@ -59,6 +59,7 @@
     <Compile Include="W2004\Elements\PageBreak.cs" />
     <Compile Include="W2004\Elements\Paragraph.cs" />
     <Compile Include="W2004\Elements\ParagraphPiece.cs" />
+    <Compile Include="W2004\Elements\Shape.cs" />
     <Compile Include="W2004\Elements\Table.cs" />
     <Compile Include="W2004\Elements\TableElements\ITableItemStrategy.cs" />
     <Compile Include="W2004\Elements\TableElements\TableCol.cs" />

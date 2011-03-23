@@ -39,6 +39,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="W2004\ParagraphPieceTest.cs" />
+    <Compile Include="W2004\ParagraphTest.cs" />
     <Compile Include="W2004\Template\TemplateTest.cs" />
     <Compile Include="TestUtilsTest.cs" />
     <Compile Include="Utils_Test.cs" />
@@ -53,8 +55,6 @@
     <Compile Include="W2004\HeadingTest.cs" />
     <Compile Include="W2004\ImageTest.cs" />
     <Compile Include="W2004\PageBreakTest.cs" />
-    <Compile Include="W2004\ParagraphPieceTest.cs" />
-    <Compile Include="W2004\ParagraphTest.cs" />
     <Compile Include="W2004\PropertiesTest.cs" />
     <Compile Include="W2004\TableFactoryMethodTest.cs" />
     <Compile Include="W2004\TableTest.cs" />
