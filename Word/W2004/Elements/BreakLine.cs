@@ -53,7 +53,7 @@ namespace Word.W2004.Elements
         ///   Returns the Breakline object.
         /// </summary>
         /// <returns>The object breakline</returns>
-        public BreakLine create()
+        public BreakLine Create()
         {
             return this;
         }

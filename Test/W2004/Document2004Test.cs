@@ -78,7 +78,7 @@ namespace Test.W2004
 
             Assert.AreEqual("", myDoc.Header.Content);
 
-            myDoc.Header.addEle(Paragraph.with("paragraph01").create());
+            myDoc.Header.AddEle(Paragraph.with("paragraph01").Create());
 
             Assert.AreEqual(1, TestUtils.regexCount(myDoc.Header.Content, "<w:hdr w:type=\"odd\">"));
             Assert.AreEqual(1, TestUtils.regexCount(myDoc.Header.Content, "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
@@ -93,7 +93,7 @@ namespace Test.W2004
 
             Assert.AreEqual("", myDoc.Footer.Content);
 
-            myDoc.Footer.addEle(Paragraph.with("paragraph01").create());
+            myDoc.Footer.AddEle(Paragraph.with("paragraph01").Create());
 
             Assert.AreEqual(1, TestUtils.regexCount(myDoc.Footer.Content, "<w:ftr w:type=\"odd\">"));
             Assert.AreEqual(1, TestUtils.regexCount(myDoc.Footer.Content, "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
@@ -107,14 +107,14 @@ namespace Test.W2004
             IDocument myDoc = new Document2004();
             Heading1 h1 = new Heading1("Heading 111");
             HeadingStyle headingStyle = new HeadingStyle();
-            headingStyle.setAlign(Align.CENTER);
-            headingStyle.setItalic(true);
+            headingStyle.SetAlign(Align.CENTER);
+            headingStyle.SetItalic(true);
 
             h1.setStyle(headingStyle);
-            myDoc.Body.addEle(h1);
+            myDoc.Body.AddEle(h1);
 
-            myDoc.Body.addEle(new Heading2("Heading 222"));
-            myDoc.Body.addEle(new Heading3("Heading 333"));
+            myDoc.Body.AddEle(new Heading2("Heading 222"));
+            myDoc.Body.AddEle(new Heading3("Heading 333"));
         }
 
         [Test] //TODO: make this useful with assertions
@@ -133,7 +133,7 @@ namespace Test.W2004
 
             Paragraph p02 = new Paragraph(piece01, piece02);
 
-            myDoc.Body.addEle(p02);
+            myDoc.Body.AddEle(p02);
         }
 
         [Test] //TODO: make this useful with assertions
@@ -149,25 +149,25 @@ namespace Test.W2004
 
             Paragraph p01 = new Paragraph(piece01, piece02);
 
-            myDoc.Body.addEle(p01);
+            myDoc.Body.AddEle(p01);
         }
 
         [Test] //TODO: make this useful with assertions
         public void testBasicHeadingFluent()
         {
             IDocument doc = new Document2004();
-            Heading1 h1 = (Heading1)Heading1.with("h111").withStyle()
-                    .setBold(true).setItalic(true)
-                    .setAlign(Align.CENTER).create();
+            Heading1 h1 = (Heading1)Heading1.with("h111").WithStyle()
+                    .SetBold(true).SetItalic(true)
+                    .SetAlign(Align.CENTER).Create();
 
-            Heading2 h2 = (Heading2)Heading2.with("h222").withStyle()
-                    .setBold(true).setItalic(true).create();
+            Heading2 h2 = (Heading2)Heading2.with("h222").WithStyle()
+                    .SetBold(true).SetItalic(true).Create();
 
-            doc.Body.addEle(h1);
-            doc.Body.addEle(h2);
-            doc.Body.addEle(
-                    Heading1.with("h3333").withStyle().setBold(true)
-                            .setItalic(true).create()); // no cast...
+            doc.Body.AddEle(h1);
+            doc.Body.AddEle(h2);
+            doc.Body.AddEle(
+                    Heading1.with("h3333").WithStyle().SetBold(true)
+                            .SetItalic(true).Create()); // no cast...
         }
 
         [Test]
@@ -181,7 +181,7 @@ namespace Test.W2004
         public void testPageOrientationLandscape()
         {
             IDocument doc = new Document2004();
-            doc.setPageOrientationLandscape();
+            doc.SetPageOrientationLandscape();
 
             Assert.AreEqual(1, TestUtils.regexCount(doc.Content, "landscape"));
         }
@@ -190,7 +190,7 @@ namespace Test.W2004
         public void testAddElementAliasString()
         {
             IDocument myDoc = new Document2004();
-            myDoc.addEle(Heading1.with("heading1").create().Content);
+            myDoc.AddEle(Heading1.with("heading1").Create().Content);
 
             Assert.True(myDoc.Body.Content.Contains("<w:body>"));
             Assert.True(myDoc.Body.Content.Contains("<w:t>heading1</w:t>"));
@@ -377,9 +377,9 @@ namespace Test.W2004
             IDocument myDoc = new Document2004();
             //whatever...
 
-            myDoc.addEle(Paragraph.withPieces(
-                        ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFontSize("32").create()
-                    ).create());
+            myDoc.AddEle(Paragraph.withPieces(
+                        ParagraphPiece.with("Leonardo Pinho Correa").WithStyle().setFontSize("32").create()
+                    ).Create());
 
             TestUtils.createLocalDoc(myDoc.Content);
         }

@@ -13,14 +13,14 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name = "txt"></param>
         /// <returns></returns>
-        public abstract string getNewContentWithStyle(string txt);
+        public abstract string GetNewContentWithStyle(string txt);
 
-        public void setElement(IElement element)
+        public void SetElement(IElement element)
         {
             this._element = element;
         }
 
-        public IElement create()
+        public IElement Create()
         {
             return this._element;
         }

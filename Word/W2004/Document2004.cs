@@ -70,7 +70,7 @@ namespace Word.W2004
         }
 
 
-        public void setPageOrientationLandscape()
+        public void SetPageOrientationLandscape()
         {
             this.isLandscape = true;
         }
@@ -106,14 +106,14 @@ namespace Word.W2004
         ///   This is an alias to 'getBody().addEle'
         /// </summary>
         /// <param name = "e"></param>
-        public void addEle(IElement e)
+        public void AddEle(IElement e)
         {
-            this.Body.addEle(e);
+            this.Body.AddEle(e);
         }
 
-        public void addEle(string str)
+        public void AddEle(string str)
         {
-            this.Body.addEle(str);
+            this.Body.AddEle(str);
         }
 
         #endregion

@@ -56,7 +56,7 @@ namespace Word.W2004.Elements
                 }
 
                 //For convention, it should be the last thing before returning the xml content.
-                string txt = _style.getNewContentWithStyle(Template);
+                string txt = _style.GetNewContentWithStyle(Template);
 
                 return txt.Replace("{value}", this.value);
             }
@@ -70,9 +70,9 @@ namespace Word.W2004.Elements
         ///   Implements the stylable and the heading classes reuse it
         /// </summary>
         /// <returns></returns>
-        public E withStyle()
+        public E WithStyle()
         {
-            this.getStyle().setElement(this); //, Heading1.class
+            this.getStyle().SetElement(this); //, Heading1.class
             return this.getStyle() as E;
         }
 

@@ -27,6 +27,6 @@ namespace Word.Api.Interfaces
         ///   </list>
         /// </summary>
         /// <returns></returns>
-        S withStyle();
+        S WithStyle();
     }
 }

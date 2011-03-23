@@ -12,7 +12,7 @@ namespace Word.W2004.Elements
 
         #region IFluentElement<Heading1> Members
 
-        public Heading1 create()
+        public Heading1 Create()
         {
             return this;
         }

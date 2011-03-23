@@ -14,25 +14,25 @@ namespace Word.W2004.Style
 
         #region ISuperStylin Members
 
-        public override string getNewContentWithStyle(string txt)
+        public override string GetNewContentWithStyle(string txt)
         {
             StringBuilder style = new StringBuilder("");
 
             //There will be always align 'Left' by default
-            doStyleAlignment(style);
-            doStyleBgColor(style);
+            DoStyleAlignment(style);
+            DoStyleBgColor(style);
 
-            return doStyleReplacement(style, txt);
+            return DoStyleReplacement(style, txt);
         }
 
         #endregion
 
-        private void doStyleAlignment(StringBuilder style)
+        private void DoStyleAlignment(StringBuilder style)
         {
             style.Append("  <w:jc w:val=\"" + _align.Value + "\"/> \n    " + "       {styleText}\n   ");
         }
 
-        private void doStyleBgColor(StringBuilder style)
+        private void DoStyleBgColor(StringBuilder style)
         {
             if (!_bgColor.Equals(""))
             {
@@ -40,7 +40,7 @@ namespace Word.W2004.Style
             }
         }
 
-        private static string doStyleReplacement(StringBuilder style, string txt)
+        private static string DoStyleReplacement(StringBuilder style, string txt)
         {
             // if (!"".equals(style.toString())) {
             style.Insert(0, "\n  <w:pPr>");
@@ -62,13 +62,13 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name = "bgColor">Hexadecimal color code</param>
         /// <returns></returns>
-        public ParagraphStyle setBgColor(string bgColor)
+        public ParagraphStyle SetBgColor(string bgColor)
         {
             this._bgColor = bgColor;
             return this;
         }
 
-        public ParagraphStyle setAlign(Align align)
+        public ParagraphStyle SetAlign(Align align)
         {
             this._align = align;
             return this;

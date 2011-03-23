@@ -12,11 +12,11 @@ namespace Word.W2004.Elements
     /// </summary>
     public class Paragraph : IElement, IFluentElement<Paragraph>, IFluentElementStylable<ParagraphStyle>
     {
-        private readonly ParagraphPiece[] pieces;
+        private readonly ParagraphPiece[] _pieces;
 
         private ParagraphStyle _style = new ParagraphStyle();
 
-        private ArrayList tabs = new ArrayList();
+        private readonly ArrayList _tabs = new ArrayList();
 
 
         /// <summary>
@@ -29,8 +29,8 @@ namespace Word.W2004.Elements
                 return;
             }
             ParagraphPiece piece = new ParagraphPiece(value);
-            pieces = new ParagraphPiece[1];
-            pieces[0] = piece;
+            _pieces = new ParagraphPiece[1];
+            _pieces[0] = piece;
         }
 
         /// <summary>
@@ -39,11 +39,9 @@ namespace Word.W2004.Elements
         /// <param name = "pieces"></param>
         public Paragraph(params ParagraphPiece[] pieces)
         {
-            this.pieces = pieces;
+            this._pieces = pieces;
         }
 
-
-        //## Getters and Setters
 
         public ParagraphStyle Style
         {
@@ -56,14 +54,14 @@ namespace Word.W2004.Elements
         {
             get
             {
-                if (pieces == null)
+                if (_pieces == null)
                 {
                     // || pieces.length == 0){
                     return "";
                 }
 
                 StringBuilder sb = new StringBuilder("");
-                foreach (ParagraphPiece piece in pieces)
+                foreach (ParagraphPiece piece in _pieces)
                 {
                     sb.Append(piece.Content);
                 }
@@ -83,13 +81,13 @@ namespace Word.W2004.Elements
                 else
                 {
                     //For convention, it should be the last thing before returning the xml content.
-                    txt = _style.getNewContentWithStyle(txt);
+                    txt = _style.GetNewContentWithStyle(txt);
 
                     string addTab = "";
-                    if (tabs != null && !(tabs.Count == 0))
+                    if (_tabs != null && !(_tabs.Count == 0))
                     {
                         addTab = "  <w:pPr>" + "\n    <w:tabs>";
-                        foreach (Tab tab in tabs)
+                        foreach (Tab tab in _tabs)
                         {
                             addTab += "\n        <w:tab w:val=\"" + tab.getAlign().getValue() + "\" w:pos=\"" + tab.getPosition() + "\" />";
                         }
@@ -107,7 +105,7 @@ namespace Word.W2004.Elements
 
         #region IFluentElement<Paragraph> Members
 
-        public Paragraph create()
+        public Paragraph Create()
         {
             return this;
         }
@@ -116,15 +114,15 @@ namespace Word.W2004.Elements
 
         #region IFluentElementStylable<ParagraphStyle> Members
 
-        public ParagraphStyle withStyle()
+        public ParagraphStyle WithStyle()
         {
-            _style.setElement(this);
+            _style.SetElement(this);
             return _style;
         }
 
         #endregion
 
-        public void setStyle(ParagraphStyle style)
+        public void SetStyle(ParagraphStyle style)
         {
             this._style = style;
         }
@@ -147,7 +145,7 @@ namespace Word.W2004.Elements
         /// <returns>The fluent actual paragraph</returns>
         public Paragraph addTab(TabAlign tabAlign, int position)
         {
-            tabs.Add(new Tab(tabAlign, position));
+            _tabs.Add(new Tab(tabAlign, position));
             return this;
         }
 
