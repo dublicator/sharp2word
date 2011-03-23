@@ -959,6 +959,26 @@ namespace Word.W2004.Style
             get { return new Font("Courier"); }
         }
 
+        public static Font COURIER_NEW
+        {
+            get { return new Font("Courier New"); }
+        }
+
+        public static Font COURIER_NEW_ITALIC
+        {
+            get { return new Font("Courier New Italic"); }
+        }
+
+        public static Font COURIER_NEW_BOLD
+        {
+            get { return new Font("Courier New Bold"); }
+        }
+
+        public static Font COURIER_NEW_BOLD_ITALIC
+        {
+            get { return new Font("Courier New Bold Italic"); }
+        }
+
         public static Font COURIER_BOLD
         {
             get { return new Font("Courier Bold"); }
