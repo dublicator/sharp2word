@@ -14,9 +14,9 @@ namespace Test
             //ImageUtils imageUtils = new ImageUtils();
             //Assert.NotNull(imageUtils);
             BufferedImage bufferedImage = Resources.dtpick;
-            string hexa = ImageUtils.getImageHexaBase64(bufferedImage, "gif");
+            string hexa = ImageUtils.GetImageHexaBase64(bufferedImage, "gif");
             //Assert.AreEqual(1, TestUtils.regexCount(hexa, "R0lGODlhEAAQAPMAAKVNSkpNpUpNSqWmpdbT1v"));
-            Assert.AreEqual(1, TestUtils.regexCount(hexa, "R0lGODlhEAAQAKIAAKVNSkpNpUpNSqWmpdbT1v"));
+            Assert.AreEqual(1, TestUtils.RegexCount(hexa, "R0lGODlhEAAQAKIAAKVNSkpNpUpNSqWmpdbT1v"));
         }
 
         [Test]

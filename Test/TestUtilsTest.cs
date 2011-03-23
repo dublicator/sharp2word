@@ -8,28 +8,28 @@ namespace Test
         	[Test]
 	public void testRegex(){
 		Assert.NotNull(new TestUtils());
-		Assert.AreEqual(1, TestUtils.regexCount("leonardo", "leo"));
+		Assert.AreEqual(1, TestUtils.RegexCount("leonardo", "leo"));
 	}
 	
 	[Test]
 	public void testRegexNotFound(){
-		Assert.AreEqual(0, TestUtils.regexCount("xxxxx xxxx", "leo"));
+		Assert.AreEqual(0, TestUtils.RegexCount("xxxxx xxxx", "leo"));
 	}
 	
 	[Test]
 	public void testRegexNull01()
     {
-		Assert.AreEqual(0, TestUtils.regexCount("xxxxxxxxx", null));
+		Assert.AreEqual(0, TestUtils.RegexCount("xxxxxxxxx", null));
 	}
 	
 	[Test]
 	public void testRegexNull02(){
-		Assert.AreEqual(0, TestUtils.regexCount(null, "xxx"));
+		Assert.AreEqual(0, TestUtils.RegexCount(null, "xxx"));
 	}
 	
 	[Test]
 	public void testRegexNull03(){
-		Assert.AreEqual(0, TestUtils.regexCount(null, null));
+		Assert.AreEqual(0, TestUtils.RegexCount(null, null));
 	}
     }
 }

@@ -40,16 +40,16 @@ namespace Test.W2004
         Assert.AreEqual("", tbl03.Content);
 
         tbl03.AddTableEle(TableEle.TH, "");
-        Assert.AreEqual(2, TestUtils.regexCount(tbl03.Content, "<*w:tbl>"));
-        Assert.AreEqual(1, TestUtils.regexCount(tbl03.Content, "<w:r wsp:rsidRPr=\"004374EC\"> "));
-        Assert.AreEqual(1, TestUtils.regexCount(tbl03.Content, "<w:t></w:t>"));
+        Assert.AreEqual(2, TestUtils.RegexCount(tbl03.Content, "<*w:tbl>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbl03.Content, "<w:r wsp:rsidRPr=\"004374EC\"> "));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbl03.Content, "<w:t></w:t>"));
     }
 
     [Test]
     public void testTableHeaderNoRepeat() {
         Table tbl = new Table();
         tbl.AddTableEle(TableEle.TH, "Name");
-        Assert.AreEqual(0, TestUtils.regexCount(tbl.Content, "[{]tblHeader[}]"));
+        Assert.AreEqual(0, TestUtils.RegexCount(tbl.Content, "[{]tblHeader[}]"));
     }
     
     [Test]
@@ -58,39 +58,39 @@ namespace Test.W2004
         tbl.SetRepeatTableHeaderOnEveryPage();
         
         tbl.AddTableEle(TableEle.TH, "Name");
-        Assert.AreEqual(0, TestUtils.regexCount(tbl.Content, "[{]tblHeader[}]"));
-        Assert.AreEqual(2, TestUtils.regexCount(tbl.Content, "<*w:trPr>"));
-        Assert.AreEqual(1, TestUtils.regexCount(tbl.Content, "<w:tblHeader/>"));
+        Assert.AreEqual(0, TestUtils.RegexCount(tbl.Content, "[{]tblHeader[}]"));
+        Assert.AreEqual(2, TestUtils.RegexCount(tbl.Content, "<*w:trPr>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbl.Content, "<w:tblHeader/>"));
         
     }
     
     [Test]
     public void testTableDefinition() {
         TableDefinition tbldef = new TableDefinition();
-        Assert.AreEqual(1, TestUtils.regexCount(tbldef.Top, "<*w:tbl>"));
-        Assert.AreEqual(2, TestUtils.regexCount(tbldef.Top, "<*w:tblPr>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbldef.Top, "<*w:tbl>"));
+        Assert.AreEqual(2, TestUtils.RegexCount(tbldef.Top, "<*w:tblPr>"));
 
         Assert.Null(tbldef.Middle);
 
-        Assert.AreEqual(1, TestUtils.regexCount(tbldef.Bottom, "</w:tbl>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbldef.Bottom, "</w:tbl>"));
     }
 
     [Test]
     public void testTableCol() {
         TableCol tblcol = new TableCol();
-        Assert.AreEqual(1, TestUtils.regexCount(tblcol.Top, "<*w:tr"));
-        Assert.AreEqual(2, TestUtils.regexCount(tblcol.Middle, "<*w:tc>"));
-        Assert.AreEqual(1, TestUtils.regexCount(tblcol.Middle,
+        Assert.AreEqual(1, TestUtils.RegexCount(tblcol.Top, "<*w:tr"));
+        Assert.AreEqual(2, TestUtils.RegexCount(tblcol.Middle, "<*w:tc>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tblcol.Middle,
                 "<w:t>[{]value[}]</w:t>")); // test placeholder
-        Assert.AreEqual(1, TestUtils.regexCount(tblcol.Bottom, "</w:tr>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tblcol.Bottom, "</w:tr>"));
     }
 
     [Test]
     public void testTableFooter() {
         TableFooter tblFooter = new TableFooter();
-        Assert.AreEqual(1, TestUtils.regexCount(tblFooter.Top, "<*w:tr"));
-        Assert.AreEqual(2, TestUtils.regexCount(tblFooter.Middle, "<*w:tc>"));
-        Assert.AreEqual(1, TestUtils.regexCount(tblFooter.Middle, "<w:b/>")); // In
+        Assert.AreEqual(1, TestUtils.RegexCount(tblFooter.Top, "<*w:tr"));
+        Assert.AreEqual(2, TestUtils.RegexCount(tblFooter.Middle, "<*w:tc>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tblFooter.Middle, "<w:b/>")); // In
                                                                                 // this
                                                                                 // framework,
                                                                                 // footer
@@ -98,9 +98,9 @@ namespace Test.W2004
                                                                                 // to
                                                                                 // be
                                                                                 // bold...
-        Assert.AreEqual(1, TestUtils.regexCount(tblFooter.Middle,
+        Assert.AreEqual(1, TestUtils.RegexCount(tblFooter.Middle,
                 "<w:t>[{]value[}]</w:t>")); // test placeholder
-        Assert.AreEqual(1, TestUtils.regexCount(tblFooter.Bottom, "</w:tr>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tblFooter.Bottom, "</w:tr>"));
     }
 
     [Test]
@@ -129,34 +129,34 @@ namespace Test.W2004
 
         tbl.AddTableEle(TableEle.TF, "Total", "1,100,000.00");
 
-        Assert.AreEqual(1, TestUtils.regexCount(tbl.Content, "<w:tbl>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbl.Content, "<w:tbl>"));
 
-        Assert.AreEqual(1, TestUtils.regexCount(tbl.Content, "<w:tblPr>"));
-        Assert.AreEqual(1, TestUtils.regexCount(tbl.Content, "</w:tblPr>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbl.Content, "<w:tblPr>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbl.Content, "</w:tblPr>"));
 
-        Assert.AreEqual(4, TestUtils.regexCount(tbl.Content, "<w:tr"));
-        Assert.AreEqual(4, TestUtils.regexCount(tbl.Content, "</w:tr>"));
-
-        Assert.AreEqual(1,
-                TestUtils.regexCount(tbl.Content, "<w:t>Name</w:t>"));
-        Assert.AreEqual(1,
-                TestUtils.regexCount(tbl.Content, "<w:t>Salary</w:t>"));
+        Assert.AreEqual(4, TestUtils.RegexCount(tbl.Content, "<w:tr"));
+        Assert.AreEqual(4, TestUtils.RegexCount(tbl.Content, "</w:tr>"));
 
         Assert.AreEqual(1,
-                TestUtils.regexCount(tbl.Content, "<w:t>Leonardo</w:t>"));
+                TestUtils.RegexCount(tbl.Content, "<w:t>Name</w:t>"));
         Assert.AreEqual(1,
-                TestUtils.regexCount(tbl.Content, "<w:t>100,000.00</w:t>"));
+                TestUtils.RegexCount(tbl.Content, "<w:t>Salary</w:t>"));
+
         Assert.AreEqual(1,
-                TestUtils.regexCount(tbl.Content, "<w:t>Romario</w:t>"));
-        Assert.AreEqual(1, TestUtils.regexCount(tbl.Content,
+                TestUtils.RegexCount(tbl.Content, "<w:t>Leonardo</w:t>"));
+        Assert.AreEqual(1,
+                TestUtils.RegexCount(tbl.Content, "<w:t>100,000.00</w:t>"));
+        Assert.AreEqual(1,
+                TestUtils.RegexCount(tbl.Content, "<w:t>Romario</w:t>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbl.Content,
                 "<w:t>1,000,000.00</w:t>"));
 
         Assert.AreEqual(1,
-                TestUtils.regexCount(tbl.Content, "<w:t>Total</w:t>"));
-        Assert.AreEqual(1, TestUtils.regexCount(tbl.Content,
+                TestUtils.RegexCount(tbl.Content, "<w:t>Total</w:t>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbl.Content,
                 "<w:t>1,100,000.00</w:t>"));
 
-        Assert.AreEqual(1, TestUtils.regexCount(tbl.Content, "</w:tbl>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbl.Content, "</w:tbl>"));
 
         Assert.AreEqual(tbl.Content, tbl.Content);
 
@@ -168,8 +168,8 @@ namespace Test.W2004
         tbl.AddTableEle(TableEle.TD, "Leonardo", "");
         
         Assert.AreEqual(1,
-                TestUtils.regexCount(tbl.Content, "<w:t>Leonardo</w:t>"));
-        Assert.AreEqual(1, TestUtils.regexCount(tbl.Content, "<w:t></w:t> "));        
+                TestUtils.RegexCount(tbl.Content, "<w:t>Leonardo</w:t>"));
+        Assert.AreEqual(1, TestUtils.RegexCount(tbl.Content, "<w:t></w:t> "));        
     }
     
 //    [Test]

@@ -1,10 +1,12 @@
+using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Word.Utils
 {
     public class TestUtils
     {
-        public static int regexCount(string text, string regex)
+        public static int RegexCount(string text, string regex)
         {
             if (text == null || regex == null)
             {
@@ -15,9 +17,17 @@ namespace Word.Utils
             return matcher.Count;
         }
 
-        public static void createLocalDoc(string myDoc)
+        public static void CreateLocalDoc(string myDoc)
         {
-            throw new System.NotImplementedException();
+            string doc = Util.AppRoot + "\\Sharp2word_allInOne.doc";
+
+            using (FileStream fs = new FileStream(myDoc, FileMode.Create))
+            {
+                using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                {
+                    w.Write(Util.Pretty(myDoc));
+                }
+            }
         }
     }
 }

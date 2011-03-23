@@ -45,10 +45,10 @@ namespace Test.W2004
                     ParagraphPiece.With(" \t 3 200,00 $").WithStyle().SetFont(Font.CALIBRI).SetFontSize(11).Create()
             ).AddTab(Paragraph.TabAlign.RIGHT, 8931).Create();
 
-            Assert.AreEqual(2, TestUtils.regexCount(p01.Content, "<w:pPr>"));
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:tabs>"));
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "</w:tabs>"));
-            Assert.AreEqual(2, TestUtils.regexCount(p01.Content, "</w:pPr>"));
+            Assert.AreEqual(2, TestUtils.RegexCount(p01.Content, "<w:pPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:tabs>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "</w:tabs>"));
+            Assert.AreEqual(2, TestUtils.RegexCount(p01.Content, "</w:pPr>"));
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace Test.W2004
         {
             IElement p01 = Paragraph.with("par01").WithStyle().SetBgColor("FFFF00").Create();
 
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "FFFF00")); //Background Color
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "FFFF00")); //Background Color
 
             basicParagraphCheckings(p01, "par01", "left");
         }
@@ -104,9 +104,9 @@ namespace Test.W2004
             style.SetUnderline(true);
             piece01.Style = style;
 
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:b/>")); //bold
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:i/>")); //italic
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:u w:val=\"single\"/>")); //underline
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:b/>")); //bold
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:i/>")); //italic
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:u w:val=\"single\"/>")); //underline
 
             basicParagraphCheckings(p01, "Piece01", null);
         }
@@ -125,14 +125,14 @@ namespace Test.W2004
             Paragraph p01 = Paragraph.withPieces(piece01, piece02);
 
 
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:t>Piece11111</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:t>Piece22222</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:p wsp:rsidR="));
-            Assert.AreEqual(4, TestUtils.regexCount(p01.Content, "<*w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "</w:p>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:t>Piece11111</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:t>Piece22222</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:p wsp:rsidR="));
+            Assert.AreEqual(4, TestUtils.RegexCount(p01.Content, "<*w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "</w:p>"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:b/>"));
-            Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:i/>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:b/>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:i/>"));
 
         }
 
@@ -187,13 +187,13 @@ namespace Test.W2004
                 align = "left"; //the default
             }
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:t>" + parValue + "</w:t>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:p wsp:rsidR="));
-            Assert.AreEqual(2, TestUtils.regexCount(par.Content, "<*w:r>"));
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "</w:p>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:t>" + parValue + "</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:p wsp:rsidR="));
+            Assert.AreEqual(2, TestUtils.RegexCount(par.Content, "<*w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:p>"));
 
-            Assert.AreEqual(1, TestUtils.regexCount(par.Content, "<w:jc w:val=\"" + align + "\"/>"));
-            Assert.AreEqual(2, TestUtils.regexCount(par.Content, "<*w:pPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:jc w:val=\"" + align + "\"/>"));
+            Assert.AreEqual(2, TestUtils.RegexCount(par.Content, "<*w:pPr>"));
 
         }
     }

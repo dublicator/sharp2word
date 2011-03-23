@@ -11,17 +11,20 @@ namespace Word.Utils
         /// <summary>
         /// The root of the app as String. 
         /// </summary>
-        /// <returns></returns>
-        public static string getAppRoot()
+        /// <value></value>
+        public static string AppRoot
         {
-            try
+            get
             {
-                return Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName);
-            }
-            catch (IOException e)
-            {
-                Trace.Write(e.StackTrace);
-                throw new IOException("Can't get app root directory", e);
+                try
+                {
+                    return Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName);
+                }
+                catch (IOException e)
+                {
+                    Trace.Write(e.StackTrace);
+                    throw new IOException("Can't get app root directory", e);
+                }
             }
         }
 
@@ -30,12 +33,12 @@ namespace Word.Utils
         /// </summary>
         /// <param name="file">It is the full path to the file</param>
         /// <returns>String with the content of the file</returns>
-        public static string readFile(string file)
+        public static string ReadFile(string file)
         {
             return File.ReadAllText(file);
         } 
 
-        public static string pretty(string xml)
+        public static string Pretty(string xml)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xml);

@@ -148,7 +148,7 @@ namespace Word.W2004.Elements
 
                 // string binary = ImageUtils.getImageHexaBase64(path);
                 string imageformat = _path.Substring(_path.LastIndexOf('.') + 1);
-                string binary = ImageUtils.getImageHexaBase64(_bufferedImage,
+                string binary = ImageUtils.GetImageHexaBase64(_bufferedImage,
                                                               imageformat);
 
                 SetUpSize();
