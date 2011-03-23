@@ -22,7 +22,7 @@ namespace Word.W2004.Elements
         /// <summary>
         ///   This method is specific for each class. Constructor can be different...Don't know if we can make it generic
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name = "value"></param>
         /// <returns></returns>
         public static Heading1 With(string value)
         {

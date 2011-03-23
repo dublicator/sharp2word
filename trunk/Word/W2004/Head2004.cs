@@ -8,9 +8,9 @@ namespace Word.W2004
     {
         private readonly StringBuilder _content = new StringBuilder("");
 
-        public Properties Properties { get; set; }
-
         #region IHead Members
+
+        public Properties Properties { get; set; }
 
         public string Content
         {

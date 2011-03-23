@@ -11,10 +11,10 @@ namespace Test.W2004
         {
             BreakLine br = new BreakLine();
             Assert.AreEqual(
-                    "\n<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>",
-                    br.Content);
+                "\n<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>",
+                br.Content);
             int tot = TestUtils
-                    .RegexCount(br.Content,
+                .RegexCount(br.Content,
                             "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
             Assert.AreEqual(1, tot);
         }
@@ -24,7 +24,7 @@ namespace Test.W2004
         {
             BreakLine br = BreakLine.SetTimes(3).Create();
             int tot = TestUtils
-                    .RegexCount(br.Content,
+                .RegexCount(br.Content,
                             "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
             Assert.AreEqual(3, tot);
         }
@@ -34,10 +34,10 @@ namespace Test.W2004
         {
             BreakLine br = new BreakLine(1);
             Assert.AreEqual(
-                    "\n<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>",
-                    br.Content);
+                "\n<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>",
+                br.Content);
             int tot = TestUtils
-                    .RegexCount(br.Content,
+                .RegexCount(br.Content,
                             "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
             Assert.AreEqual(1, tot);
         }

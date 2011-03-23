@@ -20,7 +20,8 @@ namespace Word.W2004.Elements.TableElements
                                   + "\n                <w:tc> "
                                   + "\n                    <w:tcPr> "
                                   + "\n                        <w:tcW w:w=\"4258\" w:type=\"dxa\"/> "
-                                  + "\n                        <w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"E0E0E0\"/> "
+                                  +
+                                  "\n                        <w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"E0E0E0\"/> "
                                   + "\n                    </w:tcPr> "
                                   +
                                   "\n                    <w:p wsp:rsidR=\"00505659\" wsp:rsidRPr=\"004374EC\" wsp:rsidRDefault=\"00505659\"> "

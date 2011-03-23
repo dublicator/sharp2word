@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Text;
 using Word.Api.Interfaces;
@@ -14,9 +13,8 @@ namespace Word.W2004.Elements
     {
         private readonly ParagraphPiece[] _pieces;
 
-        private ParagraphStyle _style = new ParagraphStyle();
-
         private readonly ArrayList _tabs = new ArrayList();
+        private ParagraphStyle _style = new ParagraphStyle();
 
 
         /// <summary>
@@ -89,7 +87,8 @@ namespace Word.W2004.Elements
                         addTab = "  <w:pPr>" + "\n    <w:tabs>";
                         foreach (Tab tab in _tabs)
                         {
-                            addTab += "\n        <w:tab w:val=\"" + tab.Align.getValue() + "\" w:pos=\"" + tab.Position + "\" />";
+                            addTab += "\n        <w:tab w:val=\"" + tab.Align.getValue() + "\" w:pos=\"" + tab.Position +
+                                      "\" />";
                         }
                         addTab += "\n    </w:tabs>" + "\n </w:pPr>";
                     }
@@ -138,10 +137,10 @@ namespace Word.W2004.Elements
         }
 
         /// <summary>
-        /// Configures the Align and position of the tabs ('\t'). Position is pretty much the size of EACH tab or each '\t'.
+        ///   Configures the Align and position of the tabs ('\t'). Position is pretty much the size of EACH tab or each '\t'.
         /// </summary>
-        /// <param name="tabAlign">Right or Left according to the Enum @TabAlign</param>
-        /// <param name="position">Kind of size of EACH tab or each '\t'</param>
+        /// <param name = "tabAlign">Right or Left according to the Enum @TabAlign</param>
+        /// <param name = "position">Kind of size of EACH tab or each '\t'</param>
         /// <returns>The fluent actual paragraph</returns>
         public Paragraph AddTab(TabAlign tabAlign, int position)
         {
@@ -149,31 +148,7 @@ namespace Word.W2004.Elements
             return this;
         }
 
-        public class TabAlign
-        {
-            public static TabAlign LEFT
-            {
-                get { return new TabAlign("left"); }
-            }
-
-            public static TabAlign RIGHT
-            {
-                get { return new TabAlign("right"); }
-            }
-
-            private readonly string _value;
-
-
-            private TabAlign(string value)
-            {
-                this._value = value;
-            }
-
-            public string getValue()
-            {
-                return _value;
-            }
-        }
+        #region Nested type: Tab
 
         private class Tab
         {
@@ -196,5 +171,37 @@ namespace Word.W2004.Elements
                 get { return _position; }
             }
         }
+
+        #endregion
+
+        #region Nested type: TabAlign
+
+        public class TabAlign
+        {
+            private readonly string _value;
+
+
+            private TabAlign(string value)
+            {
+                this._value = value;
+            }
+
+            public static TabAlign LEFT
+            {
+                get { return new TabAlign("left"); }
+            }
+
+            public static TabAlign RIGHT
+            {
+                get { return new TabAlign("right"); }
+            }
+
+            public string getValue()
+            {
+                return _value;
+            }
+        }
+
+        #endregion
     }
 }
