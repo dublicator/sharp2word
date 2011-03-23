@@ -58,8 +58,8 @@ namespace ConsoleTest
 
             myDoc.AddEle(Heading1.With("Heading01 without styling").Create());
             myDoc.AddEle(Heading2.With("Heading02 with styling").WithStyle()
-                             .SetAlign(Align.CENTER).SetItalic(true).Create());
-            myDoc.AddEle(Heading3.With("Heading03").WithStyle().SetBold(true)
+                             .SetAlign(Align.CENTER).SetItalic().Create());
+            myDoc.AddEle(Heading3.With("Heading03").WithStyle().SetBold()
                              .SetAlign(Align.RIGHT).Create());
 
             //Paragraph and ParagrapPiece
@@ -79,7 +79,7 @@ namespace ConsoleTest
             myDoc.AddEle(Paragraph.WithPieces(myParPiece01, myParPiece02, myParPiece03).Create());
 
             ParagraphPiece myParPieceJava =ParagraphPiece.With("I like Java and ").WithStyle().Font(Font.COURIER).Create();
-            ParagraphPiece myParPieceRuby =ParagraphPiece.With("Ruby!!! ").WithStyle().Bold().Italic().Create();
+            ParagraphPiece myParPieceRuby =ParagraphPiece.With("Ruby!!! ").WithStyle().Bold.Italic.Create();
             ParagraphPiece myParPieceAgile =
                 ParagraphPiece.With("I actually love Java, Ruby Agile, BDD, Cucumber, automation... ").WithStyle().
                     TextColor("008000").Create();
@@ -111,7 +111,7 @@ namespace ConsoleTest
 
             myDoc.Header.AddEle(
                 Paragraph.WithPieces(ParagraphPiece.With("I am in the"),
-                                     ParagraphPiece.With(" Header ").WithStyle().Bold().Create(),
+                                     ParagraphPiece.With(" Header ").WithStyle().Bold.Create(),
                                      ParagraphPiece.With("of all pages")).Create());
 
             myDoc.Footer.AddEle(Paragraph.With("I am in the Footer of all pages").Create());
@@ -179,12 +179,12 @@ namespace ConsoleTest
             myDoc.AddEle(
                 Paragraph.WithPieces(
                     ParagraphPiece.With("* Zico was mid-fieldfer and managed to score all those fucking goals!").
-                        WithStyle().Italic().Create()).Create());
+                        WithStyle().Italic.Create()).Create());
             myDoc.AddEle(
                 Paragraph.WithPieces(
                     ParagraphPiece.With(
                         "* Leonardo Correa's goals (me) include futsal, soccer, friendly games, training games, so on... (but not playstation)")
-                        .WithStyle().Italic().Create()).Create());
+                        .WithStyle().Italic.Create()).Create());
 
 
             //PageBreaks

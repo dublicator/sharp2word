@@ -96,7 +96,7 @@ namespace Test.W2004
         [Test]
         public void testPiecesOneWithStyle()
         {
-            ParagraphPiece piece01 = ParagraphPiece.With("Piece01").WithStyle().Bold().Italic().Underline().Create();
+            ParagraphPiece piece01 = ParagraphPiece.With("Piece01").WithStyle().Bold.Italic.Underline.Create();
             Paragraph p01 = new Paragraph(piece01);
 
             Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:b/>")); //bold
@@ -110,7 +110,7 @@ namespace Test.W2004
         public void testPiecesMany()
         {
             ParagraphPiece piece01 = ParagraphPiece.With("Piece11111");
-            ParagraphPiece piece02 = ParagraphPiece.With("Piece22222").WithStyle().Bold().Italic().Create();
+            ParagraphPiece piece02 = ParagraphPiece.With("Piece22222").WithStyle().Bold.Italic.Create();
 
             Paragraph p01 = Paragraph.WithPieces(piece01, piece02);
 

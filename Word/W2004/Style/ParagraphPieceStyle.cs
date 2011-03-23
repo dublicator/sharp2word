@@ -191,25 +191,33 @@ namespace Word.W2004.Style
         /// <summary>
         /// Set the text to Bold
         /// </summary>
-        /// <returns></returns>
-        public ParagraphPieceStyle Bold()
+        /// <value></value>
+        public ParagraphPieceStyle Bold
         {
-            this._bold = true;
-            return this;
+            get
+            {
+                this._bold = true;
+                return this;
+            }
         }
 
-        public ParagraphPieceStyle Italic()
+        public ParagraphPieceStyle Italic
         {
-            this._italic = true;
-            return this;
+            get
+            {
+                this._italic = true;
+                return this;
+            }
         }
 
-        public ParagraphPieceStyle Underline()
+        public ParagraphPieceStyle Underline
         {
-            this._underline = true;
-            return this;
+            get
+            {
+                this._underline = true;
+                return this;
+            }
         }
-
 
 
         /// <summary>
