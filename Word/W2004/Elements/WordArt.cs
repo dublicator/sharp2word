@@ -9,36 +9,11 @@ namespace Word.W2004.Elements
     public class WordArt : IElement
     {
         private const string tempate =
-            "\n<w:pict>"
-            +"\t<v:shapetype id=\"_x0000_t136\" coordsize=\"21600,21600\" o:spt=\"136\" adj=\"10800\" path=\"m@7,l@8,m@5,21600l@6,21600e\">\n"
-            + "\t\t<v:formulas>\n"
-            + "\t\t\t<v:f eqn=\"sum #0 0 10800\"/>\n"
-            + "\t\t\t<v:f eqn=\"prod #0 2 1\"/>\n"
-            + "\t\t\t<v:f eqn=\"sum 21600 0 @1\"/>\n"
-            + "\t\t\t<v:f eqn=\"sum 0 0 @2\"/>\n"
-            + "\t\t\t<v:f eqn=\"sum 21600 0 @3\"/>\n"
-            + "\t\t\t<v:f eqn=\"if @0 @3 0\"/>\n"
-            + "\t\t\t<v:f eqn=\"if @0 21600 @1\"/>\n"
-            + "\t\t\t<v:f eqn=\"if @0 0 @2\"/>\n"
-            + "\t\t\t<v:f eqn=\"if @0 @4 21600\"/>\n"
-            + "\t\t\t<v:f eqn=\"mid @5 @6\"/>\n"
-            + "\t\t\t<v:f eqn=\"mid @8 @5\"/>\n"
-            + "\t\t\t<v:f eqn=\"mid @7 @8\"/>\n"
-            + " <v:f eqn=\"mid @6 @7\"/>\n"
-            + " <v:f eqn=\"sum @6 0 @5\"/>\n"
-            + " </v:formulas>\n"
-            +" <v:path textpathok=\"t\" o:connecttype=\"custom\" o:connectlocs=\"@9,0;@10,10800;@11,21600;@12,10800\" o:connectangles=\"270,180,90,0\"/>\n"
-            + " <v:textpath on=\"t\" fitshape=\"t\"/>\n"
-            + "<v:handles>\n"
-            + " <v:h position=\"#0,bottomRight\" xrange=\"6629,14971\"/>\n"
-            + " </v:handles>\n"
-            + " <o:lock v:ext=\"edit\" text=\"t\" shapetype=\"t\"/>\n"
-            + " </v:shapetype>\n"
-            +"<v:shape id=\"_x0000_i1025\" type=\"#_x0000_t136\" style=\"width:{Width}pt;height:{Height}pt\" fillcolor=\"#{FillColor}\">\n"
-            + " <v:shadow color=\"#{ShadowColor}\"/>\n"
-            +" <v:textpath style=\"font-family:'{Font}';v-text-kern:t\" trim=\"t\" fitpath=\"t\" string=\"{Text}\"/>\n"
-            + " </v:shape>\n"
-            + " </w:pict>\n";
+            "<w:pict>"
+            +
+            "<v:shapetype id=\"_x0000_t136\" coordsize=\"21600,21600\" o:spt=\"136\" adj=\"10800\" path=\"m@7,l@8,m@5,21600l@6,21600e\""
+            + "</v:shapetype>"
+            + "</w:pict>";
 
         #region Implementation of IElement
 
@@ -59,27 +34,55 @@ namespace Word.W2004.Elements
         {
             get
             {
-                _txt.Replace("{Text}", this.Text);
-                _txt.Replace("{Font}", this.Font.Value);
-                _txt.Replace("{Width}", this.Width.ToString());
-                _txt.Replace("{Height}", this.Height.ToString());
-                _txt.Replace("{ShadowColor}", ImageUtils.ColorToHex(this.ShadowColor));
-                _txt.Replace("{FillColor}", ImageUtils.ColorToHex(this.FillColor));
+                _txt.Replace("{Text}", this._text);
+                _txt.Replace("{Font}", this._font.Value);
+                _txt.Replace("{Width}", this._width.ToString());
+                _txt.Replace("{Height}", this._height.ToString());
+                _txt.Replace("{ShadowColor}", ImageUtils.ColorToHex(this._shadowColor));
+                _txt.Replace("{FillColor}", ImageUtils.ColorToHex(this._fillColor));
+                _txt.Replace("{FontSize}", this._fontsize.ToString());
+                _txt.Replace("{Bold}", this._bold ? "font-weight:bold;" : "");
+                _txt.Replace("{Italic}", this._italic ? "font-style:italic;" : "");
+
+                string style = "";
+                switch (_style)
+                {
+                    case 1:
+                        //style = _style1;
+                        break;
+                    case 2:
+                        //style = _style2;
+                        break;
+                    case 3:
+                        //style = _style3;
+                        break;
+                }
+                _txt.Replace("{Style}", style);
+
                 return _txt.ToString();
             }
         }
 
         #endregion
 
+        private readonly string _text;
+
         private readonly StringBuilder _txt = new StringBuilder(tempate);
+        private bool _bold;
         private Color _fillColor = Color.Black;
         private Font _font = Font.CALIBRI;
+        private int _fontsize = 36;
         private double _height = 51;
+        private bool _italic;
         private Color _shadowColor = Color.White;
+        private int _style = 1;
 
         private double _width = 145.5;
 
-        public string Text { get; set; }
+        public WordArt(string text)
+        {
+            _text = text;
+        }
 
         public Font Font
         {
@@ -109,6 +112,30 @@ namespace Word.W2004.Elements
         {
             get { return _fillColor; }
             set { _fillColor = value; }
+        }
+
+        public int Fontsize
+        {
+            get { return _fontsize; }
+            set { _fontsize = value; }
+        }
+
+        public bool Bold
+        {
+            get { return _bold; }
+            set { _bold = value; }
+        }
+
+        public bool Italic
+        {
+            get { return _italic; }
+            set { _italic = value; }
+        }
+
+        public int Style
+        {
+            get { return _style; }
+            set { _style = value; }
         }
     }
 }

@@ -61,7 +61,7 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name = "bgColor"></param>
         /// <returns></returns>
-        public ParagraphPieceStyle SetBgColor(string bgColor)
+        public ParagraphPieceStyle BgColor(string bgColor)
         {
             this._bgColor = bgColor;
             return this;
@@ -188,30 +188,29 @@ namespace Word.W2004.Style
             return (ParagraphPiece) base.Create();
         }
 
-        public ParagraphPieceStyle SetBold(bool bold)
-        {
-            //this._bold = bold;
-            this.Bold();
-            return this;
-        }
-
+        /// <summary>
+        /// Set the text to Bold
+        /// </summary>
+        /// <returns></returns>
         public ParagraphPieceStyle Bold()
         {
-            _bold = true;
+            this._bold = true;
             return this;
         }
 
-        public ParagraphPieceStyle SetItalic(bool italic)
+        public ParagraphPieceStyle Italic()
         {
-            this._italic = italic;
+            this._italic = true;
             return this;
         }
 
-        public ParagraphPieceStyle SetUnderline(bool underline)
+        public ParagraphPieceStyle Underline()
         {
-            this._underline = underline;
+            this._underline = true;
             return this;
         }
+
+
 
         /// <summary>
         ///   If you know the color code, just to straight to the point! Eg.:
@@ -222,7 +221,7 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name = "textColor">Hexadecimal color code</param>
         /// <returns></returns>
-        public ParagraphPieceStyle SetTextColor(string textColor)
+        public ParagraphPieceStyle TextColor(string textColor)
         {
             this._textColor = textColor;
             return this;
@@ -233,28 +232,15 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name = "color"></param>
         /// <returns></returns>
-        public ParagraphPieceStyle SetTextColor(Color color)
+        public ParagraphPieceStyle TextColor(Color color)
         {
             this._color = color;
             return this;
         }
 
-        public ParagraphPieceStyle SetFont(Font font)
+        public ParagraphPieceStyle Font(Font font)
         {
             this._font = font;
-            return this;
-        }
-
-
-        /// <summary>
-        ///   It should be the double of you would normally do in the MS Word. Eg.:
-        ///   Default fontsize is 12. If you want to do it via Java2word, specify 24.
-        /// </summary>
-        /// <param name = "fontSize"></param>
-        /// <returns></returns>
-        public ParagraphPieceStyle SetFontSize(string fontSize)
-        {
-            this._fontSize = fontSize;
             return this;
         }
 
@@ -263,10 +249,11 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name = "size"></param>
         /// <returns></returns>
-        public ParagraphPieceStyle SetFontSize(int size)
+        public ParagraphPieceStyle FontSize(int size)
         {
             this._fontSize = (size*2).ToString();
             return this;
         }
+
     }
 }

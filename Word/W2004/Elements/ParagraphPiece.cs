@@ -16,7 +16,7 @@ namespace Word.W2004.Elements
     /// </summary>
     public class ParagraphPiece : IElement, IFluentElement<ParagraphPiece>, IFluentElementStylable<ParagraphPieceStyle>
     {
-        private readonly string _value = "";
+        private string _value = "";
         private ParagraphPieceStyle _style = new ParagraphPieceStyle();
 
         private string _txt =
@@ -28,6 +28,11 @@ namespace Word.W2004.Elements
         public ParagraphPiece(string value)
         {
             this._value = value;
+        }
+
+        public ParagraphPiece()
+        {
+            
         }
 
         public ParagraphPieceStyle Style
@@ -78,7 +83,10 @@ namespace Word.W2004.Elements
 
         public static ParagraphPiece With(string value)
         {
-            return new ParagraphPiece(value);
+            ParagraphPiece par = new ParagraphPiece();
+            par._value = value;
+            return par;
+            //return new ParagraphPiece(value);
         }
     }
 }
