@@ -28,7 +28,7 @@ namespace Word.Api.Interfaces
         ///   This is an alias to 'getBody().addEle'
         /// </summary>
         /// <param name = "e"></param>
-        void addEle(IElement e);
+        void AddEle(IElement e);
 
         /// <summary>
         ///   In order to give flexibility, string methods was added.
@@ -43,6 +43,6 @@ namespace Word.Api.Interfaces
         ///   This is an alias to 'getBody().addEle'
         /// </summary>
         /// <param name = "str"></param>
-        void addEle(string str);
+        void AddEle(string str);
     }
 }

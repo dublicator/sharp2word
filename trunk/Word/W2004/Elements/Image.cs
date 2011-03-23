@@ -19,7 +19,7 @@ namespace Word.W2004.Elements
         private readonly StringBuilder txt = new StringBuilder("");
         private bool hasBeenCalledBefore;
         // size
-        private string height = ""; // to be able to set this to override default
+        private string _height = ""; // to be able to set this to override default
 
         private const string img_template = "\n<w:pict>"
                                       +
@@ -47,7 +47,7 @@ namespace Word.W2004.Elements
                                       "\n	<v:shape id=\"_x0000_i1026\" type=\"#_x0000_t75\" style=\"width:{width}pt;height:{height}pt\"><v:imagedata src=\"wordml://{internalFileName}\" o:title=\"{fileName}\"/>"
                                       + "\n	</v:shape>" + "\n</w:pict>";
 
-        private string width = ""; // to be able to set this to override default
+        private string _width = ""; // to be able to set this to override default
 
         // size
 
@@ -118,7 +118,7 @@ namespace Word.W2004.Elements
 
         #region IFluentElement<Image> Members
 
-        public Image create()
+        public Image Create()
         {
             return this;
         }
@@ -157,23 +157,23 @@ namespace Word.W2004.Elements
                 res = res.Replace("{fileName}", fileName);
                 res = res.Replace("{internalFileName}", internalFileName);
                 res = res.Replace("{binary}", binary);
-                res = res.Replace("{width}", this.width);
-                res = res.Replace("{height}", this.height);
+                res = res.Replace("{width}", this._width);
+                res = res.Replace("{height}", this._height);
 
                 txt.Append(res);
                 return txt.ToString();
             }
         }
 
-        public Image setWidth(string value)
+        public Image SetWidth(int value)
         {
-            this.width = value;
+            this._width = value.ToString();
             return this;
         }
 
-        public Image setHeight(string value)
+        public Image SetHeight(int value)
         {
-            this.height = value;
+            this._height = value.ToString();
             return this;
         }
 
@@ -232,18 +232,18 @@ namespace Word.W2004.Elements
 
         private void setUpSize()
         {
-            if ("".Equals(this.width) || "".Equals(this.height))
+            if ("".Equals(this._width) || "".Equals(this._height))
             {
                 string[] wh = OriginalWidthHeight.Split('#');
                 string ww = wh[0];
                 string hh = wh[1];
-                if ("".Equals(this.width))
+                if ("".Equals(this._width))
                 {
-                    this.width = ww;
+                    this._width = ww;
                 }
-                if ("".Equals(this.height))
+                if ("".Equals(this._height))
                 {
-                    this.height = hh;
+                    this._height = hh;
                 }
             }
         }

@@ -33,6 +33,6 @@ namespace Word.Api.Interfaces
         /// <summary>
         ///   Sets page orientation to Landscape. Default is Portrait
         /// </summary>
-        void setPageOrientationLandscape();
+        void SetPageOrientationLandscape();
     }
 }

@@ -12,6 +12,6 @@ namespace Word.Api.Interfaces
         ///   Anyway, it is here for sake of consistency or semantic
         /// </summary>
         /// <returns></returns>
-        F create();
+        F Create();
     }
 }

@@ -22,7 +22,7 @@ namespace Test.W2004
         [Test]
         public void testBreakTimes()
         {
-            BreakLine br = BreakLine.times(3).create();
+            BreakLine br = BreakLine.times(3).Create();
             int tot = TestUtils
                     .regexCount(br.Content,
                             "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");

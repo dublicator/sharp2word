@@ -48,7 +48,7 @@ namespace Word.W2004.Elements
                 }
 
                 //For convention, it should be the last thing before returning the xml content.
-                txt = _style.getNewContentWithStyle(txt);
+                txt = _style.GetNewContentWithStyle(txt);
 
                 return txt.Replace("{value}", this.value);
             }
@@ -58,7 +58,7 @@ namespace Word.W2004.Elements
 
         #region IFluentElement<ParagraphPiece> Members
 
-        public ParagraphPiece create()
+        public ParagraphPiece Create()
         {
             return this;
         }
@@ -67,9 +67,9 @@ namespace Word.W2004.Elements
 
         #region IFluentElementStylable<ParagraphPieceStyle> Members
 
-        public ParagraphPieceStyle withStyle()
+        public ParagraphPieceStyle WithStyle()
         {
-            this._style.setElement(this);
+            this._style.SetElement(this);
             return this._style;
         }
 

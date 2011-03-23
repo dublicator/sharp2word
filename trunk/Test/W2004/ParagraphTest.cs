@@ -25,14 +25,14 @@ namespace Test.W2004
         [Test]
         public void sanityTest03()
         {
-            IElement par = Paragraph.withPieces(new ParagraphPiece(null)).create();
+            IElement par = Paragraph.withPieces(new ParagraphPiece(null)).Create();
             Assert.AreEqual(par.Content, "");
         }
 
         [Test]
         public void sanityTestFluent()
         {
-            IElement par = Paragraph.with("par01").withStyle().setAlign(Align.CENTER).create();
+            IElement par = Paragraph.with("par01").WithStyle().SetAlign(Align.CENTER).Create();
 
             basicParagraphCheckings(par, "par01", "center");
         }
@@ -41,9 +41,9 @@ namespace Test.W2004
         public void testTab()
         {
             Paragraph p01 = Paragraph.withPieces(
-                    ParagraphPiece.with("Bloc 1 Price :").withStyle().setFont(Font.CALIBRI).setFontSize(11).create(),
-                    ParagraphPiece.with(" \t 3 200,00 $").withStyle().setFont(Font.CALIBRI).setFontSize(11).create()
-            ).addTab(Paragraph.TabAlign.RIGHT, 8931).create();
+                    ParagraphPiece.with("Bloc 1 Price :").WithStyle().setFont(Font.CALIBRI).setFontSize(11).create(),
+                    ParagraphPiece.with(" \t 3 200,00 $").WithStyle().setFont(Font.CALIBRI).setFontSize(11).create()
+            ).addTab(Paragraph.TabAlign.RIGHT, 8931).Create();
 
             Assert.AreEqual(2, TestUtils.regexCount(p01.Content, "<w:pPr>"));
             Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "<w:tabs>"));
@@ -54,7 +54,7 @@ namespace Test.W2004
         [Test]
         public void testWithStyleBgColor()
         {
-            IElement p01 = Paragraph.with("par01").withStyle().setBgColor("FFFF00").create();
+            IElement p01 = Paragraph.with("par01").WithStyle().SetBgColor("FFFF00").Create();
 
             Assert.AreEqual(1, TestUtils.regexCount(p01.Content, "FFFF00")); //Background Color
 
@@ -64,7 +64,7 @@ namespace Test.W2004
         [Test]
         public void testWithStyle()
         {
-            IElement p01 = Paragraph.with("").withStyle().create();
+            IElement p01 = Paragraph.with("").WithStyle().Create();
             Assert.AreEqual(p01.Content, "");
         }
 
@@ -88,7 +88,7 @@ namespace Test.W2004
         [Test]
         public void testParagraphOneWithStyle()
         {
-            Paragraph p01 = (Paragraph)Paragraph.with("111").withStyle().setAlign(Align.CENTER).create();
+            Paragraph p01 = (Paragraph)Paragraph.with("111").WithStyle().SetAlign(Align.CENTER).Create();
 
             basicParagraphCheckings(p01, "111", "center");
         }
@@ -159,7 +159,7 @@ namespace Test.W2004
         [Test]
         public void testFluent()
         {
-            Paragraph p01 = (Paragraph)Paragraph.with("111").withStyle().setAlign(Align.CENTER).create();
+            Paragraph p01 = (Paragraph)Paragraph.with("111").WithStyle().SetAlign(Align.CENTER).Create();
 
             basicParagraphCheckings(p01, "111", "center");
         }

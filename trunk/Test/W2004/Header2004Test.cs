@@ -18,7 +18,7 @@ namespace Test.W2004
         public void testAddEle()
         {
             Header2004 hd = new Header2004();
-            hd.addEle(new Paragraph("p1"));
+            hd.AddEle(new Paragraph("p1"));
             Assert.AreEqual(2, TestUtils.regexCount(hd.Content, "<*w:hdr"));
             Assert.AreEqual(1, TestUtils.regexCount(hd.Content, "<w:t>p1</w:t>"));
         }
@@ -27,7 +27,7 @@ namespace Test.W2004
         public void testAddEleString()
         {
             Header2004 hd = new Header2004();
-            hd.addEle("<w:t>p1</w:t>");
+            hd.AddEle("<w:t>p1</w:t>");
             Assert.AreEqual(2, TestUtils.regexCount(hd.Content, "<*w:hdr"));
             Assert.AreEqual(1, TestUtils.regexCount(hd.Content, "<w:t>p1</w:t>"));
         }
@@ -36,8 +36,8 @@ namespace Test.W2004
         public void testHideHeaderandFooter()
         { //this has to be tested in the body...
             Header2004 hd = new Header2004();
-            hd.setHideHeaderAndFooterFirstPage(true);
-            Assert.True(hd.getHideHeaderAndFooterFirstPage());
+            hd.SetHideHeaderAndFooterFirstPage(true);
+            Assert.True(hd.GetHideHeaderAndFooterFirstPage());
         }
 
     }

@@ -43,9 +43,9 @@ namespace Word.W2004
                     res.Append("\n" + header_footer_top);
                     res.Append(header); //header has to be inside the w:body
                     res.Append(footer); //header has to be inside the w:body
-                    if (this.Header.getHideHeaderAndFooterFirstPage())
+                    if (this.Header.GetHideHeaderAndFooterFirstPage())
                     {
-                        res.Append(this.Header.getHideHeaderAndFooterFirstPageXml());
+                        res.Append(this.Header.GetHideHeaderAndFooterFirstPageXml());
                     }
 
                     res.Append("\n" + header_footer_botton);
@@ -66,7 +66,7 @@ namespace Word.W2004
         ///   This is an alias to 'getBody().addEle'
         /// </summary>
         /// <param name = "e"></param>
-        public void addEle(IElement e)
+        public void AddEle(IElement e)
         {
             this.txt.Append("\n" + e.Content);
         }
@@ -84,7 +84,7 @@ namespace Word.W2004
         ///   This is an alias to 'getBody().addEle'
         /// </summary>
         /// <param name = "str"></param>
-        public void addEle(string str)
+        public void AddEle(string str)
         {
             this.txt.Append("\n" + str);
         }

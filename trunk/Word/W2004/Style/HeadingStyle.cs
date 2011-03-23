@@ -26,13 +26,13 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name = "txt"></param>
         /// <returns></returns>
-        public override string getNewContentWithStyle(string txt)
+        public override string GetNewContentWithStyle(string txt)
         {
             string alignValue = "\n            	<w:jc w:val=\"" + _align.Value + "\" />";
             txt = txt.Replace("{styleAlign}", alignValue);
             StringBuilder sbText = new StringBuilder("");
 
-            applyBoldAndItalic(sbText);
+            ApplyBoldAndItalic(sbText);
 
             if (!"".Equals(sbText.ToString()))
             {
@@ -48,7 +48,7 @@ namespace Word.W2004.Style
 
         #endregion
 
-        private void applyBoldAndItalic(StringBuilder sbText)
+        private void ApplyBoldAndItalic(StringBuilder sbText)
         {
             if (this._bold)
             {
@@ -61,19 +61,19 @@ namespace Word.W2004.Style
         }
 
 
-        public HeadingStyle setAlign(Align align)
+        public HeadingStyle SetAlign(Align align)
         {
             this._align = align;
             return this;
         }
 
-        public HeadingStyle setBold(bool bold)
+        public HeadingStyle SetBold(bool bold)
         {
             this._bold = bold;
             return this;
         }
 
-        public HeadingStyle setItalic(bool italic)
+        public HeadingStyle SetItalic(bool italic)
         {
             this._italic = italic;
             return this;

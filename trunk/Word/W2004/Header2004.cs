@@ -78,7 +78,7 @@ namespace Word.W2004
         ///   This is an alias to 'getBody().addEle'
         /// </summary>
         /// <param name = "e"></param>
-        public void addEle(IElement e)
+        public void AddEle(IElement e)
         {
             this.txt.Append("\n" + e.Content);
         }
@@ -96,7 +96,7 @@ namespace Word.W2004
         ///   This is an alias to 'getBody().addEle'
         /// </summary>
         /// <param name = "str"></param>
-        public void addEle(string str)
+        public void AddEle(string str)
         {
             this.txt.Append("\n" + str);
         }
@@ -105,17 +105,17 @@ namespace Word.W2004
 
         #region Implementation of IHeader
 
-        public void setHideHeaderAndFooterFirstPage(bool value)
+        public void SetHideHeaderAndFooterFirstPage(bool value)
         {
             this.hideHeaderAndFooterFirstPage = value;
         }
 
-        public bool getHideHeaderAndFooterFirstPage()
+        public bool GetHideHeaderAndFooterFirstPage()
         {
             return this.hideHeaderAndFooterFirstPage;
         }
 
-        public string getHideHeaderAndFooterFirstPageXml()
+        public string GetHideHeaderAndFooterFirstPageXml()
         {
             return HIDE_HEADER__FOOTER_FIRST_PAGE;
         }

@@ -2,10 +2,10 @@ namespace Word.Api.Interfaces
 {
     public interface IHeader : IHasElement
     {
-        void setHideHeaderAndFooterFirstPage(bool value);
+        void SetHideHeaderAndFooterFirstPage(bool value);
 
-        bool getHideHeaderAndFooterFirstPage();
+        bool GetHideHeaderAndFooterFirstPage();
 
-        string getHideHeaderAndFooterFirstPageXml();
+        string GetHideHeaderAndFooterFirstPageXml();
     }
 }

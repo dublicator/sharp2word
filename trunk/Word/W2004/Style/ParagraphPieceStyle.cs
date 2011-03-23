@@ -23,7 +23,7 @@ namespace Word.W2004.Style
 
         #region ISuperStylin Members
 
-        public override string getNewContentWithStyle(string txt)
+        public override string GetNewContentWithStyle(string txt)
         {
             StringBuilder style = new StringBuilder("");
 
@@ -198,7 +198,7 @@ namespace Word.W2004.Style
 
         public new ParagraphPiece create()
         {
-            return (ParagraphPiece) base.create();
+            return (ParagraphPiece) base.Create();
         }
 
         public ParagraphPieceStyle setBold(bool bold)

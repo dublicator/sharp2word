@@ -7,15 +7,15 @@ namespace Word.Api.Interfaces
         /// </summary>
         /// <param name = "txt"></param>
         /// <returns></returns>
-        string getNewContentWithStyle(string txt);
+        string GetNewContentWithStyle(string txt);
 
-        void setElement(IElement element);
+        void SetElement(IElement element);
 
         /// <summary>
         ///   This method returns the element. There should be a cast for the return.
         ///   The other option to avoid type cast is use covariant type return
         /// </summary>
         /// <returns></returns>
-        IElement create();
+        IElement Create();
     }
 }
