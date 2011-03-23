@@ -39,8 +39,7 @@ namespace Test.W2004
         [Test]
         public void testGetContentWithStyleALL()
         {
-            IElement par = ParagraphPiece.With("piece01").WithStyle().Bold()
-                .Italic().Underline().FontSize(24)
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Bold.Italic.Underline.FontSize(24)
                 .Font(Font.COURIER).TextColor("008000").Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
@@ -67,8 +66,7 @@ namespace Test.W2004
         [Test]
         public void testGetContentWithStyleBold()
         {
-            IElement par = ParagraphPiece.With("piece01").WithStyle().Bold()
-                .Italic().Underline().Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Bold.Italic.Underline.Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -97,8 +95,7 @@ namespace Test.W2004
         [Test]
         public void testGetContentWithStyleItalic()
         {
-            IElement par = ParagraphPiece.With("piece01").WithStyle()
-                .Italic().Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Italic.Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -128,8 +125,7 @@ namespace Test.W2004
         [Test]
         public void testGetContentWithStyleUnderline()
         {
-            IElement par = ParagraphPiece.With("piece01").WithStyle()
-                .Underline().Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Underline.Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -189,8 +185,7 @@ namespace Test.W2004
         [Test]
         public void testGetContentWithStyleTextColor()
         {
-            IElement par = ParagraphPiece.With("piece01").WithStyle()
-                .Italic().Underline()
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Italic.Underline
                 .TextColor("008000").Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
@@ -220,9 +215,7 @@ namespace Test.W2004
         [Test]
         public void testGetContentWithStyleFontSize()
         {
-            IElement par = ParagraphPiece.With("piece01").WithStyle()
-                .Italic()
-                .Underline()
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Italic.Underline
                 .FontSize(50).Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
@@ -330,7 +323,7 @@ namespace Test.W2004
         {
             Paragraph p1 =
                 Paragraph.WithPieces(
-                    ParagraphPiece.With("same").WithStyle().Font(Font.COURIER).Bold().Italic().Create());
+                    ParagraphPiece.With("same").WithStyle().Font(Font.COURIER).Bold.Italic.Create());
             Paragraph p2 =
                 Paragraph.WithPieces(ParagraphPiece.With("same").WithStyle().Font(Font.COURIER_BOLD_ITALIC).Create());
 

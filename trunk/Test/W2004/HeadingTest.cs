@@ -12,8 +12,8 @@ namespace Test.W2004
         public void testH1Style()
         {
             Heading1 h1 = new Heading1("222222");
-            h1.Style.SetBold(true);
-            h1.Style.SetItalic(true);
+            h1.Style.SetBold();
+            h1.Style.SetItalic();
 
             Assert.AreEqual(2, TestUtils.RegexCount(h1.Content, "<*w:rPr>"));
             Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:jc w:val=\"left\" />")); //default is left
@@ -99,13 +99,13 @@ namespace Test.W2004
         {
             Heading1 h1 =
                 (Heading1)
-                Heading1.With("h111").WithStyle().SetBold(true).SetItalic(true).SetAlign(Align.CENTER).Create();
+                Heading1.With("h111").WithStyle().SetBold().SetItalic().SetAlign(Align.CENTER).Create();
             Heading2 h2 =
                 (Heading2)
-                Heading2.With("h222").WithStyle().SetBold(true).SetItalic(true).SetAlign(Align.CENTER).Create();
+                Heading2.With("h222").WithStyle().SetBold().SetItalic().SetAlign(Align.CENTER).Create();
             Heading3 h3 =
                 (Heading3)
-                Heading3.With("h222").WithStyle().SetBold(true).SetItalic(true).SetAlign(Align.CENTER).Create();
+                Heading3.With("h222").WithStyle().SetBold().SetItalic().SetAlign(Align.CENTER).Create();
             verifyStyles(h1);
             verifyStyles(h2);
             verifyStyles(h3);

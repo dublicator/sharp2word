@@ -115,7 +115,7 @@ namespace Test.W2004
             Heading1 h1 = new Heading1("Heading 111");
             HeadingStyle headingStyle = new HeadingStyle();
             headingStyle.SetAlign(Align.CENTER);
-            headingStyle.SetItalic(true);
+            headingStyle.SetItalic();
 
             h1.Style = headingStyle;
             myDoc.Body.AddEle(h1);
@@ -130,17 +130,17 @@ namespace Test.W2004
         {
             IDocument doc = new Document2004();
             Heading1 h1 = (Heading1) Heading1.With("h111").WithStyle()
-                                         .SetBold(true).SetItalic(true)
+                                         .SetBold().SetItalic()
                                          .SetAlign(Align.CENTER).Create();
 
             Heading2 h2 = (Heading2) Heading2.With("h222").WithStyle()
-                                         .SetBold(true).SetItalic(true).Create();
+                                         .SetBold().SetItalic().Create();
 
             doc.Body.AddEle(h1);
             doc.Body.AddEle(h2);
             doc.Body.AddEle(
-                Heading1.With("h3333").WithStyle().SetBold(true)
-                    .SetItalic(true).Create()); // no cast...
+                Heading1.With("h3333").WithStyle().SetBold()
+                    .SetItalic().Create()); // no cast...
         }
 
         [Test]

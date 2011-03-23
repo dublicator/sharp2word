@@ -67,15 +67,15 @@ namespace Word.W2004.Style
             return this;
         }
 
-        public HeadingStyle SetBold(bool bold)
+        public HeadingStyle SetBold()
         {
-            this._bold = bold;
+            this._bold = true;
             return this;
         }
 
-        public HeadingStyle SetItalic(bool italic)
+        public HeadingStyle SetItalic()
         {
-            this._italic = italic;
+            this._italic = true;
             return this;
         }
     }
