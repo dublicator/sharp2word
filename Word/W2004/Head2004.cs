@@ -18,7 +18,8 @@ namespace Word.W2004
             {
                 if ("".Equals(this._content.ToString()))
                 {
-                    _content.Append("\n" + this.Properties.Content + Util.HEAD2004 + "\n");
+                    var k = this.Properties != null ? this.Properties.Content : "";
+                    _content.Append("\n" + k + Util.HEAD2004 + "\n");
                 }
 
                 return _content.ToString();
