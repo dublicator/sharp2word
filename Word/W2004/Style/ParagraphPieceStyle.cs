@@ -1,4 +1,3 @@
-using System;
 using System.Drawing;
 using System.Text;
 using Word.Api.Interfaces;
@@ -242,9 +241,9 @@ namespace Word.W2004.Style
         }
 
         /// <summary>
-        /// Set text color from the Enum @Color, case you don't know any hexa code color
+        ///   Set text color from the Enum @Color, case you don't know any hexa code color
         /// </summary>
-        /// <param name="color"></param>
+        /// <param name = "color"></param>
         /// <returns></returns>
         public ParagraphPieceStyle SetTextColor(Color color)
         {
@@ -260,10 +259,10 @@ namespace Word.W2004.Style
 
 
         /// <summary>
-        /// It should be the double of you would normally do in the MS Word. Eg.:
-        /// Default fontsize is 12. If you want to do it via Java2word, specify 24.
+        ///   It should be the double of you would normally do in the MS Word. Eg.:
+        ///   Default fontsize is 12. If you want to do it via Java2word, specify 24.
         /// </summary>
-        /// <param name="fontSize"></param>
+        /// <param name = "fontSize"></param>
         /// <returns></returns>
         public ParagraphPieceStyle SetFontSize(string fontSize)
         {
@@ -272,9 +271,9 @@ namespace Word.W2004.Style
         }
 
         /// <summary>
-        /// Specify the font size the same way you see on MW Word.
+        ///   Specify the font size the same way you see on MW Word.
         /// </summary>
-        /// <param name="size"></param>
+        /// <param name = "size"></param>
         /// <returns></returns>
         public ParagraphPieceStyle SetFontSize(int size)
         {

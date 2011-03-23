@@ -5,9 +5,10 @@ namespace Test
 {
     public class Utils_Test : Assert
     {
-        	[Test]
-	public void sanityTest() {
-		/*
+        [Test]
+        public void sanityTest()
+        {
+            /*
 		File dir1 = new File(".");
 		File dir2 = new File("..");
 		try {
@@ -17,41 +18,45 @@ namespace Test
 			e.printStackTrace();
 		}
 		*/
-		
-	}
+        }
 
-	[Test]
-	public void getAppRootTest() {
-		Util utils = new Util();
-		Assert.NotNull(utils);		
-		//Assert.True(Util.getAppRoot().contains("/j2w-ejb"));
-	}
-	
-	[Test]
-	public void readFileTest() {
-		/*string res = Utils.readFile(Utils.getAppRoot() + "/src/test/resources/resources.properties");		
+        [Test]
+        public void getAppRootTest()
+        {
+            Util utils = new Util();
+            Assert.NotNull(utils);
+            //Assert.True(Util.getAppRoot().contains("/j2w-ejb"));
+        }
+
+        [Test]
+        public void readFileTest()
+        {
+            /*string res = Utils.readFile(Utils.getAppRoot() + "/src/test/resources/resources.properties");		
 		Assert.AreEqual(1, TestUtils.regexCount(res, "reports.servlet.datasource.lookup"));*/
-	}
-	
-	[Test]
-	public void readFileTestException() {
-		//string res = Util.readFile(Util.getAppRoot() + "/src/test/resources/not_a_file");		
-		//Assert.AreEqual(1, TestUtils.regexCount(res, "FileNotFoundException"));
-	}
+        }
 
-	[Test]
-	public void prettyTest01() {
-		string str = Util.Pretty("<leo><nada></nada></leo>");
-        Assert.True(str.Contains("<leo>\r\n  <nada/>"));
-		Assert.AreEqual(2, TestUtils.RegexCount(str, "<*leo>"));
-		Assert.AreEqual(1, TestUtils.RegexCount(str, "<nada/>"));
-	}
-	
-	[Test]
-	public void prettyTestException() {
-		string crap = "<leo><nada></leo>";
-		string str = Util.Pretty(crap);
-		Assert.AreEqual(crap, crap); // the same crap...
-	}
+        [Test]
+        public void readFileTestException()
+        {
+            //string res = Util.readFile(Util.getAppRoot() + "/src/test/resources/not_a_file");		
+            //Assert.AreEqual(1, TestUtils.regexCount(res, "FileNotFoundException"));
+        }
+
+        [Test]
+        public void prettyTest01()
+        {
+            string str = Util.Pretty("<leo><nada></nada></leo>");
+            Assert.True(str.Contains("<leo>\r\n  <nada/>"));
+            Assert.AreEqual(2, TestUtils.RegexCount(str, "<*leo>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(str, "<nada/>"));
+        }
+
+        [Test]
+        public void prettyTestException()
+        {
+            string crap = "<leo><nada></leo>";
+            string str = Util.Pretty(crap);
+            Assert.AreEqual(crap, crap); // the same crap...
+        }
     }
 }

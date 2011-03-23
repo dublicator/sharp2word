@@ -85,7 +85,6 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Utils\basicStyle.txt" />
     <Content Include="W2004\styles2004.txt" />
   </ItemGroup>
   <ItemGroup />

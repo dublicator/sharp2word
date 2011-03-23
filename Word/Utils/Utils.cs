@@ -8,49 +8,8 @@ namespace Word.Utils
 {
     public class Util
     {
-        /// <summary>
-        /// The root of the app as String. 
-        /// </summary>
-        /// <value></value>
-        public static string AppRoot
-        {
-            get
-            {
-                try
-                {
-                    return Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName);
-                }
-                catch (IOException e)
-                {
-                    Trace.Write(e.StackTrace);
-                    throw new IOException("Can't get app root directory", e);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="file">It is the full path to the file</param>
-        /// <returns>String with the content of the file</returns>
-        public static string ReadFile(string file)
-        {
-            return File.ReadAllText(file);
-        } 
-
-        public static string Pretty(string xml)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xml);
-            StringBuilder sb=new StringBuilder();
-            XmlWriter xw = XmlTextWriter.Create(sb, new XmlWriterSettings() {Indent = true});
-            doc.WriteTo(xw);
-            xw.Flush();
-            return sb.ToString();
-        }
-
         public const string HEAD2004 =
-        /*    "    <o:DocumentProperties> "
+            /*    "    <o:DocumentProperties> "
             + "        <o:Author>{Author}</o:Author> "
             + "        <o:LastAuthor>{LastAuthor}</o:LastAuthor> "
             + "        <o:Revision>{Revision}</o:Revision> "
@@ -472,5 +431,45 @@ namespace Word.Utils
             + "            <wsp:rsidRoot wsp:val=\"00401F80\"/> "
             + "        </wsp:rsids> "
             + "    </w:docPr> ";
+
+        /// <summary>
+        ///   The root of the app as String.
+        /// </summary>
+        /// <value></value>
+        public static string AppRoot
+        {
+            get
+            {
+                try
+                {
+                    return Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName);
+                }
+                catch (IOException e)
+                {
+                    Trace.Write(e.StackTrace);
+                    throw new IOException("Can't get app root directory", e);
+                }
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name = "file">It is the full path to the file</param>
+        /// <returns>String with the content of the file</returns>
+        public static string ReadFile(string file)
+        {
+            return File.ReadAllText(file);
+        }
+
+        public static string Pretty(string xml)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml);
+            StringBuilder sb = new StringBuilder();
+            XmlWriter xw = XmlWriter.Create(sb, new XmlWriterSettings {Indent = true});
+            doc.WriteTo(xw);
+            xw.Flush();
+            return sb.ToString();
+        }
     }
 }

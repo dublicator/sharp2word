@@ -1,14 +1,13 @@
-using System;
 using System.Text;
 using Word.Api.Interfaces;
 
 namespace Word.W2004.Elements
 {
-    public class Shape:IElement
+    public class Shape : IElement
     {
         private readonly StringBuilder txt = new StringBuilder("");
 
-        private string _tempate =
+        private const string _tempate =
             "<w:pict>"
             +
             "<v:shapetype id=\"_x0000_t136\" coordsize=\"21600,21600\" o:spt=\"136\" adj=\"10800\" path=\"m@7,l@8,m@5,21600l@6,21600e\">"
@@ -42,10 +41,6 @@ namespace Word.W2004.Elements
             " <v:textpath style=\"font-family:'Arial Black';v-text-kern:t\" trim=\"t\" fitpath=\"t\" string=\"This is WordArt\"/>"
             + " </v:shape>"
             + " </w:pict>";
-
-
-
-
 
         #region Implementation of IElement
 

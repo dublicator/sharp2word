@@ -11,15 +11,6 @@ namespace Word.W2004.Elements
     /// <typeparam name = "E"></typeparam>
     public class AbstractHeading<E> : IElement, IFluentElementStylable<E> where E : class
     {
-        /// <summary>
-        ///   This is actual heading1, heading2 or heading3.
-        /// </summary>
-        private readonly string _headingType;
-
-        private readonly string _value; //value/text for the Heading
-
-        private HeadingStyle _style = new HeadingStyle();
-
         private const string template =
             "\n<w:p wsp:rsidR=\"004429ED\" wsp:rsidRDefault=\"00000000\" wsp:rsidP=\"004429ED\">"
             + "\n	<w:pPr>"
@@ -32,6 +23,15 @@ namespace Word.W2004.Elements
             + "\n	</w:r>"
             + "\n</w:p>";
 
+        /// <summary>
+        ///   This is actual heading1, heading2 or heading3.
+        /// </summary>
+        private readonly string _headingType;
+
+        private readonly string _value; //value/text for the Heading
+
+        private HeadingStyle _style = new HeadingStyle();
+
         protected AbstractHeading(string headingType, string value)
         {
             this._headingType = headingType;
@@ -42,6 +42,12 @@ namespace Word.W2004.Elements
         public string Template
         {
             get { return template.Replace("{heading}", this._headingType); }
+        }
+
+        public HeadingStyle Style
+        {
+            get { return _style; }
+            set { this._style = value; }
         }
 
         #region IElement Members
@@ -77,12 +83,5 @@ namespace Word.W2004.Elements
         }
 
         #endregion
-
-        public HeadingStyle Style
-        {
-            get { return _style; }
-            set { this._style = value; }
-        }
-
     }
 }

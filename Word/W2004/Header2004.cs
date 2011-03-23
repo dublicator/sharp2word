@@ -125,7 +125,7 @@ namespace Word.W2004
         private readonly StringBuilder _txt = new StringBuilder("");
 
         private bool _hasBeenCalledBefore;
-                     // if getContent has already been called, I cached the result for future invocations
+        // if getContent has already been called, I cached the result for future invocations
 
         private bool _hideHeaderAndFooterFirstPage;
     }

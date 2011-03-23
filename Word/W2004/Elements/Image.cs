@@ -14,40 +14,41 @@ namespace Word.W2004.Elements
     /// </summary>
     public class Image : IImage, IFluentElement<Image>
     {
+        private const string img_template = "\n<w:pict>"
+                                            +
+                                            "\n	<v:shapetype id=\"_x0000_t75\" coordsize=\"21600,21600\" o:spt=\"75\" o:preferrelative=\"t\" path=\"m@4@5l@4@11@9@11@9@5xe\" filled=\"f\" stroked=\"f\">"
+                                            + "		<v:stroke joinstyle=\"miter\"/>"
+                                            + "		<v:formulas>"
+                                            + "			<v:f eqn=\"if lineDrawn pixelLineWidth 0\"/>"
+                                            + "			<v:f eqn=\"sum @0 1 0\"/><v:f eqn=\"sum 0 0 @1\"/>"
+                                            + "			<v:f eqn=\"prod @2 1 2\"/>"
+                                            + "			<v:f eqn=\"prod @3 21600 pixelWidth\"/>"
+                                            + "			<v:f eqn=\"prod @3 21600 pixelHeight\"/>"
+                                            + "			<v:f eqn=\"sum @0 0 1\"/>"
+                                            + "			<v:f eqn=\"prod @6 1 2\"/>"
+                                            + "			<v:f eqn=\"prod @7 21600 pixelWidth\"/>"
+                                            + "			<v:f eqn=\"sum @8 21600 0\"/>"
+                                            + "			<v:f eqn=\"prod @7 21600 pixelHeight\"/>"
+                                            + "			<v:f eqn=\"sum @10 21600 0\"/>"
+                                            + "		</v:formulas>"
+                                            +
+                                            "		<v:path o:extrusionok=\"f\" gradientshapeok=\"t\" o:connecttype=\"rect\"/>"
+                                            + "		<o:lock v:ext=\"edit\" aspectratio=\"t\"/>"
+                                            + "	</v:shapetype>"
+                                            +
+                                            "\n<w:binData w:name=\"wordml://{internalFileName}\" xml:space=\"preserve\">{binary}</w:binData>"
+                                            +
+                                            "\n	<v:shape id=\"_x0000_i1026\" type=\"#_x0000_t75\" style=\"width:{width}pt;height:{height}pt\"><v:imagedata src=\"wordml://{internalFileName}\" o:title=\"{fileName}\"/>"
+                                            + "\n	</v:shape>" + "\n</w:pict>";
+
         private readonly BufferedImage _bufferedImage;
         private readonly string _path = "";
         private readonly StringBuilder _txt = new StringBuilder("");
-        private bool hasBeenCalledBefore;
         // size
         private string _height = ""; // to be able to set this to override default
 
-        private const string img_template = "\n<w:pict>"
-                                      +
-                                      "\n	<v:shapetype id=\"_x0000_t75\" coordsize=\"21600,21600\" o:spt=\"75\" o:preferrelative=\"t\" path=\"m@4@5l@4@11@9@11@9@5xe\" filled=\"f\" stroked=\"f\">"
-                                      + "		<v:stroke joinstyle=\"miter\"/>"
-                                      + "		<v:formulas>"
-                                      + "			<v:f eqn=\"if lineDrawn pixelLineWidth 0\"/>"
-                                      + "			<v:f eqn=\"sum @0 1 0\"/><v:f eqn=\"sum 0 0 @1\"/>"
-                                      + "			<v:f eqn=\"prod @2 1 2\"/>"
-                                      + "			<v:f eqn=\"prod @3 21600 pixelWidth\"/>"
-                                      + "			<v:f eqn=\"prod @3 21600 pixelHeight\"/>"
-                                      + "			<v:f eqn=\"sum @0 0 1\"/>"
-                                      + "			<v:f eqn=\"prod @6 1 2\"/>"
-                                      + "			<v:f eqn=\"prod @7 21600 pixelWidth\"/>"
-                                      + "			<v:f eqn=\"sum @8 21600 0\"/>"
-                                      + "			<v:f eqn=\"prod @7 21600 pixelHeight\"/>"
-                                      + "			<v:f eqn=\"sum @10 21600 0\"/>"
-                                      + "		</v:formulas>"
-                                      + "		<v:path o:extrusionok=\"f\" gradientshapeok=\"t\" o:connecttype=\"rect\"/>"
-                                      + "		<o:lock v:ext=\"edit\" aspectratio=\"t\"/>"
-                                      + "	</v:shapetype>"
-                                      +
-                                      "\n<w:binData w:name=\"wordml://{internalFileName}\" xml:space=\"preserve\">{binary}</w:binData>"
-                                      +
-                                      "\n	<v:shape id=\"_x0000_i1026\" type=\"#_x0000_t75\" style=\"width:{width}pt;height:{height}pt\"><v:imagedata src=\"wordml://{internalFileName}\" o:title=\"{fileName}\"/>"
-                                      + "\n	</v:shape>" + "\n</w:pict>";
-
         private string _width = ""; // to be able to set this to override default
+        private bool hasBeenCalledBefore;
 
         // size
 
@@ -78,9 +79,8 @@ namespace Word.W2004.Elements
                 }
                 else if (imageLocation.Equals(ImageLocation.CLASSPATH))
                 {
-                    
                     throw new NotImplementedException();
-                    
+
                     //InputStream is = getClass().getResourceAsStream(path);
                     //bufferedImage = ImageIO.read(is);
                 }
@@ -101,8 +101,8 @@ namespace Word.W2004.Elements
             catch (IOException e)
             {
                 throw new Exception(
-                    "Can't create ImageIO. Maybe the path is not valid. Path: \n" +  "\nImageLocation: " +
-                     e);
+                    "Can't create ImageIO. Maybe the path is not valid. Path: \n" + "\nImageLocation: " +
+                    e);
             }
         }
 

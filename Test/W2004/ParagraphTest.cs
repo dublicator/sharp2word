@@ -41,9 +41,9 @@ namespace Test.W2004
         public void testTab()
         {
             Paragraph p01 = Paragraph.withPieces(
-                    ParagraphPiece.With("Bloc 1 Price :").WithStyle().SetFont(Font.CALIBRI).SetFontSize(11).Create(),
-                    ParagraphPiece.With(" \t 3 200,00 $").WithStyle().SetFont(Font.CALIBRI).SetFontSize(11).Create()
-            ).AddTab(Paragraph.TabAlign.RIGHT, 8931).Create();
+                ParagraphPiece.With("Bloc 1 Price :").WithStyle().SetFont(Font.CALIBRI).SetFontSize(11).Create(),
+                ParagraphPiece.With(" \t 3 200,00 $").WithStyle().SetFont(Font.CALIBRI).SetFontSize(11).Create()
+                ).AddTab(Paragraph.TabAlign.RIGHT, 8931).Create();
 
             Assert.AreEqual(2, TestUtils.RegexCount(p01.Content, "<w:pPr>"));
             Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:tabs>"));
@@ -88,7 +88,7 @@ namespace Test.W2004
         [Test]
         public void testParagraphOneWithStyle()
         {
-            Paragraph p01 = (Paragraph)Paragraph.with("111").WithStyle().SetAlign(Align.CENTER).Create();
+            Paragraph p01 = (Paragraph) Paragraph.with("111").WithStyle().SetAlign(Align.CENTER).Create();
 
             basicParagraphCheckings(p01, "111", "center");
         }
@@ -133,7 +133,6 @@ namespace Test.W2004
 
             Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:b/>"));
             Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:i/>"));
-
         }
 
         [Test]
@@ -159,7 +158,7 @@ namespace Test.W2004
         [Test]
         public void testFluent()
         {
-            Paragraph p01 = (Paragraph)Paragraph.with("111").WithStyle().SetAlign(Align.CENTER).Create();
+            Paragraph p01 = (Paragraph) Paragraph.with("111").WithStyle().SetAlign(Align.CENTER).Create();
 
             basicParagraphCheckings(p01, "111", "center");
         }
@@ -180,6 +179,7 @@ namespace Test.W2004
         * @param parValue the expected text deiplayed in the paragraph
         * @param align the expected align
         */
+
         private void basicParagraphCheckings(IElement par, string parValue, string align)
         {
             if (align == null || "".Equals(align))
@@ -194,7 +194,6 @@ namespace Test.W2004
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:jc w:val=\"" + align + "\"/>"));
             Assert.AreEqual(2, TestUtils.RegexCount(par.Content, "<*w:pPr>"));
-
         }
     }
 }

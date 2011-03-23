@@ -34,11 +34,11 @@ namespace Test.W2004
 
         [Test]
         public void testHideHeaderandFooter()
-        { //this has to be tested in the body...
+        {
+            //this has to be tested in the body...
             Header2004 hd = new Header2004();
             hd.SetHideHeaderAndFooterFirstPage(true);
             Assert.True(hd.GetHideHeaderAndFooterFirstPage());
         }
-
     }
 }

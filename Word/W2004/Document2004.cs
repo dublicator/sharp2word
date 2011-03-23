@@ -7,12 +7,13 @@ namespace Word.W2004
 {
     public class Document2004 : IDocument, IElement
     {
+        private static bool _validated = true;
         private readonly IBody _body = new Body2004();
         private readonly IHead _head = new Head2004();
         private readonly StringBuilder _txt = new StringBuilder();
 
         private bool _hasBeenCalledBefore;
-                     // if getContent has already been called, I cached the result for future invocations
+        // if getContent has already been called, I cached the result for future invocations
 
         private bool _isLandscape;
 
@@ -96,9 +97,7 @@ namespace Word.W2004
 
         public IHeader Header
         {
-            get
-            {
-                return this.Body.Header; //forward it to the body
+            get { return this.Body.Header; //forward it to the body
             }
         }
 
@@ -146,16 +145,14 @@ namespace Word.W2004
             settings.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
             settings.ValidationEventHandler += ValidationCallBack;
 
-            
+
             // Create the XmlReader object.
             XmlReader reader = XmlReader.Create("inlineSchema.xml", settings);
-            
+
             // Parse the file. 
-            while (reader.Read()||!_validated) ;
+            while (reader.Read() || !_validated) ;
             return _validated;
         }
-
-        private static bool _validated = true;
 
         // Display any warnings or errors.
         private static void ValidationCallBack(object sender, ValidationEventArgs args)
@@ -167,6 +164,6 @@ namespace Word.W2004
             {
                 _validated = false;
             }
-        }  
+        }
     }
 }

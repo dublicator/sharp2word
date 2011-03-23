@@ -57,10 +57,9 @@ namespace Word.W2004
             + "\n                </wx:pBdrGroup> \n";
 
         private readonly StringBuilder _txt = new StringBuilder("");
-        private bool _showPageNumber = true;
 
         private bool _hasBeenCalledBefore;
-                     // if getContent has already been called, I cached the result for future invocations
+        private bool _showPageNumber = true;
 
         #region Implementation of IElement
 
@@ -144,5 +143,7 @@ namespace Word.W2004
         }
 
         #endregion
+
+        // if getContent has already been called, I cached the result for future invocations
     }
 }

@@ -27,17 +27,21 @@ namespace Test.W2004
             const string expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
                                     + "<?mso-application progid=\"Word.Document\"?> "
                                     + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
-                                    + " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
+                                    +
+                                    " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
                                     + " xmlns:ve=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" "
-                                    + " xmlns:mv=\"urn:schemas-microsoft-com:mac:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" "
-                                    + " xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" "
+                                    +
+                                    " xmlns:mv=\"urn:schemas-microsoft-com:mac:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" "
+                                    +
+                                    " xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" "
                                     + " xmlns:w=\"http://schemas.microsoft.com/office/word/2003/wordml\" "
                                     + " xmlns:wx=\"http://schemas.microsoft.com/office/word/2003/auxHint\" "
                                     + " xmlns:wsp=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" "
                                     + " xmlns:sl=\"http://schemas.microsoft.com/schemaLibrary/2003/core\" "
                                     + " w:macrosPresent=\"no\" w:embeddedObjPresent=\"no\" w:ocxPresent=\"no\" "
                                     + " xml:space=\"preserve\"> "
-                                    + " <w:ignoreSubtree w:val=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" /> ";
+                                    +
+                                    " <w:ignoreSubtree w:val=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" /> ";
             Assert.AreEqual(expected, myDoc.Uri);
             //            Assert.AreEqual("Uri is not as expected: ", , );
         }
@@ -48,9 +52,9 @@ namespace Test.W2004
             IDocument myDoc = new Document2004();
             Assert.True(myDoc.Head.Content.Contains("<w:docPr>"));
             Assert.True(myDoc.Head.Content
-                    .Contains("<w:view w:val=\"print\"/>"));
+                            .Contains("<w:view w:val=\"print\"/>"));
             Assert.True(myDoc.Head.Content
-                    .Contains("<w:zoom w:percent=\"100\"/>"));
+                            .Contains("<w:zoom w:percent=\"100\"/>"));
             Assert.True(myDoc.Head.Content.Contains("</w:docPr>"));
         }
 
@@ -81,7 +85,9 @@ namespace Test.W2004
             myDoc.Header.AddEle(Paragraph.with("paragraph01").Create());
 
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Header.Content, "<w:hdr w:type=\"odd\">"));
-            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Header.Content, "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
+            Assert.AreEqual(1,
+                            TestUtils.RegexCount(myDoc.Header.Content,
+                                                 "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Header.Content, "<w:t>paragraph01</w:t>"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Header.Content, "</w:hdr>"));
         }
@@ -96,7 +102,9 @@ namespace Test.W2004
             myDoc.Footer.AddEle(Paragraph.with("paragraph01").Create());
 
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "<w:ftr w:type=\"odd\">"));
-            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
+            Assert.AreEqual(1,
+                            TestUtils.RegexCount(myDoc.Footer.Content,
+                                                 "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "<w:t>paragraph01</w:t>"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "</w:ftr>"));
         }
@@ -110,7 +118,7 @@ namespace Test.W2004
             headingStyle.SetAlign(Align.CENTER);
             headingStyle.SetItalic(true);
 
-            h1.Style=headingStyle;
+            h1.Style = headingStyle;
             myDoc.Body.AddEle(h1);
 
             myDoc.Body.AddEle(new Heading2("Heading 222"));
@@ -156,18 +164,18 @@ namespace Test.W2004
         public void testBasicHeadingFluent()
         {
             IDocument doc = new Document2004();
-            Heading1 h1 = (Heading1)Heading1.With("h111").WithStyle()
-                    .SetBold(true).SetItalic(true)
-                    .SetAlign(Align.CENTER).Create();
+            Heading1 h1 = (Heading1) Heading1.With("h111").WithStyle()
+                                         .SetBold(true).SetItalic(true)
+                                         .SetAlign(Align.CENTER).Create();
 
-            Heading2 h2 = (Heading2)Heading2.With("h222").WithStyle()
-                    .SetBold(true).SetItalic(true).Create();
+            Heading2 h2 = (Heading2) Heading2.With("h222").WithStyle()
+                                         .SetBold(true).SetItalic(true).Create();
 
             doc.Body.AddEle(h1);
             doc.Body.AddEle(h2);
             doc.Body.AddEle(
-                    Heading1.With("h3333").WithStyle().SetBold(true)
-                            .SetItalic(true).Create()); // no cast...
+                Heading1.With("h3333").WithStyle().SetBold(true)
+                    .SetItalic(true).Create()); // no cast...
         }
 
         [Test]
@@ -378,11 +386,10 @@ namespace Test.W2004
             //whatever...
 
             myDoc.AddEle(Paragraph.withPieces(
-                        ParagraphPiece.With("Leonardo Pinho Correa").WithStyle().SetFontSize("32").Create()
-                    ).Create());
+                ParagraphPiece.With("Leonardo Pinho Correa").WithStyle().SetFontSize("32").Create()
+                             ).Create());
 
             TestUtils.CreateLocalDoc(myDoc.Content);
         }
-
     }
 }
