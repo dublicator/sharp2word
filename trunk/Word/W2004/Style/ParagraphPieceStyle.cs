@@ -1,6 +1,7 @@
 using System.Drawing;
 using System.Text;
 using Word.Api.Interfaces;
+using Word.Utils;
 using Word.W2004.Elements;
 
 namespace Word.W2004.Style
@@ -98,22 +99,9 @@ namespace Word.W2004.Style
             }
         }
 
-        public static string ColorToHex(Color clr)
-        {
-            int red = clr.R;
-            int green = clr.G;
-            int blue = clr.B;
-
-            string colorHex = "";
-            colorHex += string.Format("{0:X02}", red);
-            colorHex += string.Format("{0:X02}", green);
-            colorHex += string.Format("{0:X02}", blue);
-            return colorHex;
-        }
-
         private void DoStyleColorEnum(StringBuilder style)
         {
-            var clr = ColorToHex(this._color);
+            var clr = ImageUtils.ColorToHex(this._color);
             if (!string.IsNullOrEmpty(clr) && !clr.Equals(""))
             {
                 style.Append("\n			<w:color w:val=\"" + clr + "\"/>");
