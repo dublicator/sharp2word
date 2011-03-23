@@ -11,7 +11,7 @@ namespace Word.W2004.Elements
     /// </summary>
     public class Paragraph : IElement, IFluentElement<Paragraph>, IFluentElementStylable<ParagraphStyle>
     {
-        private readonly ParagraphPiece[] _pieces;
+        private ParagraphPiece[] _pieces;
 
         private readonly ArrayList _tabs = new ArrayList();
         private ParagraphStyle _style = new ParagraphStyle();
@@ -26,7 +26,7 @@ namespace Word.W2004.Elements
             {
                 return;
             }
-            ParagraphPiece piece = new ParagraphPiece(value);
+            ParagraphPiece piece = ParagraphPiece.With(value);
             _pieces = new ParagraphPiece[1];
             _pieces[0] = piece;
         }
@@ -126,12 +126,25 @@ namespace Word.W2004.Elements
             this._style = style;
         }
 
-        public static Paragraph with(string value)
+        /// <summary>
+        /// Created a Paragraph with a simple @ParagraphPiece inside
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static Paragraph With(string value)
         {
-            return new Paragraph(value);
+            //if(value == null || "".equals(value)){
+            //return null;
+            //}
+            Paragraph par = new Paragraph();
+            ParagraphPiece piece = ParagraphPiece.With(value);
+            par._pieces = new ParagraphPiece[1];
+            par._pieces[0] = piece;
+            return par;
+            //return new Paragraph(value);
         }
 
-        public static Paragraph withPieces(params ParagraphPiece[] pieces)
+        public static Paragraph WithPieces(params ParagraphPiece[] pieces)
         {
             return new Paragraph(pieces);
         }

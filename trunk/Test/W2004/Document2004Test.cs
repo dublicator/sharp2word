@@ -10,7 +10,6 @@ namespace Test.W2004
 {
     public class Document2004Test : Assert
     {
-        //TODO: do tests with assert for document
 
         [Test]
         public void sanityTest()
@@ -82,7 +81,7 @@ namespace Test.W2004
 
             Assert.AreEqual("", myDoc.Header.Content);
 
-            myDoc.Header.AddEle(Paragraph.with("paragraph01").Create());
+            myDoc.Header.AddEle(Paragraph.With("paragraph01").Create());
 
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Header.Content, "<w:hdr w:type=\"odd\">"));
             Assert.AreEqual(1,
@@ -99,7 +98,7 @@ namespace Test.W2004
 
             Assert.AreEqual("", myDoc.Footer.Content);
 
-            myDoc.Footer.AddEle(Paragraph.with("paragraph01").Create());
+            myDoc.Footer.AddEle(Paragraph.With("paragraph01").Create());
 
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "<w:ftr w:type=\"odd\">"));
             Assert.AreEqual(1,
@@ -125,40 +124,6 @@ namespace Test.W2004
             myDoc.Body.AddEle(new Heading3("Heading 333"));
         }
 
-        [Test] //TODO: make this useful with assertions
-        public void testBasicParagraphStyle()
-        {
-            IDocument myDoc = new Document2004();
-
-            ParagraphPieceStyle style = new ParagraphPieceStyle();
-            style.SetBold(true);
-            style.SetItalic(true);
-
-            ParagraphPiece piece01 = new ParagraphPiece("222222");
-            ParagraphPiece piece02 = new ParagraphPiece("333333");
-
-            piece01.Style = style;
-
-            Paragraph p02 = new Paragraph(piece01, piece02);
-
-            myDoc.Body.AddEle(p02);
-        }
-
-        [Test] //TODO: make this useful with assertions
-        public void testBasicParagraphStyleColor()
-        {
-            IDocument myDoc = new Document2004();
-
-            ParagraphPiece piece01 = new ParagraphPiece("11111");
-            piece01.Style.SetTextColor("FF0000");
-
-            ParagraphPiece piece02 = new ParagraphPiece("22222");
-            piece02.Style.SetTextColor(Color.Red);
-
-            Paragraph p01 = new Paragraph(piece01, piece02);
-
-            myDoc.Body.AddEle(p01);
-        }
 
         [Test] //TODO: make this useful with assertions
         public void testBasicHeadingFluent()
@@ -385,8 +350,8 @@ namespace Test.W2004
             IDocument myDoc = new Document2004();
             //whatever...
 
-            myDoc.AddEle(Paragraph.withPieces(
-                ParagraphPiece.With("Leonardo Pinho Correa").WithStyle().SetFontSize("32").Create()
+            myDoc.AddEle(Paragraph.WithPieces(
+                ParagraphPiece.With("Leonardo Pinho Correa").WithStyle().FontSize(32).Create()
                              ).Create());
 
             TestUtils.CreateLocalDoc(myDoc.Content);

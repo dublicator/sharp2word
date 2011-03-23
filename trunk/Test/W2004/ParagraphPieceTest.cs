@@ -11,14 +11,14 @@ namespace Test.W2004
         [Test]
         public void sanityTest()
         {
-            IElement par = new ParagraphPiece("");
+            IElement par = ParagraphPiece.With("");
             Assert.AreEqual(par.Content, "");
         }
 
         [Test]
         public void sanityTest01()
         {
-            IElement par = new ParagraphPiece(null);
+            IElement par = ParagraphPiece.With(null);
             Assert.AreEqual(par.Content, "");
         }
 
@@ -39,9 +39,9 @@ namespace Test.W2004
         [Test]
         public void testGetContentWithStyleALL()
         {
-            IElement par = ParagraphPiece.With("piece01").WithStyle().SetBold(true)
-                .SetItalic(true).SetUnderline(true).SetFontSize(24)
-                .SetFont(Font.COURIER).SetTextColor("008000").Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Bold()
+                .Italic().Underline().FontSize(24)
+                .Font(Font.COURIER).TextColor("008000").Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
@@ -67,8 +67,8 @@ namespace Test.W2004
         [Test]
         public void testGetContentWithStyleBold()
         {
-            IElement par = ParagraphPiece.With("piece01").WithStyle().SetBold(true)
-                .SetItalic(false).SetUnderline(false).Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Bold()
+                .Italic().Underline().Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -98,7 +98,7 @@ namespace Test.W2004
         public void testGetContentWithStyleItalic()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle()
-                .SetItalic(true).Create();
+                .Italic().Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -129,7 +129,7 @@ namespace Test.W2004
         public void testGetContentWithStyleUnderline()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle()
-                .SetUnderline(true).Create();
+                .Underline().Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -160,7 +160,7 @@ namespace Test.W2004
         public void testGetContentWithStyleFont()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle()
-                .SetFont(Font.COURIER).Create();
+                .Font(Font.COURIER).Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -190,8 +190,8 @@ namespace Test.W2004
         public void testGetContentWithStyleTextColor()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle()
-                .SetItalic(false).SetUnderline(false)
-                .SetTextColor("008000").Create();
+                .Italic().Underline()
+                .TextColor("008000").Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -221,9 +221,9 @@ namespace Test.W2004
         public void testGetContentWithStyleFontSize()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle()
-                .SetItalic(false)
-                .SetUnderline(false)
-                .SetFontSize("50").Create();
+                .Italic()
+                .Underline()
+                .FontSize(50).Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -254,7 +254,7 @@ namespace Test.W2004
              * the font is "ARIAL_NARROW", so there should not be any bold tag in it.
              */
 
-            IElement par = ParagraphPiece.With("piece01").WithStyle().SetFont(Font.ARIAL_NARROW).Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW).Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -274,7 +274,7 @@ namespace Test.W2004
              * the font is "ARIAL_NARROW_BOLD", so there has to be a 'smart' bold tag in it.
              * There should not be any 'italic' this time
              */
-            IElement par = ParagraphPiece.With("piece01").WithStyle().SetFont(Font.ARIAL_NARROW_BOLD).Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW_BOLD).Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
@@ -293,7 +293,7 @@ namespace Test.W2004
              * the font is "ARIAL_NARROW_ITALIC", so there has to be a 'smart' Italic tag in it.
              * There should not be any 'bold' this time
              */
-            IElement par = ParagraphPiece.With("piece01").WithStyle().SetFont(Font.ARIAL_NARROW_ITALIC).Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW_ITALIC).Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -312,7 +312,7 @@ namespace Test.W2004
             /***
              * the font is "ARIAL_NARROW_ITALIC", so there has to be both 'smart' Italic and 'bold' tags in it.
              */
-            IElement par = ParagraphPiece.With("piece01").WithStyle().SetFont(Font.ARIAL_NARROW_BOLD_ITALIC).Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW_BOLD_ITALIC).Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
@@ -329,10 +329,10 @@ namespace Test.W2004
         public void testEquivalentSmartFont()
         {
             Paragraph p1 =
-                Paragraph.withPieces(
-                    ParagraphPiece.With("same").WithStyle().SetFont(Font.COURIER).SetBold(true).SetItalic(true).Create());
+                Paragraph.WithPieces(
+                    ParagraphPiece.With("same").WithStyle().Font(Font.COURIER).Bold().Italic().Create());
             Paragraph p2 =
-                Paragraph.withPieces(ParagraphPiece.With("same").WithStyle().SetFont(Font.COURIER_BOLD_ITALIC).Create());
+                Paragraph.WithPieces(ParagraphPiece.With("same").WithStyle().Font(Font.COURIER_BOLD_ITALIC).Create());
 
             Assert.True(p1.Content.Equals(p2.Content));
         }
@@ -341,7 +341,7 @@ namespace Test.W2004
         public void testGetContentWithStyleBGcolor()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle()
-                .SetBgColor("FFFF00")
+                .BgColor("FFFF00")
                 .Create();
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));

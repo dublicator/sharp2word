@@ -28,10 +28,10 @@ namespace Test
 
             xmlTemplate = replacePh(xmlTemplate, "phTableIssues", tbl.Content);
 
-            Paragraph p01 = Paragraph.with("1) Stop the server").Create();
-            Paragraph p02 = Paragraph.with("2) Run the script to deploy the app xxx").Create();
-            Paragraph p03 = Paragraph.with("3) Start the server").Create();
-            Paragraph p04 = Paragraph.with("4) Hope for the best").Create();
+            Paragraph p01 = Paragraph.With("1) Stop the server").Create();
+            Paragraph p02 = Paragraph.With("2) Run the script to deploy the app xxx").Create();
+            Paragraph p03 = Paragraph.With("3) Start the server").Create();
+            Paragraph p04 = Paragraph.With("4) Hope for the best").Create();
 
             string instructions = p01.Content + p02.Content + p03.Content + p04.Content;
 

@@ -9,7 +9,7 @@ namespace Word.W2004.Style
     /// </summary>
     public class ParagraphStyle : AbstractStyle, ISuperStylin
     {
-        private Align _align = Align.LEFT;
+        private Align _align = Style.Align.LEFT;
         private string _bgColor = "";
 
         #region ISuperStylin Members
@@ -62,13 +62,18 @@ namespace Word.W2004.Style
         /// </summary>
         /// <param name = "bgColor">Hexadecimal color code</param>
         /// <returns></returns>
-        public ParagraphStyle SetBgColor(string bgColor)
+        public ParagraphStyle BgColor(string bgColor)
         {
             this._bgColor = bgColor;
             return this;
         }
 
-        public ParagraphStyle SetAlign(Align align)
+        /// <summary>
+        /// Sets align for the whole paragraph
+        /// </summary>
+        /// <param name="align"></param>
+        /// <returns></returns>
+        public ParagraphStyle Align(Align align)
         {
             this._align = align;
             return this;

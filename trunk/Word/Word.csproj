@@ -68,6 +68,7 @@
     <Compile Include="W2004\Elements\TableElements\TableFooter.cs" />
     <Compile Include="W2004\Elements\TableElements\TableHeader.cs" />
     <Compile Include="W2004\Elements\WordArt.cs" />
+    <Compile Include="W2004\Elements\WordArtStyle.cs" />
     <Compile Include="W2004\Footer2004.cs" />
     <Compile Include="W2004\Head2004.cs" />
     <Compile Include="W2004\Header2004.cs" />
