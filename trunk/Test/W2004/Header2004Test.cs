@@ -18,7 +18,7 @@ namespace Test.W2004
         public void testAddEle()
         {
             Header2004 hd = new Header2004();
-            hd.AddEle(new Paragraph("p1"));
+            hd.AddEle(Paragraph.With("p1"));
             Assert.AreEqual(2, TestUtils.RegexCount(hd.Content, "<*w:hdr"));
             Assert.AreEqual(1, TestUtils.RegexCount(hd.Content, "<w:t>p1</w:t>"));
         }

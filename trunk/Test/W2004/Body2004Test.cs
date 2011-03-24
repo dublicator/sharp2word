@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using Word.Api.Interfaces;
 using Word.Utils;
 using Word.W2004;
 using Word.W2004.Elements;
@@ -14,6 +15,8 @@ namespace Test.W2004
             Body2004 bd = new Body2004();
             Assert.AreEqual(2, TestUtils.RegexCount(bd.Content, "<*w:body>"));
         }
+
+
 
         [Test]
         public void testAddEle()
@@ -43,7 +46,7 @@ namespace Test.W2004
         public void testHeader()
         {
             Body2004 bd = new Body2004();
-            bd.Header.AddEle(new Paragraph("header01"));
+            bd.Header.AddEle(Paragraph.With("header01"));
             Assert.AreEqual(2, TestUtils.RegexCount(bd.Content, "<*w:hdr"));
             Assert.AreEqual(1, TestUtils.RegexCount(bd.Content, "<w:t>header01</w:t>"));
         }
@@ -52,7 +55,7 @@ namespace Test.W2004
         public void testFooter()
         {
             Body2004 bd = new Body2004();
-            bd.Footer.AddEle(new Paragraph("footer01"));
+            bd.Footer.AddEle(Paragraph.With("footer01"));
             Assert.AreEqual(2, TestUtils.RegexCount(bd.Content, "<*w:ftr"));
             Assert.AreEqual(1, TestUtils.RegexCount(bd.Content, "<w:t>footer01</w:t>"));
         }
@@ -61,8 +64,8 @@ namespace Test.W2004
         public void testHeaderAndFooterSame()
         {
             Body2004 bd = new Body2004();
-            bd.Header.AddEle(new Paragraph("header01"));
-            bd.Footer.AddEle(new Paragraph("footer01"));
+            bd.Header.AddEle(Paragraph.With("header01"));
+            bd.Footer.AddEle(Paragraph.With("footer01"));
             Assert.AreEqual(1, TestUtils.RegexCount(bd.Content, "<w:t>header01</w:t>"));
             Assert.AreEqual(1, TestUtils.RegexCount(bd.Content, "<w:t>footer01</w:t>"));
             Console.WriteLine(bd.Content);
@@ -75,7 +78,7 @@ namespace Test.W2004
             Assert.False(bd.Header.GetHideHeaderAndFooterFirstPage()); // default is false
             bd.Header.SetHideHeaderAndFooterFirstPage(true);
             Assert.True(bd.Header.GetHideHeaderAndFooterFirstPage());
-            bd.Header.AddEle(new Paragraph("p1"));
+            bd.Header.AddEle(Paragraph.With("p1"));
             Console.WriteLine(bd.Content);
 
             Assert.AreEqual(1, TestUtils.RegexCount(bd.Content, "<w:t>p1</w:t>"));
@@ -93,7 +96,7 @@ namespace Test.W2004
         public void testshowHeaderAndFooter()
         {
             Body2004 bd = new Body2004();
-            bd.Header.AddEle(new Paragraph("p1"));
+            bd.Header.AddEle(Paragraph.With("p1"));
             Assert.False(bd.Header.GetHideHeaderAndFooterFirstPage()); // default is false
 
             Assert.AreEqual(1, TestUtils.RegexCount(bd.Content, "<w:t>p1</w:t>"));

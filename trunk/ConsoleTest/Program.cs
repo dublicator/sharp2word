@@ -27,17 +27,6 @@ namespace ConsoleTest
                                   };
             myDoc.Head.Properties = prop;
 
-            WordArt wa1 = new WordArt("Testing WordArt 1") {Font = Font.TIMES_NEW_ROMAN, FillColor = Color.Red, Style = 1};
-            myDoc.AddEle(wa1);
-            myDoc.AddEle(new BreakLine());
-
-            WordArt wa2 = new WordArt("Testing WordArt 2") { Font = Font.TIMES_NEW_ROMAN, FillColor = Color.Red, Style = 2 };
-            myDoc.AddEle(wa2);
-            myDoc.AddEle(new BreakLine());
-
-            WordArt wa3 = new WordArt("Testing WordArt 3") { Font = Font.TIMES_NEW_ROMAN, FillColor = Color.Red, Style = 3 };
-            myDoc.AddEle(wa3);
-
             myDoc.AddEle(BreakLine.SetTimes(1).Create()); // this is one breakline
 
             //Headings
