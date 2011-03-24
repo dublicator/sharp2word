@@ -18,8 +18,59 @@ namespace Word.W2004.Style
         private Font _font;
         private string _fontSize = "";
         private bool _italic;
+        private bool _subscript;
+        private bool _superscript;
         private string _textColor = "";
         private bool _underline;
+
+        /// <summary>
+        ///   Set the text to Bold
+        /// </summary>
+        /// <value></value>
+        public ParagraphPieceStyle Bold
+        {
+            get
+            {
+                _bold = true;
+                return this;
+            }
+        }
+
+        public ParagraphPieceStyle Italic
+        {
+            get
+            {
+                this._italic = true;
+                return this;
+            }
+        }
+
+        public ParagraphPieceStyle Underline
+        {
+            get
+            {
+                this._underline = true;
+                return this;
+            }
+        }
+
+        public ParagraphPieceStyle Subscript
+        {
+            get
+            {
+                _subscript = true;
+                return this;
+            }
+        }
+
+        public ParagraphPieceStyle Superscript
+        {
+            get
+            {
+                _superscript = true;
+                return this;
+            }
+        }
 
         #region ISuperStylin Members
 
@@ -33,6 +84,8 @@ namespace Word.W2004.Style
             DoStyleBold(style);
             DoStyleItalic(style);
             DoStyleUnderline(style);
+            DoStyleSubscript(style);
+            DoStyleSuperscript(style);
             DoStyleTextColorHexa(style);
             DoStyleColorEnum(style);
             DoStyleFontSize(style);
@@ -75,11 +128,27 @@ namespace Word.W2004.Style
             }
         }
 
+            private void DoStyleSubscript(StringBuilder style)
+            {
+                if (this._subscript)
+                {
+                    style.Append("\n			<w:vertAlign w:val=\"subscript\"/>");
+                }
+            }
+
+            private void DoStyleSuperscript(StringBuilder style)
+            {
+                if (this._superscript)
+                {
+                    style.Append("\n			<w:vertAlign w:val=\"superscript\"/>");
+                }
+            }
+
         private void DoStyleItalic(StringBuilder style)
         {
-            if (this._italic)
+            if (this._underline)
             {
-                style.Append("\n            	<w:i/>");
+                style.Append("\n			<w:u w:val=\"single\"/>");
             }
         }
 
@@ -87,7 +156,7 @@ namespace Word.W2004.Style
         {
             if (this._underline)
             {
-                style.Append("\n			<w:u w:val=\"single\"/>");
+                style.Append("\n            	<w:i/>");
             }
         }
 
@@ -188,37 +257,6 @@ namespace Word.W2004.Style
             return (ParagraphPiece) base.Create();
         }
 
-        /// <summary>
-        /// Set the text to Bold
-        /// </summary>
-        /// <value></value>
-        public ParagraphPieceStyle Bold
-        {
-            get
-            {
-                this._bold = true;
-                return this;
-            }
-        }
-
-        public ParagraphPieceStyle Italic
-        {
-            get
-            {
-                this._italic = true;
-                return this;
-            }
-        }
-
-        public ParagraphPieceStyle Underline
-        {
-            get
-            {
-                this._underline = true;
-                return this;
-            }
-        }
-
 
         /// <summary>
         ///   If you know the color code, just to straight to the point! Eg.:
@@ -262,6 +300,5 @@ namespace Word.W2004.Style
             this._fontSize = (size*2).ToString();
             return this;
         }
-
     }
 }
