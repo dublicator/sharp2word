@@ -18,7 +18,7 @@ namespace Test.W2004
         public void testAddEle()
         {
             Footer2004 ft = new Footer2004();
-            ft.AddEle(new Paragraph("p1"));
+            ft.AddEle(Paragraph.With("p1"));
             Assert.AreEqual(2, TestUtils.RegexCount(ft.Content, "<*w:ftr"));
             Assert.AreEqual(1, TestUtils.RegexCount(ft.Content, "<w:t>p1</w:t>"));
             Assert.AreEqual(6, TestUtils.RegexCount(ft.Content, "<w:rStyle w:val=\"PageNumber\"/>"));
@@ -38,7 +38,7 @@ namespace Test.W2004
         public void testFooterWithNoPageNumber()
         {
             Footer2004 ft = new Footer2004();
-            ft.AddEle(new Paragraph("p1"));
+            ft.AddEle(Paragraph.With("p1"));
             Assert.AreEqual(2, TestUtils.RegexCount(ft.Content, "<*w:ftr"));
             Assert.AreEqual(1, TestUtils.RegexCount(ft.Content, "<w:t>p1</w:t>"));
             Assert.AreEqual(0, TestUtils.RegexCount(ft.Content, "<w:rStyle w:val=\"PageNumber\"/>"));

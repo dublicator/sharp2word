@@ -52,6 +52,7 @@ namespace Word.W2004.Elements
 
         // size
 
+        /////Make it private later on
         /// <summary>
         ///   This is the location on your image. If you specify  "imageLocation" as WEB_URL, your path should start with "http://..."
         ///   But if you choose "imageLocation" as FULL_LOCAL_PATH, you should specify path value as absolute path from the root of your server. Eg.: /Users/YourName/imgs/...
@@ -65,7 +66,7 @@ namespace Word.W2004.Elements
         /// </param>
         public Image(string path, ImageLocation imageLocation)
         {
-            this._path = path;
+            _path = path;
             try
             {
                 if (imageLocation.Equals(ImageLocation.FULL_LOCAL_PATH))
@@ -157,8 +158,8 @@ namespace Word.W2004.Elements
                 res = res.Replace("{fileName}", fileName);
                 res = res.Replace("{internalFileName}", internalFileName);
                 res = res.Replace("{binary}", binary);
-                res = res.Replace("{width}", this._width);
-                res = res.Replace("{height}", this._height);
+                res = res.Replace("{width}", _width);
+                res = res.Replace("{height}", _height);
 
                 _txt.Append(res);
                 return _txt.ToString();
@@ -167,13 +168,13 @@ namespace Word.W2004.Elements
 
         public Image SetWidth(int value)
         {
-            this._width = value.ToString();
+            _width = value.ToString();
             return this;
         }
 
         public Image SetHeight(int value)
         {
-            this._height = value.ToString();
+            _height = value.ToString();
             return this;
         }
 
@@ -232,18 +233,18 @@ namespace Word.W2004.Elements
 
         private void SetUpSize()
         {
-            if ("".Equals(this._width) || "".Equals(this._height))
+            if ("".Equals(_width) || "".Equals(_height))
             {
                 string[] wh = OriginalWidthHeight.Split('#');
                 string ww = wh[0];
                 string hh = wh[1];
-                if ("".Equals(this._width))
+                if ("".Equals(_width))
                 {
-                    this._width = ww;
+                    _width = ww;
                 }
-                if ("".Equals(this._height))
+                if ("".Equals(_height))
                 {
-                    this._height = hh;
+                    _height = hh;
                 }
             }
         }

@@ -108,7 +108,7 @@ namespace Test.W2004
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "</w:ftr>"));
         }
 
-        [Test] //TODO: make this useful with assertions
+ /*       [Test] //TODO: make this useful with assertions
         public void testBasicHeadingStyle()
         {
             IDocument myDoc = new Document2004();
@@ -122,10 +122,10 @@ namespace Test.W2004
 
             myDoc.Body.AddEle(new Heading2("Heading 222"));
             myDoc.Body.AddEle(new Heading3("Heading 333"));
-        }
+        }*/
 
 
-        [Test] //TODO: make this useful with assertions
+/*        [Test] //TODO: make this useful with assertions
         public void testBasicHeadingFluent()
         {
             IDocument doc = new Document2004();
@@ -141,7 +141,7 @@ namespace Test.W2004
             doc.Body.AddEle(
                 Heading1.With("h3333").WithStyle().Bold()
                     .Italic().Create()); // no cast...
-        }
+        }*/
 
         [Test]
         public void testPageOrientationDefault()

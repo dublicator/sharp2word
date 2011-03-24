@@ -20,9 +20,9 @@ namespace Word.W2004.Style
         #region ISuperStylin Members
 
         /// <summary>
-        ///   This method holds the logic to replace all place holders for styling.  
-        ///   I also noticed if you don't replace the place holder, it doesn't cause any error! 
-        ///   But we should try to replace in order to keep the result xml clean.
+        ///   This method holds the logic to Replace all place holders for styling.
+        ///   I also noticed if you don't Replace the place holder, it doesn't cause any error!
+        ///   But we should try to Replace in order to keep the result xml clean.
         /// </summary>
         /// <param name = "txt"></param>
         /// <returns></returns>
@@ -30,6 +30,7 @@ namespace Word.W2004.Style
         {
             string alignValue = "\n            	<w:jc w:val=\"" + _align.Value + "\" />";
             txt = txt.Replace("{styleAlign}", alignValue);
+
             StringBuilder sbText = new StringBuilder("");
 
             ApplyBoldAndItalic(sbText);
@@ -50,32 +51,64 @@ namespace Word.W2004.Style
 
         private void ApplyBoldAndItalic(StringBuilder sbText)
         {
-            if (this._bold)
+            if (_bold)
             {
                 sbText.Append("\n            	<w:b/><w:b-cs/>");
             }
-            if (this._italic)
+            if (_italic)
             {
                 sbText.Append("\n            	<w:i/>");
             }
         }
 
 
+        public HeadingStyle SetAlign(Align align)
+        {
+            _align = align;
+            return this;
+        }
+
+        /// <summary>
+        ///   Heading alignment
+        /// </summary>
+        /// <param name = "align"></param>
+        /// <returns>fluent @HeadingStyle</returns>
         public HeadingStyle Align(Align align)
         {
-            this._align = align;
+            _align = align;
             return this;
         }
 
+
+        public HeadingStyle SetBold(bool bold)
+        {
+            _bold = bold;
+            return this;
+        }
+
+        /// <summary>
+        ///   Set Heading font to bold
+        /// </summary>
+        /// <returns>fluent @HeadingStyle</returns>
         public HeadingStyle Bold()
         {
-            this._bold = true;
+            _bold = true;
             return this;
         }
 
+        public HeadingStyle SetItalic(bool italic)
+        {
+            _italic = italic;
+            return this;
+        }
+
+        /// <summary>
+        ///   Set Heading font to italic
+        /// </summary>
+        /// <returns>fluent @HeadingStyle</returns>
         public HeadingStyle Italic()
         {
-            this._italic = true;
+            _italic = true;
             return this;
         }
     }

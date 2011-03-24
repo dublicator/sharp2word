@@ -11,6 +11,19 @@ namespace Word.W2004.Elements
     /// <typeparam name = "E"></typeparam>
     public class AbstractHeading<E> : IElement, IFluentElementStylable<E> where E : class
     {
+        /// <summary>
+        /// this is actual heading1, heading2 or heading3.
+        /// </summary>
+        private readonly string _headingType;
+
+        private readonly string _value; //value/text for the Heading
+
+        protected AbstractHeading(string headingType, string value)
+        {
+            this._headingType = headingType;
+            this._value = value;
+        }
+
         private const string template =
             "\n<w:p wsp:rsidR=\"004429ED\" wsp:rsidRDefault=\"00000000\" wsp:rsidP=\"004429ED\">"
             + "\n	<w:pPr>"
@@ -23,34 +36,7 @@ namespace Word.W2004.Elements
             + "\n	</w:r>"
             + "\n</w:p>";
 
-        /// <summary>
-        ///   This is actual heading1, heading2 or heading3.
-        /// </summary>
-        private readonly string _headingType;
-
-        private readonly string _value; //value/text for the Heading
-
-        private HeadingStyle _style = new HeadingStyle();
-
-        protected AbstractHeading(string headingType, string value)
-        {
-            this._headingType = headingType;
-            this._value = value;
-        }
-
-
-        public string Template
-        {
-            get { return template.Replace("{heading}", this._headingType); }
-        }
-
-        public HeadingStyle Style
-        {
-            get { return _style; }
-            set { this._style = value; }
-        }
-
-        #region IElement Members
+        private HeadingStyle style = new HeadingStyle();
 
         public string Content
         {
@@ -62,26 +48,29 @@ namespace Word.W2004.Elements
                 }
 
                 //For convention, it should be the last thing before returning the xml content.
-                string txt = _style.GetNewContentWithStyle(Template);
+                string txt = style.GetNewContentWithStyle(Template);
 
                 return txt.Replace("{value}", this._value);
             }
         }
 
-        #endregion
 
-        #region IFluentElementStylable<E> Members
-
-        /// <summary>
-        ///   Implements the stylable and the heading classes reuse it
-        /// </summary>
-        /// <returns></returns>
-        public E WithStyle()
+        public string Template
         {
-            this.Style.Element = this; //, Heading1.class
-            return this.Style as E;
+            get { return template.Replace("{heading}", this._headingType); }
         }
 
-        #endregion
+        public HeadingStyle Style
+        {
+            get { return style; }
+            set { this.style = style; }
+        }
+
+        //Implements the stylable and the heading classes reuse it
+        public E WithStyle()
+        {
+            this.style.Element = this; //, Heading1.class
+            return this.style as E;
+        }
     }
 }
