@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
-using System.Text;
 using Word.Api.Interfaces;
-using Word.Utils;
 using Word.W2004;
 using Word.W2004.Elements;
 using Word.W2004.Elements.TableElements;
@@ -66,8 +63,9 @@ namespace ConsoleTest
 
             myDoc.AddEle(Paragraph.WithPieces(myParPiece01, myParPiece02, myParPiece03).Create());
 
-            ParagraphPiece myParPieceJava =ParagraphPiece.With("I like C# and ").WithStyle().Font(Font.COURIER).Create();
-            ParagraphPiece myParPieceRuby =ParagraphPiece.With("Ruby!!! ").WithStyle().Bold.Italic.Create();
+            
+            ParagraphPiece myParPieceJava = ParagraphPiece.With("I like C# and ").WithStyle().Font(Font.COURIER).Create();
+            ParagraphPiece myParPieceRuby = ParagraphPiece.With("Ruby!!! ").WithStyle().Bold.Italic.Create();
             ParagraphPiece myParPieceAgile =
                 ParagraphPiece.With("I actually love C#, TDD, patterns... ").WithStyle().
                     TextColor("008000").Create();
@@ -77,6 +75,7 @@ namespace ConsoleTest
             //font size
             myDoc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("No size").Create(),
                                               ParagraphPiece.With("I am size 50.").WithStyle().FontSize(50).TextColor(Color.Cyan).Create()));
+
 
             //Document Header and Footer
             myDoc.AddEle(BreakLine.SetTimes(2).Create());
@@ -181,16 +180,18 @@ namespace ConsoleTest
             myDoc.AddEle(PageBreak.Create());
             myDoc.AddEle(Paragraph.With("There is a PAGE BREAK before this line:").Create());
 
-            //myDoc.Save(@"C:\testWord.doc");
-            string myWord = myDoc.Content;
-           // string msg = "";
-           // bool b=XmlValidator.ValidateXml(myWord, ref msg, Util.getAppRoot() + "\\Schemas\\wordml.xsd");
-           // Console.WriteLine("Result -" + b);
-            //Console.WriteLine(msg);
-            //Console.ReadKey();
+
+            //subscript
+            Paragraph subscript = Paragraph.WithPieces(ParagraphPiece.With("Text without subscript").Create(),
+                                                 ParagraphPiece.With("Text with subscript").WithStyle().Subscript.Create());
+            myDoc.AddEle(subscript);
+
+            //superscript
+            Paragraph superscript = Paragraph.WithPieces(ParagraphPiece.With("Text without superscript").Create(),
+                                                 ParagraphPiece.With("Text with superscript").WithStyle().Superscript.Create());
+            myDoc.AddEle(superscript);
+
             myDoc.Save(@"c:\mytest.doc");
-
-
         }
 
     }
