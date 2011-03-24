@@ -1,7 +1,10 @@
+using System;
+using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Schema;
 using Word.Api.Interfaces;
+using Word.Utils;
 
 namespace Word.W2004
 {
@@ -74,6 +77,22 @@ namespace Word.W2004
         public void SetPageOrientationLandscape()
         {
             this._isLandscape = true;
+        }
+
+        /// <summary>
+        /// Save document to local disk
+        /// </summary>
+        /// <param name="path">Path to file</param>
+        public void Save(string path)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Create))
+            {
+                using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                {
+                    w.Write(Util.Pretty(Content));
+                }
+            }
+
         }
 
         public IBody Body
