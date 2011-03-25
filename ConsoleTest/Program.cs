@@ -12,8 +12,30 @@ namespace ConsoleTest
 {
     class Program
     {
+        private static void Do()
+        {
+            IDocument doc = new Document2004();
+
+            doc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("This is Strike text").WithStyle().Strike().Create()));
+            doc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("This is Caps text").WithStyle().Caps().Create()));
+            doc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("This is DoubleStrike text").WithStyle().DoubleStrike().Create()));
+            doc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("This is Emboss text").WithStyle().Emboss().Create()));
+            doc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("This is Imprint text").WithStyle().Imprint().Create()));
+            doc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("This is Outline text").WithStyle().Outline().Create()));
+            doc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("This is Shadow text").WithStyle().Shadow().Create()));
+            doc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("This is SmallCaps text").WithStyle().SmallCaps().Create()));
+            doc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("Text").Create(),
+                ParagraphPiece.With("This is Subscript text").WithStyle().Subscript().Create()));
+            doc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("Text").Create(),
+                                            ParagraphPiece.With("This is Superscript text").WithStyle().Superscript().Create()));
+            doc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("This is Vanish text").WithStyle().Vanish().Create()));
+
+            doc.Save(@"C:\styles.doc");
+        }
+
         static void Main(string[] args)
         {
+            Do();
             IDocument myDoc = new Document2004();
 
             Properties prop = new Properties
@@ -190,6 +212,11 @@ namespace ConsoleTest
             Paragraph superscript = Paragraph.WithPieces(ParagraphPiece.With("Text without superscript").Create(),
                                                  ParagraphPiece.With("Text with superscript").WithStyle().Superscript().Create());
             myDoc.AddEle(superscript);
+
+            //Strikethrough
+            myDoc.AddEle(Paragraph.WithPieces(ParagraphPiece.With("This is Strikethrough text").WithStyle().Strike().Create()));
+            //myDoc.AddEle(Paragraph.With("This is Strikethrough text".Create());
+
 
             myDoc.Save(@"c:\mytest.doc");
         }
