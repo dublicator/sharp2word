@@ -18,11 +18,120 @@ namespace Word.W2004.Style
         private Font _font;
         private string _fontSize = "";
         private bool _italic;
-        private bool _strikethrough;
-        private bool _subscript;
-        private bool _superscript;
         private string _textColor = "";
         private bool _underline;
+
+        private bool _strike;
+        private bool _subscript;
+        private bool _superscript;
+        private bool _doubleStrike;
+        private bool _shadow;
+        private bool _outline;
+        private bool _emboss;
+        private bool _imprint;
+        private bool _smallCaps;
+        private bool _caps;
+        private bool _vanish;
+
+        public ParagraphPieceStyle DoubleStrike()
+        {
+            _doubleStrike = true;
+            return this;
+        }
+        public ParagraphPieceStyle Shadow()
+        {
+            _shadow = true;
+            return this;
+        }
+        public ParagraphPieceStyle Outline()
+        {
+            _outline = true;
+            return this;
+        }
+        public ParagraphPieceStyle Emboss()
+        {
+            _emboss = true;
+            return this;
+        }
+        public ParagraphPieceStyle Imprint()
+        {
+            _imprint = true;
+            return this;
+        }
+        public ParagraphPieceStyle SmallCaps()
+        {
+            _smallCaps = true;
+            return this;
+        }
+        public ParagraphPieceStyle Caps()
+        {
+            _caps = true;
+            return this;
+        }
+        public ParagraphPieceStyle Vanish()
+        {
+            _vanish = true;
+            return this;
+        }
+
+        private void DoStyleDoubleStrike(StringBuilder style)
+        {
+            if (this._doubleStrike)
+            {
+                style.Append("\n			<w:dstrike/>");
+            }
+        }
+        private void DoStyleShadow(StringBuilder style)
+        {
+            if (this._shadow)
+            {
+                style.Append("\n			<w:shadow/>");
+            }
+        }
+        private void DoStyleOutline(StringBuilder style)
+        {
+            if (this._outline)
+            {
+                style.Append("\n			<w:outline/>");
+            }
+        }
+        private void DoStyleEmboss(StringBuilder style)
+        {
+            if (this._emboss)
+            {
+                style.Append("\n			<w:emboss/>");
+            }
+        }
+        private void DoStyleImprint(StringBuilder style)
+        {
+            if (this._imprint)
+            {
+                style.Append("\n			<w:imprint/>");
+            }
+        }
+        private void DoStyleSmallCaps(StringBuilder style)
+        {
+            if (this._smallCaps)
+            {
+                style.Append("\n			<w:smallCaps/>");
+            }
+        }
+        private void DoStyleCaps(StringBuilder style)
+        {
+            if (this._caps)
+            {
+                style.Append("\n			<w:caps/>");
+            }
+        }
+        private void DoStyleVanish(StringBuilder style)
+        {
+            if (this._vanish)
+            {
+                style.Append("\n			<w:vanish/>");
+            }
+        }
+
+
 
         #region ISuperStylin Members
 
@@ -36,9 +145,19 @@ namespace Word.W2004.Style
             DoStyleBold(style);
             DoStyleItalic(style);
             DoStyleUnderline(style);
+
             DoStyleSubscript(style);
             DoStyleSuperscript(style);
-            DoStyleStrikethrough(style);
+            DoStyleStrike(style);
+            DoStyleCaps(style);
+            DoStyleDoubleStrike(style);
+            DoStyleEmboss(style);
+            DoStyleImprint(style);
+            DoStyleOutline(style);
+            DoStyleShadow(style);
+            DoStyleSmallCaps(style);
+            DoStyleVanish(style);
+            
             DoStyleTextColorHexa(style);
             DoStyleColorEnum(style);
             DoStyleFontSize(style);
@@ -83,9 +202,9 @@ namespace Word.W2004.Style
             return this;
         }
 
-        public ParagraphPieceStyle Strikethrough()
+        public ParagraphPieceStyle Strike()
         {
-            _strikethrough = true;
+            _strike = true;
             return this;
         }
 
@@ -137,9 +256,9 @@ namespace Word.W2004.Style
             }
         }
 
-        private void DoStyleStrikethrough(StringBuilder style)
+        private void DoStyleStrike(StringBuilder style)
         {
-            if (_strikethrough)
+            if (_strike)
             {
                 style.Append("\n			<w:strike/>");
             }
