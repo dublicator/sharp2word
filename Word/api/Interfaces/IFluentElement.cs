@@ -1,3 +1,5 @@
+using Word.W2004.Elements.TableElements;
+
 namespace Word.Api.Interfaces
 {
     public interface IFluentElement<F>

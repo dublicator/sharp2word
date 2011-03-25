@@ -18,10 +18,36 @@ namespace Word.W2004.Style
         private Font _font;
         private string _fontSize = "";
         private bool _italic;
+        private bool _strikethrough;
         private bool _subscript;
         private bool _superscript;
         private string _textColor = "";
         private bool _underline;
+
+        #region ISuperStylin Members
+
+        public override string GetNewContentWithStyle(string txt)
+        {
+            StringBuilder style = new StringBuilder("");
+
+            // 'doStyleFont' has to be before 'doStyleBold' and 'doStyleItalic'
+            // because of the 'smart bold/italic' based on font type.
+            DoStyleFont(style);
+            DoStyleBold(style);
+            DoStyleItalic(style);
+            DoStyleUnderline(style);
+            DoStyleSubscript(style);
+            DoStyleSuperscript(style);
+            DoStyleStrikethrough(style);
+            DoStyleTextColorHexa(style);
+            DoStyleColorEnum(style);
+            DoStyleFontSize(style);
+            DoStyleBgColor(style);
+
+            return DoStyleReplacement(style, txt);
+        }
+
+        #endregion
 
         /// <summary>
         ///   Set the text to Bold
@@ -57,29 +83,11 @@ namespace Word.W2004.Style
             return this;
         }
 
-        #region ISuperStylin Members
-
-        public override string GetNewContentWithStyle(string txt)
+        public ParagraphPieceStyle Strikethrough()
         {
-            StringBuilder style = new StringBuilder("");
-
-            // 'doStyleFont' has to be before 'doStyleBold' and 'doStyleItalic'
-            // because of the 'smart bold/italic' based on font type.
-            DoStyleFont(style);
-            DoStyleBold(style);
-            DoStyleItalic(style);
-            DoStyleUnderline(style);
-            DoStyleSubscript(style);
-            DoStyleSuperscript(style);
-            DoStyleTextColorHexa(style);
-            DoStyleColorEnum(style);
-            DoStyleFontSize(style);
-            DoStyleBgColor(style);
-
-            return DoStyleReplacement(style, txt);
+            _strikethrough = true;
+            return this;
         }
-
-        #endregion
 
         private void DoStyleBgColor(StringBuilder style)
         {
@@ -113,21 +121,29 @@ namespace Word.W2004.Style
             }
         }
 
-            private void DoStyleSubscript(StringBuilder style)
+        private void DoStyleSubscript(StringBuilder style)
+        {
+            if (this._subscript)
             {
-                if (this._subscript)
-                {
-                    style.Append("\n			<w:vertAlign w:val=\"subscript\"/>");
-                }
+                style.Append("\n			<w:vertAlign w:val=\"subscript\"/>");
             }
+        }
 
-            private void DoStyleSuperscript(StringBuilder style)
+        private void DoStyleSuperscript(StringBuilder style)
+        {
+            if (this._superscript)
             {
-                if (this._superscript)
-                {
-                    style.Append("\n			<w:vertAlign w:val=\"superscript\"/>");
-                }
+                style.Append("\n			<w:vertAlign w:val=\"superscript\"/>");
             }
+        }
+
+        private void DoStyleStrikethrough(StringBuilder style)
+        {
+            if (_strikethrough)
+            {
+                style.Append("\n			<w:strike/>");
+            }
+        }
 
         private void DoStyleItalic(StringBuilder style)
         {

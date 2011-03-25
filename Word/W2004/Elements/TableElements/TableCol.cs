@@ -20,6 +20,13 @@ namespace Word.W2004.Elements.TableElements
                                   +
                                   "\n                    <w:p wsp:rsidR=\"00505659\" wsp:rsidRPr=\"00505659\" wsp:rsidRDefault=\"00505659\"> "
                                   + "\n                        <w:r wsp:rsidRPr=\"00505659\"> "
+                                  + "\n                            <w:rPr>"
+                                  + "\n                                 <w:rFonts w:ascii=\"Arial\" w:h-ansi=\"Arial\" w:cs=\"Arial\"/>"
+                                  + "\n                                 <wx:font wx:val=\"Arial\"/>"
+                                  + "\n                                 <w:sz w:val=\"18\"/>"
+                                  + "\n                                 <w:sz-cs w:val=\"18\"/>"
+                                  + "\n                            </w:rPr>"
+
                                   + "\n                            <w:t>{value}</w:t> "
                                   + "\n                        </w:r> "
                                   + "\n                    </w:p> "

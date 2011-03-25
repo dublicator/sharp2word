@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Text;
 using Word.Api.Interfaces;
+using Word.W2004.Elements.TableElements;
 using Word.W2004.Style;
 
 namespace Word.W2004.Elements
@@ -11,7 +12,7 @@ namespace Word.W2004.Elements
     /// </summary>
     public class Paragraph : IElement, IFluentElement<Paragraph>, IFluentElementStylable<ParagraphStyle>
     {
-        private ParagraphPiece[] _pieces;
+        public ParagraphPiece[] _pieces;
 
         private readonly ArrayList _tabs = new ArrayList();
         private ParagraphStyle _style = new ParagraphStyle();
