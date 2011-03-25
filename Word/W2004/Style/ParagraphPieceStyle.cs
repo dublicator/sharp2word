@@ -26,50 +26,35 @@ namespace Word.W2004.Style
         /// <summary>
         ///   Set the text to Bold
         /// </summary>
-        /// <value></value>
-        public ParagraphPieceStyle Bold
+        /// <returns></returns>
+        public ParagraphPieceStyle Bold()
         {
-            get
-            {
-                _bold = true;
-                return this;
-            }
+            _bold = true;
+            return this;
         }
 
-        public ParagraphPieceStyle Italic
+        public ParagraphPieceStyle Italic()
         {
-            get
-            {
-                this._italic = true;
-                return this;
-            }
+            this._italic = true;
+            return this;
         }
 
-        public ParagraphPieceStyle Underline
+        public ParagraphPieceStyle Underline()
         {
-            get
-            {
-                this._underline = true;
-                return this;
-            }
+            this._underline = true;
+            return this;
         }
 
-        public ParagraphPieceStyle Subscript
+        public ParagraphPieceStyle Subscript()
         {
-            get
-            {
-                _subscript = true;
-                return this;
-            }
+            _subscript = true;
+            return this;
         }
 
-        public ParagraphPieceStyle Superscript
+        public ParagraphPieceStyle Superscript()
         {
-            get
-            {
-                _superscript = true;
-                return this;
-            }
+            _superscript = true;
+            return this;
         }
 
         #region ISuperStylin Members

@@ -65,7 +65,7 @@ namespace ConsoleTest
 
             
             ParagraphPiece myParPieceJava = ParagraphPiece.With("I like C# and ").WithStyle().Font(Font.COURIER).Create();
-            ParagraphPiece myParPieceRuby = ParagraphPiece.With("Ruby!!! ").WithStyle().Bold.Italic.Create();
+            ParagraphPiece myParPieceRuby = ParagraphPiece.With("Ruby!!! ").WithStyle().Bold().Italic().Create();
             ParagraphPiece myParPieceAgile =
                 ParagraphPiece.With("I actually love C#, TDD, patterns... ").WithStyle().
                     TextColor("008000").Create();
@@ -98,7 +98,7 @@ namespace ConsoleTest
 
             myDoc.Header.AddEle(
                 Paragraph.WithPieces(ParagraphPiece.With("I am in the"),
-                                     ParagraphPiece.With(" Header ").WithStyle().Bold.Create(),
+                                     ParagraphPiece.With(" Header ").WithStyle().Bold().Create(),
                                      ParagraphPiece.With("of all pages")).Create());
 
             myDoc.Footer.AddEle(Paragraph.With("I am in the Footer of all pages").Create());
@@ -166,12 +166,12 @@ namespace ConsoleTest
             myDoc.AddEle(
                 Paragraph.WithPieces(
                     ParagraphPiece.With("* Zico was mid-fieldfer and managed to score all those fucking goals!").
-                        WithStyle().Italic.Create()).Create());
+                        WithStyle().Italic().Create()).Create());
             myDoc.AddEle(
                 Paragraph.WithPieces(
                     ParagraphPiece.With(
                         "* Leonardo Correa's goals (me) include futsal, soccer, friendly games, training games, so on... (but not playstation)")
-                        .WithStyle().Italic.Create()).Create());
+                        .WithStyle().Italic().Create()).Create());
 
 
             //PageBreaks
@@ -183,12 +183,12 @@ namespace ConsoleTest
 
             //subscript
             Paragraph subscript = Paragraph.WithPieces(ParagraphPiece.With("Text without subscript").Create(),
-                                                 ParagraphPiece.With("Text with subscript").WithStyle().Subscript.Create());
+                                                 ParagraphPiece.With("Text with subscript").WithStyle().Subscript().Create());
             myDoc.AddEle(subscript);
 
             //superscript
             Paragraph superscript = Paragraph.WithPieces(ParagraphPiece.With("Text without superscript").Create(),
-                                                 ParagraphPiece.With("Text with superscript").WithStyle().Superscript.Create());
+                                                 ParagraphPiece.With("Text with superscript").WithStyle().Superscript().Create());
             myDoc.AddEle(superscript);
 
             myDoc.Save(@"c:\mytest.doc");

@@ -43,7 +43,6 @@
     <Compile Include="Api\Interfaces\IImage.cs" />
     <Compile Include="Api\Interfaces\ISuperStylin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\AuthenticatorService.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\TestUtils.cs" />
     <Compile Include="Utils\Utils.cs" />
