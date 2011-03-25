@@ -4,6 +4,7 @@ using System.Net;
 using System.Text;
 using Word.Api.Interfaces;
 using Word.Utils;
+using Word.W2004.Elements.TableElements;
 using BufferedImage = System.Drawing.Image;
 
 namespace Word.W2004.Elements

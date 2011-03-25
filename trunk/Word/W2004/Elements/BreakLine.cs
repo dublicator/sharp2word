@@ -1,5 +1,6 @@
 using System.Text;
 using Word.Api.Interfaces;
+using Word.W2004.Elements.TableElements;
 
 namespace Word.W2004.Elements
 {

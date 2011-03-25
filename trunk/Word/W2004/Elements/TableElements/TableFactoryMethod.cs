@@ -1,3 +1,5 @@
+using Word.Api.Interfaces;
+
 namespace Word.W2004.Elements.TableElements
 {
     /// <summary>
@@ -46,5 +48,6 @@ namespace Word.W2004.Elements.TableElements
                 return new TableFooter();
             }
         }
+
     }
 }
