@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using NUnit.Framework;
 using Word.Api.Interfaces;
@@ -108,40 +109,40 @@ namespace Test.W2004
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "</w:ftr>"));
         }
 
- /*       [Test] //TODO: make this useful with assertions
-        public void testBasicHeadingStyle()
-        {
-            IDocument myDoc = new Document2004();
-            Heading1 h1 = new Heading1("Heading 111");
-            HeadingStyle headingStyle = new HeadingStyle();
-            headingStyle.Align(Align.CENTER);
-            headingStyle.Italic();
+        /*       [Test] //TODO: make this useful with assertions
+               public void testBasicHeadingStyle()
+               {
+                   IDocument myDoc = new Document2004();
+                   Heading1 h1 = new Heading1("Heading 111");
+                   HeadingStyle headingStyle = new HeadingStyle();
+                   headingStyle.Align(Align.CENTER);
+                   headingStyle.Italic();
 
-            h1.Style = headingStyle;
-            myDoc.Body.AddEle(h1);
+                   h1.Style = headingStyle;
+                   myDoc.Body.AddEle(h1);
 
-            myDoc.Body.AddEle(new Heading2("Heading 222"));
-            myDoc.Body.AddEle(new Heading3("Heading 333"));
-        }*/
+                   myDoc.Body.AddEle(new Heading2("Heading 222"));
+                   myDoc.Body.AddEle(new Heading3("Heading 333"));
+               }*/
 
 
-/*        [Test] //TODO: make this useful with assertions
-        public void testBasicHeadingFluent()
-        {
-            IDocument doc = new Document2004();
-            Heading1 h1 = (Heading1) Heading1.With("h111").WithStyle()
-                                         .Bold().Italic()
-                                         .Align(Align.CENTER).Create();
+        /*        [Test] //TODO: make this useful with assertions
+                public void testBasicHeadingFluent()
+                {
+                    IDocument doc = new Document2004();
+                    Heading1 h1 = (Heading1) Heading1.With("h111").WithStyle()
+                                                 .Bold().Italic()
+                                                 .Align(Align.CENTER).Create();
 
-            Heading2 h2 = (Heading2) Heading2.With("h222").WithStyle()
-                                         .Bold().Italic().Create();
+                    Heading2 h2 = (Heading2) Heading2.With("h222").WithStyle()
+                                                 .Bold().Italic().Create();
 
-            doc.Body.AddEle(h1);
-            doc.Body.AddEle(h2);
-            doc.Body.AddEle(
-                Heading1.With("h3333").WithStyle().Bold()
-                    .Italic().Create()); // no cast...
-        }*/
+                    doc.Body.AddEle(h1);
+                    doc.Body.AddEle(h2);
+                    doc.Body.AddEle(
+                        Heading1.With("h3333").WithStyle().Bold()
+                            .Italic().Create()); // no cast...
+                }*/
 
         [Test]
         public void testPageOrientationDefault()
@@ -351,8 +352,10 @@ namespace Test.W2004
             //whatever...
 
             myDoc.AddEle(Paragraph.WithPieces(
-                ParagraphPiece.With("Leonardo Pinho Correa").WithStyle().FontSize(32).Create()
-                             ).Create());
+                        ParagraphPiece.With("Leonardo Pinho Correaxxx - L’Université de Nantes").Create()
+                    ).Create());
+
+            Console.WriteLine(myDoc.Content);
 
             TestUtils.CreateLocalDoc(myDoc.Content);
         }
