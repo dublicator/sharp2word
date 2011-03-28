@@ -22,7 +22,7 @@ namespace Test.W2004
         public void testUri()
         {
             IDocument myDoc = new Document2004();
-            String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
+            string expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
                     + "<?mso-application progid=\"Word.Document\"?> "
                     + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
                     + " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
