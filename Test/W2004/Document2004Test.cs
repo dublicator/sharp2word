@@ -10,6 +10,7 @@ namespace Test.W2004
     public class Document2004Test : Assert
     {
 
+
         [Test]
         public void sanityTest()
         {
@@ -338,7 +339,7 @@ namespace Test.W2004
             TestUtils.CreateLocalDoc(myDoc.Content);
         }
 
-        [Ignore]
+        //[Ignore]
         [Test]
         public void testFonts()
         {

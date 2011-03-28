@@ -78,7 +78,7 @@ namespace Word.W2004.Elements
         /// </summary>
         /// <param name = "value">Number of times</param>
         /// <returns>The Breakline object ready to go!</returns>
-        public static BreakLine SetTimes(int value)
+        public static BreakLine Times(int value)
         {
             return new BreakLine(value);
         }
