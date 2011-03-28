@@ -4,8 +4,10 @@ namespace Word.Api.Interfaces
 {
     public interface IImage : IElement
     {
-        Image SetWidth(int value);
+        Image SetWidth(double value);
 
-        Image SetHeight(int value);
+        Image SetHeight(double value);
+
+        Image Scale(double percent);
     }
 }

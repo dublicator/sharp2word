@@ -4,7 +4,6 @@ using System.Net;
 using System.Text;
 using Word.Api.Interfaces;
 using Word.Utils;
-using Word.W2004.Elements.TableElements;
 using BufferedImage = System.Drawing.Image;
 
 namespace Word.W2004.Elements
@@ -46,9 +45,9 @@ namespace Word.W2004.Elements
         private readonly string _path = "";
         private readonly StringBuilder _txt = new StringBuilder("");
         // size
-        private string _height = ""; // to be able to set this to override default
+        private double _height = 0; // to be able to set this to override default
 
-        private string _width = ""; // to be able to set this to override default
+        private double _width = 0; // to be able to set this to override default
         private bool _hasBeenCalledBefore;
 
         // size
@@ -95,10 +94,19 @@ namespace Word.W2004.Elements
             }
         }
 
+
+        public BufferedImage byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            BufferedImage returnImage = BufferedImage.FromStream(ms);
+            return returnImage;
+        }
+
         public Image(byte[] path)
         {
             try
             {
+                _bufferedImage = byteArrayToImage(path);
             }
             catch (IOException e)
             {
@@ -159,23 +167,30 @@ namespace Word.W2004.Elements
                 res = res.Replace("{fileName}", fileName);
                 res = res.Replace("{internalFileName}", internalFileName);
                 res = res.Replace("{binary}", binary);
-                res = res.Replace("{width}", _width);
-                res = res.Replace("{height}", _height);
+                res = res.Replace("{width}", _width.ToString());
+                res = res.Replace("{height}", _height.ToString());
 
                 _txt.Append(res);
                 return _txt.ToString();
             }
         }
 
-        public Image SetWidth(int value)
+        public Image SetWidth(double value)
         {
-            _width = value.ToString();
+            _width = value;
             return this;
         }
 
-        public Image SetHeight(int value)
+        public Image SetHeight(double value)
         {
-            _height = value.ToString();
+            _height = value;
+            return this;
+        }
+
+        public Image Scale(double percent)
+        {
+            _height *= percent;
+            _width *= percent;
             return this;
         }
 
@@ -237,8 +252,8 @@ namespace Word.W2004.Elements
             if ("".Equals(_width) || "".Equals(_height))
             {
                 string[] wh = OriginalWidthHeight.Split('#');
-                string ww = wh[0];
-                string hh = wh[1];
+                float ww = Convert.ToSingle(wh[0]);
+                float hh = Convert.ToSingle(wh[1]);
                 if ("".Equals(_width))
                 {
                     _width = ww;
