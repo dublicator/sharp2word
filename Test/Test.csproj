@@ -48,7 +48,6 @@
     <Compile Include="W2004\BreakLineTest.cs" />
     <Compile Include="W2004\Document2004Test.cs" />
     <Compile Include="W2004\Footer2004Test.cs" />
-    <Compile Include="W2004\Head2004Test.cs" />
     <Compile Include="W2004\Header2004Test.cs" />
     <Compile Include="W2004\HeadingStyleTest.cs" />
     <Compile Include="W2004\HeadingTest.cs" />

@@ -1,11 +1,9 @@
 using System;
-using System.Drawing;
 using NUnit.Framework;
 using Word.Api.Interfaces;
 using Word.Utils;
 using Word.W2004;
 using Word.W2004.Elements;
-using Word.W2004.Style;
 
 namespace Test.W2004
 {
@@ -24,38 +22,34 @@ namespace Test.W2004
         public void testUri()
         {
             IDocument myDoc = new Document2004();
-            const string expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
-                                    + "<?mso-application progid=\"Word.Document\"?> "
-                                    + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
-                                    +
-                                    " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
-                                    + " xmlns:ve=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" "
-                                    +
-                                    " xmlns:mv=\"urn:schemas-microsoft-com:mac:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" "
-                                    +
-                                    " xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" "
-                                    + " xmlns:w=\"http://schemas.microsoft.com/office/word/2003/wordml\" "
-                                    + " xmlns:wx=\"http://schemas.microsoft.com/office/word/2003/auxHint\" "
-                                    + " xmlns:wsp=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" "
-                                    + " xmlns:sl=\"http://schemas.microsoft.com/schemaLibrary/2003/core\" "
-                                    + " w:macrosPresent=\"no\" w:embeddedObjPresent=\"no\" w:ocxPresent=\"no\" "
-                                    + " xml:space=\"preserve\"> "
-                                    +
-                                    " <w:ignoreSubtree w:val=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" /> ";
-            Assert.AreEqual(expected, myDoc.Uri);
-            //            Assert.AreEqual("Uri is not as expected: ", , );
+            String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
+                    + "<?mso-application progid=\"Word.Document\"?> "
+                    + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
+                    + " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
+                    + " xmlns:ve=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" "
+                    + " xmlns:mv=\"urn:schemas-microsoft-com:mac:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" "
+                    + " xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" "
+                    + " xmlns:w=\"http://schemas.microsoft.com/office/word/2003/wordml\" "
+                    + " xmlns:wx=\"http://schemas.microsoft.com/office/word/2003/auxHint\" "
+                    + " xmlns:wsp=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" "
+                    + " xmlns:sl=\"http://schemas.microsoft.com/schemaLibrary/2003/core\" "
+                    + " w:macrosPresent=\"no\" w:embeddedObjPresent=\"no\" w:ocxPresent=\"no\" "
+                    + " xml:space=\"preserve\"> "
+                    + " <w:ignoreSubtree w:val=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" /> ";
+
+            Assert.AreEqual("Uri is not as expected: ", expected, myDoc.Uri);
         }
 
         [Test]
         public void testHead()
         {
             IDocument myDoc = new Document2004();
-            Assert.True(myDoc.Head.Content.Contains("<w:docPr>"));
-            Assert.True(myDoc.Head.Content
+            Assert.True(myDoc.Content.Contains("<w:docPr>"));
+            Assert.True(myDoc.Content
                             .Contains("<w:view w:val=\"print\"/>"));
-            Assert.True(myDoc.Head.Content
+            Assert.True(myDoc.Content
                             .Contains("<w:zoom w:percent=\"100\"/>"));
-            Assert.True(myDoc.Head.Content.Contains("</w:docPr>"));
+            Assert.True(myDoc.Content.Contains("</w:docPr>"));
         }
 
         [Test]
@@ -270,7 +264,7 @@ namespace Test.W2004
             myDoc.addEle(
                     new Paragraph("This document inside the paragraph, coming from '/src/test/resources/dtpick.gif': "
                             + Image.from_FULL_LOCAL_PATHL(Utils.getAppRoot()
-                                    + "/src/test/resources/dtpick.gif").getContent()));
+                                    + "/src/test/resources/dtpick.gif").Content));
 
             myDoc.addEle(BreakLine.times(1).create());
 
@@ -313,7 +307,7 @@ namespace Test.W2004
             myDoc.addEle(Paragraph.with("There is a PAGE BREAK before this line:").create());
 
 
-            string myWord = myDoc.getContent();
+            string myWord = myDoc.Content;
 
             writer.println(myWord);
             writer.close();*/
@@ -358,6 +352,83 @@ namespace Test.W2004
             Console.WriteLine(myDoc.Content);
 
             TestUtils.CreateLocalDoc(myDoc.Content);
+        }
+
+        [Test]
+        public void testDocHeadWithDefaults()
+        {
+            IDocument myDoc = new Document2004();
+            Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content,
+                    "<*o:DocumentProperties>")); // open/close test
+            Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content, "<*w:fonts>")); // open/close
+            // test
+            Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content, "<*w:styles>")); // open/close
+            // test
+            Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content, "<*w:docPr>")); // open/close
+            // test
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<w:view w:val=\"print\"/>")); // set up as print to be able to
+            // view page breaks etc...
+
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Title>Java2word title</o:Title>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Subject>Created by Java2word library</o:Subject>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Keywords>java2word, word document</o:Keywords>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Description></o:Description>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Category></o:Category>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Author>Leonardo Correa</o:Author>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:LastAuthor>Leonardo Correa</o:LastAuthor>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Manager>Leonardo Correa</o:Manager>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Company>Java2word, coding for fun!</o:Company>"));
+        }
+
+        [Test]
+        public void testDocHead()
+        {
+            IDocument myDoc = new Document2004();
+            myDoc.title("my title").subject("my subject").keywords("my keywords")
+                    .description("my description").category("my category")
+                    .author("the author").lastAuthor("the last author")
+                    .manager("the manager").company("my company");
+
+            Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content,
+                    "<*o:DocumentProperties>")); // open/close test
+            Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content, "<*w:fonts>")); // open/close
+            // test
+            Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content, "<*w:styles>")); // open/close
+            // test
+            Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content, "<*w:docPr>")); // open/close
+            // test
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<w:view w:val=\"print\"/>")); // set up as print to be able to
+            // view page breaks etc...
+
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Title>my title</o:Title>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Subject>my subject</o:Subject>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Keywords>my keywords</o:Keywords>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Description>my description</o:Description>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Category>my category</o:Category>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Author>the author</o:Author>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:LastAuthor>the last author</o:LastAuthor>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Manager>the manager</o:Manager>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
+                    "<o:Company>my company</o:Company>"));
         }
     }
 }
