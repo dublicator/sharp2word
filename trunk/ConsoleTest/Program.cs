@@ -38,14 +38,6 @@ namespace ConsoleTest
             Do();
             IDocument myDoc = new Document2004();
 
-            Properties prop = new Properties
-                                  {
-                                      //AppName = "Sharp2Word",
-                                      Author = "Dublicator",
-                                      LastSaved = DateTime.Now
-                                  };
-            myDoc.Head.Properties = prop;
-
             myDoc.AddEle(BreakLine.SetTimes(1).Create()); // this is one breakline
 
             //Headings

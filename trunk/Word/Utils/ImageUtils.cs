@@ -39,6 +39,10 @@ namespace Word.Utils
             using (MemoryStream ms = new MemoryStream())
             {
                 // Convert Image to byte[]
+                if (format==null)
+                {
+                    format = ImageFormat.Png;
+                }
                 image.Save(ms, format);
                 byte[] imageBytes = ms.ToArray();
 

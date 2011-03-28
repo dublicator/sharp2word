@@ -38,7 +38,6 @@
     <Compile Include="Api\Interfaces\IFluentElementStylable.cs" />
     <Compile Include="Api\Interfaces\IFooter.cs" />
     <Compile Include="Api\Interfaces\IHasElement.cs" />
-    <Compile Include="Api\Interfaces\IHead.cs" />
     <Compile Include="Api\Interfaces\IHeader.cs" />
     <Compile Include="Api\Interfaces\IImage.cs" />
     <Compile Include="Api\Interfaces\ISuperStylin.cs" />
@@ -69,9 +68,7 @@
     <Compile Include="W2004\Elements\WordArt.cs" />
     <Compile Include="W2004\Elements\WordArtStyle.cs" />
     <Compile Include="W2004\Footer2004.cs" />
-    <Compile Include="W2004\Head2004.cs" />
     <Compile Include="W2004\Header2004.cs" />
-    <Compile Include="W2004\Properties.cs" />
     <Compile Include="W2004\Style\AbstractStyle.cs" />
     <Compile Include="W2004\Style\Align.cs" />
     <Compile Include="W2004\Style\Font.cs" />

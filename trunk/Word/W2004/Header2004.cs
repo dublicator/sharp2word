@@ -25,7 +25,7 @@ namespace Word.W2004
             + "\n            </w:ftr> "
             + "\n            <w:pgSz w:w=\"11900\" w:h=\"16840\"/> "
             +
-            "\n            <w:pgMar w:top=\"629\" w:right=\"2517\" w:bottom=\"1259\" w:left=\"1888\" w:header=\"709\" w:footer=\"709\" w:gutter=\"0\"/> "
+            "\n            <w:pgMar w:top=\"629\" w:right=\"851\" w:bottom=\"1259\" w:left=\"851\" w:header=\"709\" w:footer=\"709\" w:gutter=\"0\"/> "
             + "\n            <w:cols w:space=\"708\"/> "
             + "\n            <w:titlePg/> ";
 

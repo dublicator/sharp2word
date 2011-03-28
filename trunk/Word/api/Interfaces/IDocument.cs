@@ -1,3 +1,5 @@
+using Word.W2004;
+
 namespace Word.Api.Interfaces
 {
     /// <summary>
@@ -14,11 +16,6 @@ namespace Word.Api.Interfaces
         /// </summary>
         /// <value>The body of the document</value>
         IBody Body { get; }
-
-        /// <summary>
-        /// </summary>
-        /// <value>The head that contains uri</value>
-        IHead Head { get; }
 
         /// <summary>
         /// </summary>
@@ -40,5 +37,60 @@ namespace Word.Api.Interfaces
         /// </summary>
         /// <param name="path">Path to file</param>
         void Save(string path);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="title">Represents the title of the document. The title can be different than the file name. The title is used when searching for the document and also when creating Web pages from the document.</param>
+        /// <returns>fluent @Document reference</returns>
+        Document2004 title(string title);
+
+        /// <summary></summary>
+        /// <param name="subject">Represents the subject of the document. This property can be used to group similar files together, so you can search for all files that have the same subject.</param>
+        /// <returns>fluent @Document reference</returns>
+
+        Document2004 subject(string subject);
+
+        /// <summary></summary>
+        /// <param name="keywords">Represents keywords to be used when searching for the document.</param>
+        /// <returns>fluent @Document reference</returns>
+
+        Document2004 keywords(string keywords);
+
+        /// <summary></summary>
+        /// <param name="description">Represents comments to be used when searching for the document.</param>
+        /// <returns>fluent @Document reference</returns>
+
+        Document2004 description(string description);
+
+        /// <summary></summary>
+        /// <param name="category">Represents the author who created the document.</param>
+        /// <returns>fluent @Document reference</returns>
+
+        Document2004 category(string category);
+
+        /// <summary></summary>
+        /// <param name="author">Represents the name of the author of the document.</param>
+        /// <returns>fluent @Document reference</returns>
+
+        Document2004 author(string author);
+
+        /// <summary></summary>
+        /// <param name="lastAuthor">Represents the name of the author who last saved the document.</param>
+        /// <returns>fluent @Document reference</returns>
+
+        Document2004 lastAuthor(string lastAuthor);
+
+        /// <summary></summary>
+        /// <param name="manager">Represents the manager of the author of the document. This property can be used to group similar files together, so you can search for all the files that have the same manager.</param>
+        /// <returns>fluent @Document reference</returns>
+
+        Document2004 manager(string manager);
+
+        /// <summary></summary>
+        /// <param name="company"> Represents the company that employs the author. This property can be used to group similar files together, so you can search for all files that have the same company.</param>
+        /// <returns>fluent @Document reference</returns>
+
+        Document2004 company(string company);
     }
 }
