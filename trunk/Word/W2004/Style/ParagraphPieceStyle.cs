@@ -97,18 +97,30 @@ namespace Word.W2004.Style
             return this;
         }
 
+        /// <summary>
+        /// It makes capital case but with middle letters a bit smaller the the first one in the word
+        /// </summary>
+        /// <returns></returns>
         public ParagraphPieceStyle SmallCaps()
         {
             _smallCaps = true;
             return this;
         }
 
+        /// <summary>
+        /// It makes the value Capital case
+        /// </summary>
+        /// <returns></returns>
         public ParagraphPieceStyle Caps()
         {
             _caps = true;
             return this;
         }
 
+        /// <summary>
+        /// It makes the text hidden or doesn't show it.
+        /// </summary>
+        /// <returns></returns>
         public ParagraphPieceStyle Vanish()
         {
             _vanish = true;

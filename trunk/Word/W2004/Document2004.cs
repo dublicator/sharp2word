@@ -5,6 +5,9 @@ using Word.Utils;
 
 namespace Word.W2004
 {
+    /// <summary>
+    /// This is the main class in this API. It represents the MS Word document.
+    /// </summary>
     public class Document2004 : IDocument, IElement
     {
         private bool hasBeenCalledBefore = false; // if getContent has already been called, I cached the result for future invocations
@@ -78,21 +81,19 @@ namespace Word.W2004
             get
             {
                 string uri = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
-                             + "<?mso-application progid=\"Word.Document\"?> "
-                             + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
-                             +
-                             " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
-                             + " xmlns:ve=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" "
-                             +
-                             " xmlns:mv=\"urn:schemas-microsoft-com:mac:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" "
-                             + " xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" "
-                             + " xmlns:w=\"http://schemas.microsoft.com/office/word/2003/wordml\" "
-                             + " xmlns:wx=\"http://schemas.microsoft.com/office/word/2003/auxHint\" "
-                             + " xmlns:wsp=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" "
-                             + " xmlns:sl=\"http://schemas.microsoft.com/schemaLibrary/2003/core\" "
-                             + " w:macrosPresent=\"no\" w:embeddedObjPresent=\"no\" w:ocxPresent=\"no\" "
-                             + " xml:space=\"preserve\"> "
-                             + " <w:ignoreSubtree w:val=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" /> ";
+                    + "<?mso-application progid=\"Word.Document\"?> "
+                    + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
+                    + " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
+                    + " xmlns:ve=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" "
+                    + " xmlns:mv=\"urn:schemas-microsoft-com:mac:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" "
+                    + " xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" "
+                    + " xmlns:w=\"http://schemas.microsoft.com/office/word/2003/wordml\" "
+                    + " xmlns:wx=\"http://schemas.microsoft.com/office/word/2003/auxHint\" "
+                    + " xmlns:wsp=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" "
+                    + " xmlns:sl=\"http://schemas.microsoft.com/schemaLibrary/2003/core\" "
+                    + " w:macrosPresent=\"no\" w:embeddedObjPresent=\"no\" w:ocxPresent=\"no\" "
+                    + " xml:space=\"preserve\"> "
+                    + " <w:ignoreSubtree w:val=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" /> ";
                 return uri;
             }
         }
@@ -122,6 +123,10 @@ namespace Word.W2004
             }
         }
 
+        /// <summary>
+        /// Returns the Document head that contains: DocumentProperties, fonts and styles
+        /// </summary>
+        /// <returns></returns>
         private object getDocumentHead()
         {
             string docHead = DocumentHead;
@@ -169,14 +174,16 @@ namespace Word.W2004
         {
             get
             {
-//forward it to the body
+                //forward it to the body
                 return this.Body.Footer;
             }
         }
 
         public IHeader Header
         {
-            get { return this.Body.Header; //forward it to the body
+            get
+            {
+                return this.Body.Header; //forward it to the body
             }
         }
 

@@ -8,6 +8,15 @@ namespace Test.W2004
 {
     public class ParagraphPieceTest : Assert
     {
+        private void doBasicChecking(IElement par, string value)
+        {
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:t>" + value + "</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
+        }
+
         [Test]
         public void sanityTest()
         {
@@ -29,11 +38,12 @@ namespace Test.W2004
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
             Assert.AreEqual(1,
-                            TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
+                    TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
 
             // if there is no style, shouldn't have this
             Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<*w:rPr>"));
+
         }
 
         [Test]
@@ -42,11 +52,9 @@ namespace Test.W2004
             IElement par = ParagraphPiece.With("piece01").WithStyle().Bold().Italic().Underline().FontSize(24)
                 .Font(Font.COURIER).TextColor("008000").Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
+            doBasicChecking(par, "piece01");
+
+
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:i/>")); // italic
@@ -68,12 +76,7 @@ namespace Test.W2004
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Bold().Italic().Underline().Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1,
-                            TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
+            doBasicChecking(par, "piece01");
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
 
@@ -97,12 +100,7 @@ namespace Test.W2004
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Italic().Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1,
-                            TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
+            doBasicChecking(par, "piece01");
 
             Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
 
@@ -127,12 +125,7 @@ namespace Test.W2004
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Underline().Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1,
-                            TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
+            doBasicChecking(par, "piece01");
 
 
             Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
@@ -158,12 +151,7 @@ namespace Test.W2004
             IElement par = ParagraphPiece.With("piece01").WithStyle()
                 .Font(Font.COURIER).Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1,
-                            TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
+            doBasicChecking(par, "piece01");
 
 
             Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
@@ -188,12 +176,7 @@ namespace Test.W2004
             IElement par = ParagraphPiece.With("piece01").WithStyle().Italic().Underline()
                 .TextColor("008000").Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1,
-                            TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
+            doBasicChecking(par, "piece01");
 
 
             Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
@@ -218,12 +201,7 @@ namespace Test.W2004
             IElement par = ParagraphPiece.With("piece01").WithStyle().Italic().Underline()
                 .FontSize(50).Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1,
-                            TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
+            doBasicChecking(par, "piece01");
 
 
             Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
@@ -249,11 +227,7 @@ namespace Test.W2004
 
             IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW).Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1,
-                            TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            doBasicChecking(par, "piece01");
 
             Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
 
@@ -269,10 +243,7 @@ namespace Test.W2004
              */
             IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW_BOLD).Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            doBasicChecking(par, "piece01");
 
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
@@ -288,11 +259,7 @@ namespace Test.W2004
              */
             IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW_ITALIC).Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1,
-                            TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            doBasicChecking(par, "piece01");
 
             Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
 
@@ -307,11 +274,7 @@ namespace Test.W2004
              */
             IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW_BOLD_ITALIC).Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1,
-                            TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
+            doBasicChecking(par, "piece01");
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:b/>")); // bold
 
@@ -337,13 +300,97 @@ namespace Test.W2004
                 .BgColor("FFFF00")
                 .Create();
 
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:t>piece01</w:t>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:rPr>"));
-            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:rPr>"));
+            doBasicChecking(par, "piece01");
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "FFFF00")); //Background Color
+        }
+
+        [Test]
+        public void testSubscript()
+        {
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Subscript().Create();
+            doBasicChecking(par, "piece01");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:vertAlign w:val=\"subscript\"/>"));
+        }
+
+        [Test]
+        public void testSuperscript()
+        {
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Superscript().Create();
+            doBasicChecking(par, "piece01");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:vertAlign w:val=\"superscript\"/>"));
+        }
+
+        [Test]
+        public void testCaps()
+        {
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Caps().Create();
+            doBasicChecking(par, "piece01");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:caps/>"));
+        }
+
+        [Test]
+        public void testDoubleStrike()
+        {
+            IElement par = ParagraphPiece.With("piece01").WithStyle().DoubleStrike().Create();
+            doBasicChecking(par, "piece01");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:dstrike/>"));
+        }
+
+        [Test]
+        public void testStrike()
+        {
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Strike().Create();
+            doBasicChecking(par, "piece01");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:strike/>"));
+        }
+
+        [Test]
+        public void testEmboss()
+        {
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Emboss().Create();
+            doBasicChecking(par, "piece01");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:emboss/>"));
+        }
+
+        [Test]
+        public void testImprint()
+        {
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Imprint().Create();
+            doBasicChecking(par, "piece01");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:imprint/>"));
+        }
+
+        [Test]
+        public void testOutline()
+        {
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Outline().Create();
+            doBasicChecking(par, "piece01");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:outline/>"));
+        }
+
+        [Test]
+        public void testShadow()
+        {
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Shadow().Create();
+            doBasicChecking(par, "piece01");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:shadow/>"));
+        }
+
+        [Test]
+        public void testSmallCaps()
+        {
+            IElement par = ParagraphPiece.With("piece01").WithStyle().SmallCaps().Create();
+            doBasicChecking(par, "piece01");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:smallCaps/>"));
+        }
+
+        [Test]
+        public void testVanish()
+        {
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Vanish().Create();
+            doBasicChecking(par, "piece01");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:vanish/>"));
         }
     }
 }
