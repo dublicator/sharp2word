@@ -34,6 +34,11 @@ namespace Word.W2004.Style
             get { return new Font("Arial Narrow"); }
         }
 
+        public static Font ARIAL
+        {
+            get { return new Font("Arial"); }
+        }
+
         public static Font ARIAL_NARROW_BOLD
         {
             get { return new Font("Arial Narrow Bold"); }
