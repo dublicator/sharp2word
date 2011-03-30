@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-using Word.Api.Interfaces;
-using Word.Utils;
+﻿using Word.Api.Interfaces;
 using Word.W2004;
 using Word.W2004.Elements;
 using Word.W2004.Elements.TableElements;
@@ -16,6 +13,7 @@ namespace ConsoleTest
         static void Main()
         {
             IDocument myDoc = new Document2004();
+            myDoc.Body.SetMarginBody(10, 10, 10, 10);
             // myDoc.setPageOrientationLandscape();// default is Portrait be can be
             // changed.
 
