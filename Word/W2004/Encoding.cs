@@ -1,8 +1,8 @@
-﻿namespace Word
+namespace Word.W2004
 {
     public class Encoding
     {
-        private string _value;
+        private readonly string _value;
 
         public static Encoding UTF_8
         {
@@ -20,16 +20,16 @@
             }
         }
 
-        Encoding(string value)
+        private Encoding(string value)
         {
-            this._value = value;
+            //_encoding = System.Text.Encoding.GetEncoding(value);
+            _value = value;
         }
 
-        public string getValue()
+        public string Value
         {
-            return _value;
+            get { return _value; }
         }
-
     }
 
 }
