@@ -2,7 +2,7 @@ using Word.W2004.Elements.TableElements;
 
 namespace Word.Api.Interfaces
 {
-    public interface IFluentElement<F>
+    public interface IFluentElement<out F>
     {
         /// <summary>
         ///   This method is just to keep the API consistent when you do something like:
