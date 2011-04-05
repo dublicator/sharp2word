@@ -39,65 +39,56 @@ namespace Word.Api.Interfaces
         void Save(string path);
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="title">Represents the title of the document. The title can be different than the file name. The title is used when searching for the document and also when creating Web pages from the document.</param>
         /// <returns>fluent @Document reference</returns>
-        Document2004 title(string title);
+        Document2004 Title(string title);
 
         /// <summary></summary>
         /// <param name="subject">Represents the subject of the document. This property can be used to group similar files together, so you can search for all files that have the same subject.</param>
         /// <returns>fluent @Document reference</returns>
-
-        Document2004 subject(string subject);
+        Document2004 Subject(string subject);
 
         /// <summary></summary>
         /// <param name="keywords">Represents keywords to be used when searching for the document.</param>
         /// <returns>fluent @Document reference</returns>
-
-        Document2004 keywords(string keywords);
+        Document2004 Keywords(string keywords);
 
         /// <summary></summary>
         /// <param name="description">Represents comments to be used when searching for the document.</param>
         /// <returns>fluent @Document reference</returns>
-
-        Document2004 description(string description);
+        Document2004 Description(string description);
 
         /// <summary></summary>
         /// <param name="category">Represents the author who created the document.</param>
         /// <returns>fluent @Document reference</returns>
-
-        Document2004 category(string category);
+        Document2004 Category(string category);
 
         /// <summary></summary>
         /// <param name="author">Represents the name of the author of the document.</param>
         /// <returns>fluent @Document reference</returns>
-
-        Document2004 author(string author);
+        Document2004 Author(string author);
 
         /// <summary></summary>
         /// <param name="lastAuthor">Represents the name of the author who last saved the document.</param>
         /// <returns>fluent @Document reference</returns>
-
-        Document2004 lastAuthor(string lastAuthor);
+        Document2004 LastAuthor(string lastAuthor);
 
         /// <summary></summary>
         /// <param name="manager">Represents the manager of the author of the document. This property can be used to group similar files together, so you can search for all the files that have the same manager.</param>
         /// <returns>fluent @Document reference</returns>
-
-        Document2004 manager(string manager);
+        Document2004 Manager(string manager);
 
         /// <summary></summary>
         /// <param name="company"> Represents the company that employs the author. This property can be used to group similar files together, so you can search for all files that have the same company.</param>
         /// <returns>fluent @Document reference</returns>
-
-        Document2004 company(string company);
+        Document2004 Company(string company);
 
         /// <summary>
         /// The encoding you want to use in your document. UTF-8 or ISO8859-1, according to the Enum @Encoding
         /// </summary>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        Document2004 encoding(Encoding encoding);
+        Document2004 Encoding(Encoding encoding);
     }
 }

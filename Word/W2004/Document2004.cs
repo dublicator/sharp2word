@@ -16,7 +16,7 @@ namespace Word.W2004
         private IBody body = new Body2004();
         private bool isLandscape = false;
 
-        private Encoding _encoding = Encoding.UTF_8;
+        private Encoding _encoding = Word.Encoding.UTF_8;
 
         private string _title = "Java2word title";
         private string _subject = "Created by Java2word library";
@@ -28,53 +28,53 @@ namespace Word.W2004
         private string _manager = "Leonardo Correa";
         private string _company = "Java2word, coding for fun!";
 
-        public Document2004 encoding(Encoding encoding)
+        public Document2004 Encoding(Encoding encoding)
         {
             this._encoding = encoding;
             return this;
         }
 
-        public Document2004 title(string title)
+        public Document2004 Title(string title)
         {
             this._title = title;
             return this;
         }
-        public Document2004 subject(string subject)
+        public Document2004 Subject(string subject)
         {
             this._subject = subject;
             return this;
         }
-        public Document2004 keywords(string keywords)
+        public Document2004 Keywords(string keywords)
         {
             this._keywords = keywords;
             return this;
         }
-        public Document2004 description(string description)
+        public Document2004 Description(string description)
         {
             this._description = description;
             return this;
         }
-        public Document2004 category(string category)
+        public Document2004 Category(string category)
         {
             this._category = category;
             return this;
         }
-        public Document2004 author(string author)
+        public Document2004 Author(string author)
         {
             this._author = author;
             return this;
         }
-        public Document2004 lastAuthor(string lastAuthor)
+        public Document2004 LastAuthor(string lastAuthor)
         {
             this._lastAuthor = lastAuthor;
             return this;
         }
-        public Document2004 manager(string manager)
+        public Document2004 Manager(string manager)
         {
             this._manager = manager;
             return this;
         }
-        public Document2004 company(string company)
+        public Document2004 Company(string company)
         {
             this._company = company;
             return this;
