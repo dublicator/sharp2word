@@ -23,7 +23,7 @@ namespace Word.Utils
 
             using (FileStream fs = new FileStream(doc, FileMode.Create))
             {
-                using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                using (StreamWriter w = new StreamWriter(fs, System.Text.Encoding.UTF8))
                 {
                     w.Write(Util.Pretty(myDoc));
                 }

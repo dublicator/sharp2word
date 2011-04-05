@@ -16,7 +16,7 @@ namespace Word.W2004
         private IBody body = new Body2004();
         private bool isLandscape = false;
 
-
+        private Encoding _encoding = Encoding.UTF_8;
 
         private string _title = "Java2word title";
         private string _subject = "Created by Java2word library";
@@ -28,6 +28,11 @@ namespace Word.W2004
         private string _manager = "Leonardo Correa";
         private string _company = "Java2word, coding for fun!";
 
+        public Document2004 encoding(Encoding encoding)
+        {
+            this._encoding = encoding;
+            return this;
+        }
 
         public Document2004 title(string title)
         {
@@ -80,7 +85,7 @@ namespace Word.W2004
         {
             get
             {
-                string uri = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
+                string uri = "<?xml version=\"1.0\" encoding=\"" + _encoding.getValue() + "\" standalone=\"yes\"?> "
                     + "<?mso-application progid=\"Word.Document\"?> "
                     + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
                     + " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
@@ -648,7 +653,7 @@ namespace Word.W2004
         {
             using (FileStream fs = new FileStream(path, FileMode.Create))
             {
-                using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                using (StreamWriter w = new StreamWriter(fs, System.Text.Encoding.UTF8))
                 {
                     w.Write(Util.Pretty(Content));
                 }

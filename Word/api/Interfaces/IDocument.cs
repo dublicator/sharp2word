@@ -92,5 +92,12 @@ namespace Word.Api.Interfaces
         /// <returns>fluent @Document reference</returns>
 
         Document2004 company(string company);
+
+        /// <summary>
+        /// The encoding you want to use in your document. UTF-8 or ISO8859-1, according to the Enum @Encoding
+        /// </summary>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
+        Document2004 encoding(Encoding encoding);
     }
 }
