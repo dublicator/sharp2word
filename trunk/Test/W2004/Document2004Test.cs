@@ -18,7 +18,7 @@ namespace Test.W2004
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content, "encoding=\"UTF-8\""));
 
             IDocument myDoc02 = new Document2004();
-            myDoc02.encoding(Encoding.UTF_8);
+            myDoc02.Encoding(Encoding.UTF_8);
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc02.Content, "encoding=\"UTF-8\""));
         }
 
@@ -26,7 +26,7 @@ namespace Test.W2004
         public void testDefaultEncodingISO8859_1()
         {
             IDocument myDoc = new Document2004();
-            myDoc.encoding(Encoding.ISO8859_1);
+            myDoc.Encoding(Encoding.ISO8859_1);
 
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content, "encoding=\"ISO8859-1\""));
         }
@@ -417,10 +417,10 @@ namespace Test.W2004
         public void testDocHead()
         {
             IDocument myDoc = new Document2004();
-            myDoc.title("my title").subject("my subject").keywords("my keywords")
-                .description("my description").category("my category")
-                .author("the author").lastAuthor("the last author")
-                .manager("the manager").company("my company");
+            myDoc.Title("my title").Subject("my subject").Keywords("my keywords")
+                .Description("my description").Category("my category")
+                .Author("the author").LastAuthor("the last author")
+                .Manager("the manager").Company("my company");
 
             Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content,
                                                     "<*o:DocumentProperties>")); // open/close test
