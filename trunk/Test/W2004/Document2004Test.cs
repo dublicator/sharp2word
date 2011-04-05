@@ -1,14 +1,35 @@
 using System;
 using NUnit.Framework;
+using Word;
 using Word.Api.Interfaces;
 using Word.Utils;
 using Word.W2004;
 using Word.W2004.Elements;
+using Word.W2004.Style;
 
 namespace Test.W2004
 {
     public class Document2004Test : Assert
     {
+        [Test]
+        public void testDefaultEncodingUTF()
+        {
+            IDocument myDoc = new Document2004();
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content, "encoding=\"UTF-8\""));
+
+            IDocument myDoc02 = new Document2004();
+            myDoc02.encoding(Encoding.UTF_8);
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc02.Content, "encoding=\"UTF-8\""));
+        }
+
+        [Test]
+        public void testDefaultEncodingISO8859_1()
+        {
+            IDocument myDoc = new Document2004();
+            myDoc.encoding(Encoding.ISO8859_1);
+
+            Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content, "encoding=\"ISO8859-1\""));
+        }
 
 
         [Test]
@@ -23,7 +44,7 @@ namespace Test.W2004
         public void testUri()
         {
             IDocument myDoc = new Document2004();
-            string expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
+            String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
                     + "<?mso-application progid=\"Word.Document\"?> "
                     + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
                     + " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
@@ -104,40 +125,41 @@ namespace Test.W2004
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Footer.Content, "</w:ftr>"));
         }
 
-        /*       [Test] //TODO: make this useful with assertions
-               public void testBasicHeadingStyle()
-               {
-                   IDocument myDoc = new Document2004();
-                   Heading1 h1 = new Heading1("Heading 111");
-                   HeadingStyle headingStyle = new HeadingStyle();
-                   headingStyle.Align(Align.CENTER);
-                   headingStyle.Italic();
+        //[Ignore]
+        [Test] //TODO: make this useful with assertions
+        public void testBasicHeadingStyle()
+        {
+            IDocument myDoc = new Document2004();
+            Heading1 h1 = new Heading1("Heading 111");
+            HeadingStyle headingStyle = new HeadingStyle();
+            headingStyle.Align(Align.CENTER);
+            headingStyle.Italic();
 
-                   h1.Style = headingStyle;
-                   myDoc.Body.AddEle(h1);
+            h1.Style = headingStyle;
+            myDoc.Body.AddEle(h1);
 
-                   myDoc.Body.AddEle(new Heading2("Heading 222"));
-                   myDoc.Body.AddEle(new Heading3("Heading 333"));
-               }*/
+            myDoc.Body.AddEle(new Heading2("Heading 222"));
+            myDoc.Body.AddEle(new Heading3("Heading 333"));
+        }
 
 
-        /*        [Test] //TODO: make this useful with assertions
-                public void testBasicHeadingFluent()
-                {
-                    IDocument doc = new Document2004();
-                    Heading1 h1 = (Heading1) Heading1.With("h111").WithStyle()
-                                                 .Bold().Italic()
-                                                 .Align(Align.CENTER).Create();
+        [Test] //TODO: make this useful with assertions
+        public void testBasicHeadingFluent()
+        {
+            IDocument doc = new Document2004();
+            Heading1 h1 = (Heading1)Heading1.With("h111").WithStyle()
+                                         .Bold().Italic()
+                                         .Align(Align.CENTER).Create();
 
-                    Heading2 h2 = (Heading2) Heading2.With("h222").WithStyle()
-                                                 .Bold().Italic().Create();
+            Heading2 h2 = (Heading2)Heading2.With("h222").WithStyle()
+                                         .Bold().Italic().Create();
 
-                    doc.Body.AddEle(h1);
-                    doc.Body.AddEle(h2);
-                    doc.Body.AddEle(
-                        Heading1.With("h3333").WithStyle().Bold()
-                            .Italic().Create()); // no cast...
-                }*/
+            doc.Body.AddEle(h1);
+            doc.Body.AddEle(h2);
+            doc.Body.AddEle(
+                Heading1.With("h3333").WithStyle().Bold()
+                    .Italic().Create()); // no cast...
+        }
 
         [Test]
         public void testPageOrientationDefault()
@@ -396,12 +418,12 @@ namespace Test.W2004
         {
             IDocument myDoc = new Document2004();
             myDoc.title("my title").subject("my subject").keywords("my keywords")
-                    .description("my description").category("my category")
-                    .author("the author").lastAuthor("the last author")
-                    .manager("the manager").company("my company");
+                .description("my description").category("my category")
+                .author("the author").lastAuthor("the last author")
+                .manager("the manager").company("my company");
 
             Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content,
-                    "<*o:DocumentProperties>")); // open/close test
+                                                    "<*o:DocumentProperties>")); // open/close test
             Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content, "<*w:fonts>")); // open/close
             // test
             Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content, "<*w:styles>")); // open/close
@@ -409,27 +431,27 @@ namespace Test.W2004
             Assert.AreEqual(2, TestUtils.RegexCount(myDoc.Content, "<*w:docPr>")); // open/close
             // test
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
-                    "<w:view w:val=\"print\"/>")); // set up as print to be able to
+                                                    "<w:view w:val=\"print\"/>")); // set up as print to be able to
             // view page breaks etc...
 
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
-                    "<o:Title>my title</o:Title>"));
+                                                    "<o:Title>my title</o:Title>"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
-                    "<o:Subject>my subject</o:Subject>"));
+                                                    "<o:Subject>my subject</o:Subject>"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
-                    "<o:Keywords>my keywords</o:Keywords>"));
+                                                    "<o:Keywords>my keywords</o:Keywords>"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
-                    "<o:Description>my description</o:Description>"));
+                                                    "<o:Description>my description</o:Description>"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
-                    "<o:Category>my category</o:Category>"));
+                                                    "<o:Category>my category</o:Category>"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
-                    "<o:Author>the author</o:Author>"));
+                                                    "<o:Author>the author</o:Author>"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
-                    "<o:LastAuthor>the last author</o:LastAuthor>"));
+                                                    "<o:LastAuthor>the last author</o:LastAuthor>"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
-                    "<o:Manager>the manager</o:Manager>"));
+                                                    "<o:Manager>the manager</o:Manager>"));
             Assert.AreEqual(1, TestUtils.RegexCount(myDoc.Content,
-                    "<o:Company>my company</o:Company>"));
+                                                    "<o:Company>my company</o:Company>"));
         }
     }
 }
