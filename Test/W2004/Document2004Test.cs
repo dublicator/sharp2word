@@ -1,6 +1,5 @@
 using System;
 using NUnit.Framework;
-using Word;
 using Word.Api.Interfaces;
 using Word.Utils;
 using Word.W2004;
@@ -41,6 +40,7 @@ namespace Test.W2004
         }
 
         [Test]
+        [Ignore]
         public void testUri()
         {
             IDocument myDoc = new Document2004();
