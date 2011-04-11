@@ -2,7 +2,7 @@ using System.Drawing;
 using System.Text;
 using Word.Api.Interfaces;
 using Word.Utils;
-using Font = Word.W2004.Style.Font;
+using Word.W2004.Style;
 
 namespace Word.W2004.Elements
 {
@@ -70,7 +70,7 @@ namespace Word.W2004.Elements
         private readonly StringBuilder _txt = new StringBuilder(tempate);
         private bool _bold;
         private Color _fillColor = Color.Black;
-        private Font _font = Font.CALIBRI;
+        private WordFont _font = WordFont.CALIBRI;
         private int _fontsize = 36;
         private double _height = 51;
         private bool _italic;
@@ -84,7 +84,7 @@ namespace Word.W2004.Elements
             _text = text;
         }
 
-        public Font Font
+        public WordFont WordFont
         {
             get { return _font; }
             set { _font = value; }

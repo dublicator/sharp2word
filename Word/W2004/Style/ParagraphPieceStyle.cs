@@ -18,7 +18,7 @@ namespace Word.W2004.Style
         private Color _color;
         private bool _doubleStrike;
         private bool _emboss;
-        private Font _font;
+        private WordFont _font;
         private string _fontSize = "";
         private bool _imprint;
         private bool _italic;
@@ -427,7 +427,7 @@ namespace Word.W2004.Style
             return this;
         }
 
-        public ParagraphPieceStyle Font(Font font)
+        public ParagraphPieceStyle Font(WordFont font)
         {
             this._font = font;
             return this;
