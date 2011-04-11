@@ -72,7 +72,7 @@
     <Compile Include="W2004\Header2004.cs" />
     <Compile Include="W2004\Style\AbstractStyle.cs" />
     <Compile Include="W2004\Style\Align.cs" />
-    <Compile Include="W2004\Style\Font.cs" />
+    <Compile Include="W2004\Style\WordFont.cs" />
     <Compile Include="W2004\Style\HeadingStyle.cs" />
     <Compile Include="W2004\Style\ParagraphPieceStyle.cs" />
     <Compile Include="W2004\Style\ParagraphStyle.cs" />
