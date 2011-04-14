@@ -39,13 +39,28 @@ namespace Word.Utils
 
         public static string Pretty(string xml)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xml);
-            StringBuilder sb = new StringBuilder();
-            XmlWriter xw = XmlWriter.Create(sb, new XmlWriterSettings {Indent = true});
-            doc.WriteTo(xw);
-            xw.Flush();
-            return sb.ToString();
+            return FormatXml(xml);
         }
+
+        /// <summary>
+        /// Formats the provided XML so it's indented and humanly-readable.
+        /// </summary>
+        /// <param name="inputXml">The input XML to format.</param>
+        /// <returns></returns>
+        private static string FormatXml(string inputXml)
+        {
+            XmlDocument document = new XmlDocument();
+            document.Load(new StringReader(inputXml));
+
+            StringBuilder builder = new StringBuilder();
+            using (XmlTextWriter writer = new XmlTextWriter(new StringWriter(builder)))
+            {
+                writer.Formatting = Formatting.Indented;
+                document.Save(writer);
+            }
+
+            return builder.ToString();
+        }
+
     }
 }
