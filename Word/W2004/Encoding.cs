@@ -26,6 +26,15 @@ namespace Word.W2004
             _value = value;
         }
 
+        public static Encoding WINDOWS_1251
+        {
+            get
+            {
+                //This is suitable for cirrylic text
+                return new Encoding("windows-1251");
+            }
+        }
+
         public string Value
         {
             get { return _value; }
