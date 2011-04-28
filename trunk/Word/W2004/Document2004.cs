@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Text;
 using Word.Api.Interfaces;
@@ -30,7 +31,15 @@ namespace Word.W2004
 
         public Document2004 Encoding(Encoding encoding)
         {
-            this._encoding = encoding;
+            this.encoding = encoding.Value;
+            return this;
+        }
+
+        private string encoding = W2004.Encoding.UTF_8.Value;
+
+        public Document2004 Encoding(string encoding)
+        {
+            this.encoding = encoding;
             return this;
         }
 
@@ -85,7 +94,7 @@ namespace Word.W2004
         {
             get
             {
-                string uri = "<?xml version=\"1.0\" encoding=\"" + _encoding.Value + "\" standalone=\"yes\"?> "
+                string uri = "<?xml version=\"1.0\" encoding=\"" + this.encoding + "\" standalone=\"yes\"?> "
                     + "<?mso-application progid=\"Word.Document\"?> "
                     + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
                     + " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "

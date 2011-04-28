@@ -90,5 +90,12 @@ namespace Word.Api.Interfaces
         /// <param name="encoding"></param>
         /// <returns></returns>
         Document2004 Encoding(Encoding encoding);
+
+        /// <summary>
+        /// It gives a chance to set up your own encoding by passing the final string ready to go.
+        /// </summary>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
+        Document2004 Encoding(string encoding);
     }
 }

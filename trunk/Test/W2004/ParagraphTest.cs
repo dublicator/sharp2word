@@ -41,8 +41,8 @@ namespace Test.W2004
         public void testTab()
         {
             Paragraph p01 = Paragraph.WithPieces(
-                ParagraphPiece.With("Bloc 1 Price :").WithStyle().Font(Font.CALIBRI).FontSize(2*11).Create(),
-                ParagraphPiece.With(" \t 3 200,00 $").WithStyle().Font(Font.CALIBRI).FontSize(2*11).Create()
+                ParagraphPiece.With("Bloc 1 Price :").WithStyle().Font(WordFont.CALIBRI).FontSize(2*11).Create(),
+                ParagraphPiece.With(" \t 3 200,00 $").WithStyle().Font(WordFont.CALIBRI).FontSize(2*11).Create()
                 ).AddTab(Paragraph.TabAlign.RIGHT, 8931).Create();
 
             Assert.AreEqual(2, TestUtils.RegexCount(p01.Content, "<w:pPr>"));

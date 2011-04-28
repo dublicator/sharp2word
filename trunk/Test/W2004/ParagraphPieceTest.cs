@@ -50,7 +50,7 @@ namespace Test.W2004
         public void testGetContentWithStyleALL()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Bold().Italic().Underline().FontSize(24)
-                .Font(Font.COURIER).TextColor("008000").Create();
+                .Font(WordFont.COURIER).TextColor("008000").Create();
 
             doBasicChecking(par, "piece01");
 
@@ -149,7 +149,7 @@ namespace Test.W2004
         public void testGetContentWithStyleFont()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle()
-                .Font(Font.COURIER).Create();
+                .Font(WordFont.COURIER).Create();
 
             doBasicChecking(par, "piece01");
 
@@ -225,7 +225,7 @@ namespace Test.W2004
              * the font is "ARIAL_NARROW", so there should not be any bold tag in it.
              */
 
-            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW).Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(WordFont.ARIAL_NARROW).Create();
 
             doBasicChecking(par, "piece01");
 
@@ -241,7 +241,7 @@ namespace Test.W2004
              * the font is "ARIAL_NARROW_BOLD", so there has to be a 'smart' bold tag in it.
              * There should not be any 'italic' this time
              */
-            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW_BOLD).Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(WordFont.ARIAL_NARROW_BOLD).Create();
 
             doBasicChecking(par, "piece01");
 
@@ -257,7 +257,7 @@ namespace Test.W2004
              * the font is "ARIAL_NARROW_ITALIC", so there has to be a 'smart' Italic tag in it.
              * There should not be any 'bold' this time
              */
-            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW_ITALIC).Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(WordFont.ARIAL_NARROW_ITALIC).Create();
 
             doBasicChecking(par, "piece01");
 
@@ -272,7 +272,7 @@ namespace Test.W2004
             /***
              * the font is "ARIAL_NARROW_ITALIC", so there has to be both 'smart' Italic and 'bold' tags in it.
              */
-            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(Font.ARIAL_NARROW_BOLD_ITALIC).Create();
+            IElement par = ParagraphPiece.With("piece01").WithStyle().Font(WordFont.ARIAL_NARROW_BOLD_ITALIC).Create();
 
             doBasicChecking(par, "piece01");
 
@@ -286,9 +286,9 @@ namespace Test.W2004
         {
             Paragraph p1 =
                 Paragraph.WithPieces(
-                    ParagraphPiece.With("same").WithStyle().Font(Font.COURIER).Bold().Italic().Create());
+                    ParagraphPiece.With("same").WithStyle().Font(WordFont.COURIER).Bold().Italic().Create());
             Paragraph p2 =
-                Paragraph.WithPieces(ParagraphPiece.With("same").WithStyle().Font(Font.COURIER_BOLD_ITALIC).Create());
+                Paragraph.WithPieces(ParagraphPiece.With("same").WithStyle().Font(WordFont.COURIER_BOLD_ITALIC).Create());
 
             Assert.True(p1.Content.Equals(p2.Content));
         }
