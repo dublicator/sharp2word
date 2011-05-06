@@ -45,9 +45,9 @@ namespace Word.W2004.Elements
         private readonly string _path = "";
         private readonly StringBuilder _txt = new StringBuilder("");
         // size
-        private double _height = 0; // to be able to set this to override default
+        private double _height; // to be able to set this to override default
 
-        private double _width = 0; // to be able to set this to override default
+        private double _width; // to be able to set this to override default
         private bool _hasBeenCalledBefore;
 
         // size

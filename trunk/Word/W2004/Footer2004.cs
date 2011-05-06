@@ -59,7 +59,7 @@ namespace Word.W2004
         private readonly StringBuilder _txt = new StringBuilder("");
 
         private bool _hasBeenCalledBefore;
-        private bool _showPageNumber = false;
+        private bool _showPageNumber;
 
         #region Implementation of IElement
 

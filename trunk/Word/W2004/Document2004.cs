@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Text;
 using Word.Api.Interfaces;
@@ -11,11 +10,11 @@ namespace Word.W2004
     /// </summary>
     public class Document2004 : IDocument, IElement
     {
-        private bool hasBeenCalledBefore = false; // if getContent has already been called, I cached the result for future invocations
+        private bool hasBeenCalledBefore; // if getContent has already been called, I cached the result for future invocations
 
         private StringBuilder txt = new StringBuilder();
         private IBody body = new Body2004();
-        private bool isLandscape = false;
+        private bool isLandscape;
 
         private Encoding _encoding = W2004.Encoding.UTF_8;
 
