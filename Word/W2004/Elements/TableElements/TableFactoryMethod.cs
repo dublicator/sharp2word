@@ -1,5 +1,3 @@
-using Word.Api.Interfaces;
-
 namespace Word.W2004.Elements.TableElements
 {
     /// <summary>

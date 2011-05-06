@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using Word.Api.Interfaces;
 
@@ -18,7 +17,7 @@ namespace Word.W2004
         private int pageMgrRight = -1;
         private int pageMgrTop = -1;
         private int pageMgrBottom = -1;
-        private bool pageMarginCustomSetting = false;
+        private bool pageMarginCustomSetting;
 
         #region Implementation of IElement
 

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Text;
 using Word.Api.Interfaces;
-using Word.W2004.Elements.TableElements;
 using Word.W2004.Style;
 
 namespace Word.W2004.Elements
