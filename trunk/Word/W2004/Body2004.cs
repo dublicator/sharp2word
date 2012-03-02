@@ -13,11 +13,11 @@ namespace Word.W2004
         private const string DEFAULT_MGR_BOTTOM = "1259";
         private const string DEFAULT_MGR_RIGHT = "2517";
         private const string DEFAULT_MGR_LEFT = "1888";
-        private int pageMgrLeft = -1;
-        private int pageMgrRight = -1;
-        private int pageMgrTop = -1;
-        private int pageMgrBottom = -1;
-        private bool pageMarginCustomSetting;
+        private int _pageMgrLeft = -1;
+        private int _pageMgrRight = -1;
+        private int _pageMgrTop = -1;
+        private int _pageMgrBottom = -1;
+        private bool _pageMarginCustomSetting;
 
         #region Implementation of IElement
 
@@ -45,12 +45,12 @@ namespace Word.W2004
 
                 string header = this.Header.Content;
                 string footer = this.Footer.Content;
-                if (!"".Equals(header) || !"".Equals(footer) || pageMarginCustomSetting)
+                if (!"".Equals(header) || !"".Equals(footer) || _pageMarginCustomSetting)
                 {
-                    const string header_footer_top = "<w:sectPr wsp:rsidR=\"00DB1FE5\" wsp:rsidSect=\"00471A86\">";
-                    const string header_footer_botton = "</w:sectPr>";
+                    const string headerFooterTop = "<w:sectPr wsp:rsidR=\"00DB1FE5\" wsp:rsidSect=\"00471A86\">";
+                    const string headerFooterBotton = "</w:sectPr>";
 
-                    res.Append("\n" + header_footer_top);
+                    res.Append("\n" + headerFooterTop);
                     res.Append(header); //header has to be inside the w:body
                     res.Append(footer); //header has to be inside the w:body
                     if (this.Header.GetHideHeaderAndFooterFirstPage())
@@ -58,13 +58,13 @@ namespace Word.W2004
                         res.Append(this.Header.GetHideHeaderAndFooterFirstPageXml());
                     }
                     string margin = PAGE_MARGIN;
-                    margin = margin.Replace("{mgr_top}", pageMgrLeft == -1 ? DEFAULT_MGR_TOP : pageMgrTop.ToString());
-                    margin = margin.Replace("{mgr_bottom}", pageMgrBottom == -1 ? DEFAULT_MGR_BOTTOM : pageMgrTop.ToString());
-                    margin = margin.Replace("{mgr_right}", pageMgrRight == -1 ? DEFAULT_MGR_RIGHT : pageMgrTop.ToString());
-                    margin = margin.Replace("{mgr_left}", pageMgrLeft == -1 ? DEFAULT_MGR_LEFT : pageMgrTop.ToString());
+                    margin = margin.Replace("{mgr_top}", _pageMgrLeft == -1 ? DEFAULT_MGR_TOP : _pageMgrTop.ToString());
+                    margin = margin.Replace("{mgr_bottom}", _pageMgrBottom == -1 ? DEFAULT_MGR_BOTTOM : _pageMgrTop.ToString());
+                    margin = margin.Replace("{mgr_right}", _pageMgrRight == -1 ? DEFAULT_MGR_RIGHT : _pageMgrTop.ToString());
+                    margin = margin.Replace("{mgr_left}", _pageMgrLeft == -1 ? DEFAULT_MGR_LEFT : _pageMgrTop.ToString());
                     res.Append(margin);//page amrgin setting    
 
-                    res.Append("\n" + header_footer_botton);
+                    res.Append("\n" + headerFooterBotton);
                 }
 
                 res.Append("\n</w:body>");
@@ -121,11 +121,11 @@ namespace Word.W2004
 
         public void SetMarginBody(double top, double bottom, double left, double right)
         {
-            pageMgrLeft = (int) (56.7*left);
-            pageMgrRight = (int) (56.7 * right);
-            pageMgrTop = (int) (56.7 * top);
-            pageMgrBottom = (int) (56.7 * bottom);
-            pageMarginCustomSetting = true;
+            _pageMgrLeft = (int) (56.7*left);
+            _pageMgrRight = (int) (56.7 * right);
+            _pageMgrTop = (int) (56.7 * top);
+            _pageMgrBottom = (int) (56.7 * bottom);
+            _pageMarginCustomSetting = true;
         }
 
         #endregion

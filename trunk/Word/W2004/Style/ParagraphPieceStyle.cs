@@ -31,6 +31,7 @@ namespace Word.W2004.Style
         private string _textColor = "";
         private bool _underline;
         private bool _vanish;
+        private string _bidi;
 
         #region ISuperStylin Members
 
@@ -61,6 +62,8 @@ namespace Word.W2004.Style
             DoStyleColorEnum(style);
             DoStyleFontSize(style);
             DoStyleBgColor(style);
+
+            DoStyleBidi(style);
 
             return DoStyleReplacement(style, txt);
         }
@@ -311,6 +314,11 @@ namespace Word.W2004.Style
             }
         }
 
+        private void DoStyleBidi(StringBuilder style)
+        {
+            //if (!this._bidi.Equals("")) style.Append("<w:lang w:bidi=\"" + this._bidi + "\" />");
+        } 
+
         private void DoStyleColorEnum(StringBuilder style)
         {
             var clr = ImageUtils.ColorToHex(this._color);
@@ -441,6 +449,17 @@ namespace Word.W2004.Style
         public ParagraphPieceStyle FontSize(int size)
         {
             this._fontSize = (size*2).ToString();
+            return this;
+        }
+
+        /// <summary>
+        /// Use this to specify special characters. Eg.: Hebreus, use HE
+        /// </summary>
+        /// <param name="bidi"></param>
+        /// <returns></returns>
+        public ParagraphPieceStyle Bidi(string bidi)
+        {
+            this._bidi = bidi;
             return this;
         }
     }

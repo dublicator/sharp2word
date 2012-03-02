@@ -18,21 +18,21 @@ namespace Test.W2004
         }
 
         [Test]
-        public void sanityTest()
+        public void SanityTest()
         {
             IElement par = ParagraphPiece.With("");
             Assert.AreEqual(par.Content, "");
         }
 
         [Test]
-        public void sanityTest01()
+        public void SanityTest01()
         {
             IElement par = ParagraphPiece.With(null);
             Assert.AreEqual(par.Content, "");
         }
 
         [Test]
-        public void testGetContent()
+        public void TestGetContent()
         {
             IElement par = ParagraphPiece.With("piece01");
 
@@ -47,7 +47,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testGetContentWithStyleALL()
+        public void TestGetContentWithStyleAll()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Bold().Italic().Underline().FontSize(24)
                 .Font(WordFont.COURIER).TextColor("008000").Create();
@@ -72,7 +72,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testGetContentWithStyleBold()
+        public void TestGetContentWithStyleBold()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Bold().Italic().Underline().Create();
 
@@ -96,7 +96,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testGetContentWithStyleItalic()
+        public void TestGetContentWithStyleItalic()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Italic().Create();
 
@@ -121,7 +121,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testGetContentWithStyleUnderline()
+        public void TestGetContentWithStyleUnderline()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Underline().Create();
 
@@ -146,7 +146,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testGetContentWithStyleFont()
+        public void TestGetContentWithStyleFont()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle()
                 .Font(WordFont.COURIER).Create();
@@ -171,7 +171,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testGetContentWithStyleTextColor()
+        public void TestGetContentWithStyleTextColor()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Italic().Underline()
                 .TextColor("008000").Create();
@@ -196,7 +196,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testGetContentWithStyleFontSize()
+        public void TestGetContentWithStyleFontSize()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Italic().Underline()
                 .FontSize(50).Create();
@@ -219,7 +219,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testNOsmartFont()
+        public void TestNOsmartFont()
         {
             /***
              * the font is "ARIAL_NARROW", so there should not be any bold tag in it.
@@ -235,7 +235,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testSmartFontBold()
+        public void TestSmartFontBold()
         {
             /***
              * the font is "ARIAL_NARROW_BOLD", so there has to be a 'smart' bold tag in it.
@@ -251,7 +251,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testSmartFontItalic()
+        public void TestSmartFontItalic()
         {
             /***
              * the font is "ARIAL_NARROW_ITALIC", so there has to be a 'smart' Italic tag in it.
@@ -267,7 +267,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testSmartFontItalicAndBold()
+        public void TestSmartFontItalicAndBold()
         {
             /***
              * the font is "ARIAL_NARROW_ITALIC", so there has to be both 'smart' Italic and 'bold' tags in it.
@@ -282,7 +282,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testEquivalentSmartFont()
+        public void TestEquivalentSmartFont()
         {
             Paragraph p1 =
                 Paragraph.WithPieces(
@@ -294,7 +294,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testGetContentWithStyleBGcolor()
+        public void TestGetContentWithStyleBGcolor()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle()
                 .BgColor("FFFF00")
@@ -306,7 +306,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testSubscript()
+        public void TestSubscript()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Subscript().Create();
             doBasicChecking(par, "piece01");
@@ -314,7 +314,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testSuperscript()
+        public void TestSuperscript()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Superscript().Create();
             doBasicChecking(par, "piece01");
@@ -322,7 +322,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testCaps()
+        public void TestCaps()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Caps().Create();
             doBasicChecking(par, "piece01");
@@ -330,7 +330,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testDoubleStrike()
+        public void TestDoubleStrike()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().DoubleStrike().Create();
             doBasicChecking(par, "piece01");
@@ -338,7 +338,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testStrike()
+        public void TestStrike()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Strike().Create();
             doBasicChecking(par, "piece01");
@@ -346,7 +346,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testEmboss()
+        public void TestEmboss()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Emboss().Create();
             doBasicChecking(par, "piece01");
@@ -354,7 +354,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testImprint()
+        public void TestImprint()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Imprint().Create();
             doBasicChecking(par, "piece01");
@@ -362,7 +362,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testOutline()
+        public void TestOutline()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Outline().Create();
             doBasicChecking(par, "piece01");
@@ -370,7 +370,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testShadow()
+        public void TestShadow()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Shadow().Create();
             doBasicChecking(par, "piece01");
@@ -378,7 +378,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testSmallCaps()
+        public void TestSmallCaps()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().SmallCaps().Create();
             doBasicChecking(par, "piece01");
@@ -386,11 +386,30 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testVanish()
+        public void TestVanish()
         {
             IElement par = ParagraphPiece.With("piece01").WithStyle().Vanish().Create();
             doBasicChecking(par, "piece01");
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:vanish/>"));
+        }
+
+        [Test]
+        public void TestBidiNoValue()
+        {
+            ParagraphPiece par = ParagraphPiece.With("111");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:r>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:t>111</w:t>"));
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "</w:r>"));
+            Assert.AreEqual(0, TestUtils.RegexCount(par.Content, "<w:lang w:bidi=\".*\" />"));
+        }
+
+        [Test]
+        public void TestBidi()
+        {
+            ParagraphPiece par = ParagraphPiece.With("111").WithStyle().Bidi("HE").Create();
+            doBasicChecking(par, "111");
+            Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:lang w:bidi=\".*\" />"));
+
         }
     }
 }

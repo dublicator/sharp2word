@@ -8,9 +8,9 @@ namespace Test.W2004
     public class ImageTest : Assert
     {
         [Test]
-        public void sanityTest()
+        public void SanityTest()
         {
-            Image img = new Image(Util.AppRoot + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH);
+            Image img = new Image(Util.AppRoot + "/src/test/resources/dtpick.gif", ImageLocation.FullLocalPath);
             //Image img = new Image(Utils.getAppRoot() + "/src/test/resources/base2logo.png");
             // Image("/Users/leonardo_correa/Desktop/icons_corrup/quote.gif");
 
@@ -26,7 +26,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testLocalImage()
+        public void TestLocalImage()
         {
             /*
     	Image img = new Image(Util.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH);
@@ -38,7 +38,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testLocalImageFluent()
+        public void TestLocalImageFluent()
         {
             /*
         Image img = Image.from_FULL_LOCAL_PATHL(Util.getAppRoot() + "/src/test/resources/dtpick.gif");
@@ -50,21 +50,21 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testLocalImageWeb()
+        public void TestLocalImageWeb()
         {
             /*
 		Image img = new Image(Util.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.WEB_URL);*/
         }
 
         [Test]
-        public void testLocalImageClasspath()
+        public void TestLocalImageClasspath()
         {
             /*
     	Image img = new Image(Util.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.CLASSPATH);*/
         }
 
         [Test]
-        public void testLocalImageClasspathFluent()
+        public void TestLocalImageClasspathFluent()
         {
             //Image img = Image.from_WEB_URL(Utils.getAppRoot() + "/src/test/resources/dtpick.gif").create();
         }
@@ -75,9 +75,9 @@ namespace Test.W2004
 
         [Ignore]
         [Test]
-        public void testWebImage()
+        public void TestWebImage()
         {
-            Image img = new Image("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png", ImageLocation.WEB_URL);
+            Image img = new Image("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png", ImageLocation.WebUrl);
             Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*w:pict>"));
             Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shapetype"));
             Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shape[ >]")); //white space or >
@@ -89,7 +89,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testClasspathImage()
+        public void TestClasspathImage()
         {
             /* Image img = new Image("/dtpick.gif", ImageLocation.CLASSPATH);
 
@@ -102,7 +102,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testDefaultSize()
+        public void TestDefaultSize()
         {
             /*  Image img = new Image(Utils.getAppRoot()
                 + "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
@@ -111,7 +111,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testWidth()
+        public void TestWidth()
         {
             /*  Image img = new Image(Utils.getAppRoot()
                 + "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
@@ -123,7 +123,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testHeight()
+        public void TestHeight()
         {
             /*  Image img = new Image(Utils.getAppRoot()
                 + "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
@@ -135,7 +135,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testWidthAndHeight()
+        public void TestWidthAndHeight()
         {
             /* Image img = new Image(Utils.getAppRoot()
                 + "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
@@ -149,7 +149,7 @@ namespace Test.W2004
 
 
         [Test]
-        public void testInvalidImage()
+        public void TestInvalidImage()
         {
             // Image img = new Image(Utils.getAppRoot()
             //       + "/src/test/resources/whatever", ImageLocation.FULL_LOCAL_PATH);

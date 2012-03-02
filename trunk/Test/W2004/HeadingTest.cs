@@ -9,7 +9,7 @@ namespace Test.W2004
     public class HeadingTest : Assert
     {
         [Test]
-        public void testH1Style()
+        public void TestH1Style()
         {
             Heading1 h1 = (Heading1)Heading1.With("222222").WithStyle().Bold().Italic().Create();
 
@@ -21,7 +21,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testH1()
+        public void TestH1()
         {
             Heading1 h1 = Heading1.With("h1");
             Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:p wsp:rsidR*"));
@@ -31,7 +31,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testH1fluent()
+        public void TestH1Fluent()
         {
             Heading1 h1 = Heading1.With("h1").Create();
             Assert.AreEqual(1, TestUtils.RegexCount(h1.Content, "<w:p wsp:rsidR*"));
@@ -41,7 +41,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testH2()
+        public void TestH2()
         {
             Heading2 h2 = Heading2.With("h2");
             Assert.AreEqual(1, TestUtils.RegexCount(h2.Content, "<w:p wsp:rsidR*"));
@@ -51,7 +51,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testH2Fluent()
+        public void TestH2Fluent()
         {
             Heading2 h2 = Heading2.With("h2").Create();
             Assert.AreEqual(1, TestUtils.RegexCount(h2.Content, "<w:p wsp:rsidR*"));
@@ -61,7 +61,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testH3()
+        public void TestH3()
         {
             Heading3 h3 = Heading3.With("h3");
             Assert.AreEqual(1, TestUtils.RegexCount(h3.Content, "<w:p wsp:rsidR*"));
@@ -71,7 +71,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testH3Fluent()
+        public void TestH3Fluent()
         {
             Heading3 h3 = Heading3.With("h3").Create();
             Assert.AreEqual(1, TestUtils.RegexCount(h3.Content, "<w:p wsp:rsidR*"));
@@ -81,7 +81,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testEmpty()
+        public void TestEmpty()
         {
             Heading1 h1 = Heading1.With("");
             Assert.AreEqual("", h1.Content);
@@ -94,7 +94,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testFluent()
+        public void TestFluent()
         {
             Heading1 h1 = (Heading1)Heading1.With("h111").WithStyle().Bold().Italic().Align(Align.CENTER).Create();
             Heading2 h2 = (Heading2)Heading2.With("h222").WithStyle().Bold().Italic().Align(Align.CENTER).Create();

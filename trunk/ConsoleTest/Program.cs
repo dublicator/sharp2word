@@ -135,13 +135,13 @@ namespace ConsoleTest
 
             myDoc.AddEle(Paragraph.With(
                     "This one is coming from WEB, google web site: ").Create());
-            myDoc.AddEle(Image.From_WEB_URL("http://www.google.com/images/logos/ps_logo2.png"));
+            myDoc.AddEle(Image.FromUrl("http://www.google.com/images/logos/ps_logo2.png"));
 
             myDoc.AddEle(BreakLine.Times(2).Create());
             myDoc.AddEle(Paragraph.With("You can change the image dimensions:.")
                     .Create());
             myDoc.AddEle(Image
-                    .From_WEB_URL("http://www.google.com/images/logos/ps_logo2.png")
+                    .FromUrl("http://www.google.com/images/logos/ps_logo2.png")
                     .SetHeight(40).SetWidth(80).Create());
 
             myDoc.AddEle(BreakLine.Times(2).Create());

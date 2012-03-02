@@ -13,7 +13,7 @@ namespace Test.W2004
 
 
         [Test]
-        public void sanityTest()
+        public void SanityTest()
         {
             Heading1 heading1 = new Heading1("h111");
             Assert.AreEqual(1, TestUtils.RegexCount(heading1.Template, "<w:p wsp:rsidR*"));

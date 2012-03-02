@@ -9,28 +9,28 @@ namespace Test.W2004
     public class ParagraphTest : Assert
     {
         [Test]
-        public void sanityTest()
+        public void SanityTest()
         {
             IElement par = Paragraph.With("");
             Assert.AreEqual(par.Content, "");
         }
 
         [Test]
-        public void sanityTest02()
+        public void SanityTest02()
         {
             IElement par = new Paragraph(ParagraphPiece.With("").Create());
             Assert.AreEqual(par.Content, "");
         }
 
         [Test]
-        public void sanityTest03()
+        public void SanityTest03()
         {
             IElement par = Paragraph.WithPieces(ParagraphPiece.With(null)).Create();
             Assert.AreEqual(par.Content, "");
         }
 
         [Test]
-        public void sanityTestFluent()
+        public void SanityTestFluent()
         {
             IElement par = Paragraph.With("par01").WithStyle().Align(Align.CENTER).Create();
 
@@ -38,11 +38,11 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testTab()
+        public void TestTab()
         {
             Paragraph p01 = Paragraph.WithPieces(
-                ParagraphPiece.With("Bloc 1 Price :").WithStyle().Font(WordFont.CALIBRI).FontSize(2*11).Create(),
-                ParagraphPiece.With(" \t 3 200,00 $").WithStyle().Font(WordFont.CALIBRI).FontSize(2*11).Create()
+                ParagraphPiece.With("Bloc 1 Price :").WithStyle().Font(WordFont.CALIBRI).FontSize(2 * 11).Create(),
+                ParagraphPiece.With(" \t 3 200,00 $").WithStyle().Font(WordFont.CALIBRI).FontSize(2 * 11).Create()
                 ).AddTab(Paragraph.TabAlign.RIGHT, 8931).Create();
 
             Assert.AreEqual(2, TestUtils.RegexCount(p01.Content, "<w:pPr>"));
@@ -52,7 +52,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testWithStyleBgColor()
+        public void TestWithStyleBgColor()
         {
             IElement p01 = Paragraph.With("par01").WithStyle().BgColor("FFFF00").Create();
 
@@ -62,7 +62,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testWithStyle()
+        public void TestWithStyle()
         {
             IElement p01 = Paragraph.With("").WithStyle().Create();
             Assert.AreEqual(p01.Content, "");
@@ -70,7 +70,7 @@ namespace Test.W2004
 
 
         [Test]
-        public void goodParagraphTest()
+        public void GoodParagraphTest()
         {
             IElement p01 = Paragraph.With("This is my paragraph");
 
@@ -78,7 +78,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testPiecesOne()
+        public void TestPiecesOne()
         {
             Paragraph p01 = Paragraph.With("Piece01"); //or new Paragraph("xxxx");
 
@@ -86,15 +86,15 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testParagraphOneWithStyle()
+        public void TestParagraphOneWithStyle()
         {
-            Paragraph p01 = (Paragraph) Paragraph.With("111").WithStyle().Align(Align.CENTER).Create();
+            Paragraph p01 = (Paragraph)Paragraph.With("111").WithStyle().Align(Align.CENTER).Create();
 
             basicParagraphCheckings(p01, "111", "center");
         }
 
         [Test]
-        public void testPiecesOneWithStyle()
+        public void TestPiecesOneWithStyle()
         {
             ParagraphPiece piece01 = ParagraphPiece.With("Piece01").WithStyle().Bold().Italic().Underline().Create();
             Paragraph p01 = new Paragraph(piece01);
@@ -107,7 +107,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testPiecesMany()
+        public void TestPiecesMany()
         {
             ParagraphPiece piece01 = ParagraphPiece.With("Piece11111");
             ParagraphPiece piece02 = ParagraphPiece.With("Piece22222").WithStyle().Bold().Italic().Create();
@@ -126,7 +126,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testEmptyPiecesEtc()
+        public void TestEmptyPiecesEtc()
         {
             ParagraphPiece piece01 = ParagraphPiece.With("");
             ParagraphPiece piece02 = ParagraphPiece.With("");
@@ -136,7 +136,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testEmptyPiecesEtc02()
+        public void TestEmptyPiecesEtc02()
         {
             ParagraphPiece piece01 = ParagraphPiece.With(null);
             ParagraphPiece piece02 = ParagraphPiece.With("Piece222");
@@ -147,15 +147,15 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testFluent()
+        public void TestFluent()
         {
-            Paragraph p01 = (Paragraph) Paragraph.With("111").WithStyle().Align(Align.CENTER).Create();
+            Paragraph p01 = (Paragraph)Paragraph.With("111").WithStyle().Align(Align.CENTER).Create();
 
             basicParagraphCheckings(p01, "111", "center");
         }
 
         [Test]
-        public void testFluentPiece()
+        public void TestFluentPiece()
         {
             ParagraphPiece pieces = ParagraphPiece.With("111");
             Paragraph p01 = Paragraph.WithPieces(pieces);
@@ -185,6 +185,24 @@ namespace Test.W2004
 
             Assert.AreEqual(1, TestUtils.RegexCount(par.Content, "<w:jc w:val=\"" + align + "\"/>"));
             Assert.AreEqual(2, TestUtils.RegexCount(par.Content, "<*w:pPr>"));
+        }
+
+        [Test]
+        public void TestBidiNoValue()
+        {
+            ParagraphPiece pieces = ParagraphPiece.With("111");
+            Paragraph p01 = Paragraph.WithPieces(pieces);
+            basicParagraphCheckings(p01, "111", null);
+            Assert.AreEqual(0, TestUtils.RegexCount(p01.Content, "<w:lang w:bidi=\".*\" />"));
+        }
+
+        [Test]
+        public void TestBidi()
+        {
+            ParagraphPiece pieces = ParagraphPiece.With("111");
+            Paragraph p01 = (Paragraph)Paragraph.WithPieces(pieces).WithStyle().Bidi("HE").Create();
+            basicParagraphCheckings(p01, "111", null);
+            Assert.AreEqual(1, TestUtils.RegexCount(p01.Content, "<w:lang w:bidi=\"HE\" />"));
         }
     }
 }

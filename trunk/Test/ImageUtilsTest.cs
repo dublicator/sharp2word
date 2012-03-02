@@ -8,8 +8,8 @@ namespace Test
     {
 
     [Test]
-    public void sanityTest(){
-        Image img = Image.From_FULL_LOCAL_PATHL(Util.AppRoot + "/src/test/resources/dtpick.gif");
+    public void SanityTest(){
+        Image img = Image.FromFullLocalPath(Util.AppRoot + @"\src\test\resources\dtpick.gif");
         //Image img = new Image(Util.AppRoot + "/src/test/resources/base2logo.png");
         // Image("/Users/leonardo_correa/Desktop/icons_corrup/quote.gif");
 
@@ -24,8 +24,8 @@ namespace Test
     }
 
     [Test]
-    public void testLocalImage(){
-        Image img = Image.From_FULL_LOCAL_PATHL(Util.AppRoot + "/src/test/resources/dtpick.gif");
+    public void TestLocalImage(){
+        Image img = Image.FromFullLocalPath(Util.AppRoot + @"\src\test\resources\dtpick.gif");
         Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*w:pict>"));
         Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shapetype"));
         Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shape[ >]")); //white space or >
@@ -34,8 +34,8 @@ namespace Test
     }
 
     [Test]
-    public void testLocalImageFluent(){
-        Image img = Image.From_FULL_LOCAL_PATHL(Util.AppRoot + "/src/test/resources/dtpick.gif");
+    public void TestLocalImageFluent(){
+        Image img = Image.FromFullLocalPath(Util.AppRoot + @"\src\test\resources\dtpick.gif");
         Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*w:pict>"));
         Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shapetype"));
         Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shape[ >]")); //white space or >
@@ -44,18 +44,18 @@ namespace Test
     }
 
     [Test]
-    public void testLocalImageWeb(){
-        Image img = Image.From_WEB_URL(Util.AppRoot + "/src/test/resources/dtpick.gif");
+    public void TestLocalImageWeb(){
+        Image img = Image.FromUrl(Util.AppRoot + @"\src\test\resources\dtpick.gif");
     }
 
     [Test]
-    public void testLocalImageClasspath(){
+    public void TestLocalImageClasspath(){
         //Image img = Image.From_CLASSPATH(Util.AppRoot + "/src/test/resources/dtpick.gif");
     }
 
     [Test]
-    public void testLocalImageClasspathFluent(){
-        Image img = Image.From_WEB_URL(Util.AppRoot + "/src/test/resources/dtpick.gif").Create();
+    public void TestLocalImageClasspathFluent(){
+        Image img = Image.FromUrl(Util.AppRoot + @"\src\test\resources\dtpick.gif").Create();
     }
 
     /**
@@ -63,8 +63,8 @@ namespace Test
      */
     [Ignore]
     [Test]
-    public void testWebImage(){
-        Image img = Image.From_WEB_URL("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png");
+    public void TestWebImage(){
+        Image img = Image.FromUrl("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png");
         Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*w:pict>"));
         Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shapetype"));
         Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*v:shape[ >]")); //white space or >
@@ -74,7 +74,7 @@ namespace Test
     }
 
     [Test]
-    public void testClasspathImage(){
+    public void TestClasspathImage(){
         /*Image img = Image.From_CLASSPATH("/dtpick.gif");
 
         Assert.AreEqual(2, TestUtils.RegexCount(img.Content, "<*w:pict>"));
@@ -86,17 +86,17 @@ namespace Test
     }
 
     [Test]
-    public void testDefaultSize() {
-        Image img = Image.From_FULL_LOCAL_PATHL(Util.AppRoot
-                + "/src/test/resources/base2logo.png");
+    public void TestDefaultSize() {
+        Image img = Image.FromFullLocalPath(Util.AppRoot
+                + @"\src\test\resources\base2logo.png");
         Assert.AreEqual(1, TestUtils.RegexCount(img.Content,
                 "style=\"width:116pt;height:104pt\""));
     }
 
     [Test]
-    public void testWidth() {
-        Image img = Image.From_FULL_LOCAL_PATHL(Util.AppRoot
-                + "/src/test/resources/base2logo.png");
+    public void TestWidth() {
+        Image img = Image.FromFullLocalPath(Util.AppRoot
+                + @"\src\test\resources\base2logo.png");
         img.SetWidth(120);
         Assert.AreEqual(0, TestUtils.RegexCount(img.Content,
                 "style=\"width:116pt;height:104pt\""));
@@ -105,9 +105,9 @@ namespace Test
     }
 
     [Test]
-    public void testHeight() {
-        Image img = Image.From_FULL_LOCAL_PATHL(Util.AppRoot
-                + "/src/test/resources/base2logo.png");
+    public void TestHeight() {
+        Image img = Image.FromFullLocalPath(Util.AppRoot
+                + @"\src\test\resources\base2logo.png");
         img.SetHeight(110);
         Assert.AreEqual(0, TestUtils.RegexCount(img.Content,
                 "style=\"width:116pt;height:104pt\""));
@@ -116,9 +116,9 @@ namespace Test
     }
 
     [Test]
-    public void testWidthAndHeight() {
-        Image img = Image.From_FULL_LOCAL_PATHL(Util.AppRoot
-                + "/src/test/resources/base2logo.png");
+    public void TestWidthAndHeight() {
+        Image img = Image.FromFullLocalPath(Util.AppRoot
+                + @"\src\test\resources\base2logo.png");
         img.SetWidth(121);
         img.SetHeight(111);
         Assert.AreEqual(0, TestUtils.RegexCount(img.Content,
@@ -128,9 +128,9 @@ namespace Test
     }
 
     [Test]
-    public void testInvalidImage(){
-        Image img = Image.From_FULL_LOCAL_PATHL(Util.AppRoot
-                + "/src/test/resources/whatever");
+    public void TestInvalidImage(){
+        Image img = Image.FromFullLocalPath(Util.AppRoot
+                + @"\src\test\resources\whatever");
     }
     }
 }

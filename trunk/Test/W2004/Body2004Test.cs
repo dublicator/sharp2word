@@ -1,6 +1,5 @@
 using System;
 using NUnit.Framework;
-using Word.Api.Interfaces;
 using Word.Utils;
 using Word.W2004;
 using Word.W2004.Elements;
@@ -10,7 +9,7 @@ namespace Test.W2004
     public class Body2004Test : Assert
     {
         [Test]
-        public void sanityTest()
+        public void SanityTest()
         {
             Body2004 bd = new Body2004();
             Assert.AreEqual(2, TestUtils.RegexCount(bd.Content, "<*w:body>"));
@@ -19,7 +18,7 @@ namespace Test.W2004
 
 
         [Test]
-        public void testAddEle()
+        public void TestAddEle()
         {
             /*	Body2004 bd = new Body2004();
 		bd.addEle(new IElement() {			
@@ -32,7 +31,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testAaddEleString()
+        public void TestAaddEleString()
         {
             Body2004 bd = new Body2004();
             bd.AddEle("<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>"); //this is a breakline
@@ -43,7 +42,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testHeader()
+        public void TestHeader()
         {
             Body2004 bd = new Body2004();
             bd.Header.AddEle(Paragraph.With("header01"));
@@ -52,7 +51,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testFooter()
+        public void TestFooter()
         {
             Body2004 bd = new Body2004();
             bd.Footer.AddEle(Paragraph.With("footer01"));
@@ -61,7 +60,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testHeaderAndFooterSame()
+        public void TestHeaderAndFooterSame()
         {
             Body2004 bd = new Body2004();
             bd.Header.AddEle(Paragraph.With("header01"));
@@ -72,14 +71,14 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testHideHeaderAndFooter()
+        public void TestHideHeaderAndFooter()
         {
             Body2004 bd = new Body2004();
-            Assert.False(bd.Header.GetHideHeaderAndFooterFirstPage()); // default is false
+            Assert.False(bd.Header.GetHideHeaderAndFooterFirstPage());// default is false
             bd.Header.SetHideHeaderAndFooterFirstPage(true);
             Assert.True(bd.Header.GetHideHeaderAndFooterFirstPage());
             bd.Header.AddEle(Paragraph.With("p1"));
-            Console.WriteLine(bd.Content);
+            //System.out.println(bd.getContent());
 
             Assert.AreEqual(1, TestUtils.RegexCount(bd.Content, "<w:t>p1</w:t>"));
             Assert.AreEqual(2, TestUtils.RegexCount(bd.Content, "<*w:sectPr"));
@@ -90,10 +89,10 @@ namespace Test.W2004
             Assert.AreEqual(1, TestUtils.RegexCount(bd.Content, "<w:pgSz w:w"));
             Assert.AreEqual(1, TestUtils.RegexCount(bd.Content, "<w:pgMar"));
             Assert.AreEqual(1, TestUtils.RegexCount(bd.Content, "<w:cols w:space"));
-        }
+        } 
 
         [Test]
-        public void testshowHeaderAndFooter()
+        public void TestshowHeaderAndFooter()
         {
             Body2004 bd = new Body2004();
             bd.Header.AddEle(Paragraph.With("p1"));

@@ -4,7 +4,7 @@ namespace Word.W2004
     {
         private readonly string _value;
 
-        public static Encoding UTF_8
+        public static Encoding UTF8
         {
             get
             {

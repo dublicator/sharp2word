@@ -10,15 +10,15 @@ namespace Test
     {
         //@Ignore //just to not break the build for other devs...
         [Test]
-        public void testTemplate()
+        public void TestTemplate()
         {
             string xmlTemplate = Resources.ReleaseNotesTemplate.ToString();
             //string xmlTemplate = Util.readFile("src/test/resources/ReleaseNotesTemplate.doc");
 
-            xmlTemplate = replacePh(xmlTemplate, "phCompanyName", "EasyWorld - coding for fun pty");
-            xmlTemplate = replacePh(xmlTemplate, "phEnv", "Production");
-            xmlTemplate = replacePh(xmlTemplate, "phVersion", "1.0 beta");
-            xmlTemplate = replacePh(xmlTemplate, "phProjectLeader", "Leonardo Correa");
+            xmlTemplate = ReplacePh(xmlTemplate, "phCompanyName", "EasyWorld - coding for fun pty");
+            xmlTemplate = ReplacePh(xmlTemplate, "phEnv", "Production");
+            xmlTemplate = ReplacePh(xmlTemplate, "phVersion", "1.0 beta");
+            xmlTemplate = ReplacePh(xmlTemplate, "phProjectLeader", "Leonardo Correa");
 
             Table tbl = new Table();
             tbl.AddTableEle(TableEle.TH, "Jira Number", "Description");
@@ -26,7 +26,7 @@ namespace Test
             tbl.AddTableEle(TableEle.TD, "J2W-1234", "Read Templates nicelly");
             tbl.AddTableEle(TableEle.TD, "J2W-9999", "Make Java2word funky!!!");
 
-            xmlTemplate = replacePh(xmlTemplate, "phTableIssues", tbl.Content);
+            xmlTemplate = ReplacePh(xmlTemplate, "phTableIssues", tbl.Content);
 
             Paragraph p01 = Paragraph.With("1) Stop the server").Create();
             Paragraph p02 = Paragraph.With("2) Run the script to deploy the app xxx").Create();
@@ -38,9 +38,9 @@ namespace Test
             //Workaround: phInstructions is already inside a 'text' fragment. 
             //If you know the template, you can remove the whole element and add all Paragraphs
             //* Table above doesn't need workaround because table can be normally inside a paragraph.
-            xmlTemplate = replacePh(xmlTemplate, "<w:t>phInstructions</w:t>", instructions);
+            xmlTemplate = ReplacePh(xmlTemplate, "<w:t>phInstructions</w:t>", instructions);
 
-            xmlTemplate = replacePh(xmlTemplate, "phDateTime", new DateTime().ToString());
+            xmlTemplate = ReplacePh(xmlTemplate, "phDateTime", new DateTime().ToString());
 
             //TestUtils.createLocalDoc(xmlTemplate);        
         }
@@ -53,7 +53,7 @@ namespace Test
      * @return the new string with place holder replaced
      */
 
-        private static string replacePh(string @base, string placeHolder, string value)
+        private static string ReplacePh(string @base, string placeHolder, string value)
         {
             if (!@base.Contains(placeHolder))
             {

@@ -11,6 +11,7 @@ namespace Word.W2004.Style
     {
         private Align _align = Style.Align.LEFT;
         private string _bgColor = "";
+        private string _bidi = "";
 
         #region ISuperStylin Members
 
@@ -22,10 +23,17 @@ namespace Word.W2004.Style
             DoStyleAlignment(style);
             DoStyleBgColor(style);
 
+            DoStyleBidi(style);
+
             return DoStyleReplacement(style, txt);
         }
 
         #endregion
+
+        private void DoStyleBidi(StringBuilder style)
+        {
+            if (!this._bidi.Equals("")) style.Append("<w:lang w:bidi=\"" + this._bidi + "\" />");
+        }
 
         private void DoStyleAlignment(StringBuilder style)
         {
@@ -78,5 +86,17 @@ namespace Word.W2004.Style
             this._align = align;
             return this;
         }
+        
+        /// <summary>
+        /// Use this to specify special characters. Eg.: Hebreus, use HE
+        /// </summary>
+        /// <param name="bidi"></param>
+        /// <returns></returns>
+        public ParagraphStyle Bidi(string bidi)
+        {
+            this._bidi = bidi;
+            return this;
+        }
+
     }
 }

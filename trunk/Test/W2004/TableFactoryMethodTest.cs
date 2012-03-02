@@ -6,14 +6,14 @@ namespace Test.W2004
     public class TableFactoryMethodTest : Assert
     {
         [Test]
-        public void testGetInstance()
+        public void TestGetInstance()
         {
             TableFactoryMethod instance = TableFactoryMethod.Instance;
             Assert.NotNull(instance);
         }
 
         [Test]
-        public void testGetTableItem()
+        public void TestGetTableItem()
         {
             TableFactoryMethod instance = TableFactoryMethod.Instance;
 

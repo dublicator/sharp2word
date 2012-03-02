@@ -87,7 +87,7 @@ namespace Word.W2004.Elements
                         addTab = "  <w:pPr>" + "\n    <w:tabs>";
                         foreach (Tab tab in _tabs)
                         {
-                            addTab += "\n        <w:tab w:val=\"" + tab.Align.getValue() + "\" w:pos=\"" + tab.Position +
+                            addTab += "\n        <w:tab w:val=\"" + tab.Align.Value + "\" w:pos=\"" + tab.Position +
                                       "\" />";
                         }
                         addTab += "\n    </w:tabs>" + "\n </w:pPr>";
@@ -204,9 +204,9 @@ namespace Word.W2004.Elements
                 get { return new TabAlign("right"); }
             }
 
-            public string getValue()
+            public string Value
             {
-                return _value;
+                get { return _value; }
             }
         }
 

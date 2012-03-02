@@ -10,13 +10,11 @@ namespace Word.W2004
     /// </summary>
     public class Document2004 : IDocument, IElement
     {
-        private bool hasBeenCalledBefore; // if getContent has already been called, I cached the result for future invocations
+        private bool _hasBeenCalledBefore; // if getContent has already been called, I cached the result for future invocations
 
-        private StringBuilder txt = new StringBuilder();
-        private IBody body = new Body2004();
-        private bool isLandscape;
-
-        private Encoding _encoding = W2004.Encoding.UTF_8;
+        private readonly StringBuilder _txt = new StringBuilder();
+        private readonly IBody _body = new Body2004();
+        private bool _isLandscape;
 
         private string _title = "Java2word title";
         private string _subject = "Created by Java2word library";
@@ -30,15 +28,15 @@ namespace Word.W2004
 
         public Document2004 Encoding(Encoding encoding)
         {
-            this.encoding = encoding.Value;
+            this._encoding = encoding.Value;
             return this;
         }
 
-        private string encoding = W2004.Encoding.UTF_8.Value;
+        private string _encoding = W2004.Encoding.UTF8.Value;
 
         public Document2004 Encoding(string encoding)
         {
-            this.encoding = encoding;
+            this._encoding = encoding;
             return this;
         }
 
@@ -93,7 +91,7 @@ namespace Word.W2004
         {
             get
             {
-                string uri = "<?xml version=\"1.0\" encoding=\"" + this.encoding + "\" standalone=\"yes\"?> "
+                string uri = "<?xml version=\"1.0\" encoding=\"" + this._encoding + "\" standalone=\"yes\"?> "
                     + "<?mso-application progid=\"Word.Document\"?> "
                     + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
                     + " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
@@ -115,22 +113,22 @@ namespace Word.W2004
         {
             get
             {
-                if (hasBeenCalledBefore)
+                if (_hasBeenCalledBefore)
                 {
-                    return txt.ToString();
+                    return _txt.ToString();
                 }
                 else
                 {
-                    hasBeenCalledBefore = true;
+                    _hasBeenCalledBefore = true;
                 }
-                txt.Append(this.Uri);
-                txt.Append(getDocumentHead());
+                _txt.Append(this.Uri);
+                _txt.Append(GetDocumentHead());
 
-                txt.Append(this.Body.Content);
+                _txt.Append(this.Body.Content);
 
-                txt.Append("\n</w:wordDocument>");
+                _txt.Append("\n</w:wordDocument>");
 
-                string finalString = setUpPageOrientation(txt.ToString());
+                string finalString = SetUpPageOrientation(_txt.ToString());
 
                 return finalString;
             }
@@ -140,7 +138,7 @@ namespace Word.W2004
         /// Returns the Document head that contains: DocumentProperties, fonts and styles
         /// </summary>
         /// <returns></returns>
-        private object getDocumentHead()
+        private object GetDocumentHead()
         {
             string docHead = DocumentHead;
 
@@ -158,9 +156,9 @@ namespace Word.W2004
             return docHead;
         }
 
-        private string setUpPageOrientation(string txt)
+        private string SetUpPageOrientation(string txt)
         {
-            if (this.isLandscape)
+            if (this._isLandscape)
             {
                 string orientation = "    <w:sectPr wsp:rsidR=\"00F04FB2\" wsp:rsidSect=\"00146B2A\">\n"
                     + "      <w:pgSz w:w=\"16834\" w:h=\"11904\" w:orient=\"landscape\"/>\n"
@@ -173,14 +171,14 @@ namespace Word.W2004
 
         public void SetPageOrientationLandscape()
         {
-            this.isLandscape = true;
+            this._isLandscape = true;
         }
 
         //### Getters and Setters
 
         public IBody Body
         {
-            get { return this.body; }
+            get { return this._body; }
         }
 
         public IFooter Footer
