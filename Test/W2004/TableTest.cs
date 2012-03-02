@@ -9,7 +9,7 @@ namespace Test.W2004
     {
         [Test]
         // New table has to return ""
-        public void testCreateEmptyTable()
+        public void TestCreateEmptyTable()
         {
             Table tbl01 = new Table();
             Assert.AreEqual("", tbl01.Content);
@@ -17,7 +17,7 @@ namespace Test.W2004
 
         // ### TH - Table Header ###
         [Test]
-        public void testTableWithArray()
+        public void TestTableWithArray()
         {
             Table tbl01 = new Table();
             string[] cols = {"aaa", "bbb"};
@@ -35,7 +35,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testCreateTableEmptyTH()
+        public void TestCreateTableEmptyTH()
         {
             Table tbl03 = new Table();
             tbl03.AddTableEle(TableEle.TH, null);
@@ -48,7 +48,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testTableHeaderNoRepeat()
+        public void TestTableHeaderNoRepeat()
         {
             Table tbl = new Table();
             tbl.AddTableEle(TableEle.TH, "Name");
@@ -56,7 +56,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testTableHeaderWITHRepeatHeader()
+        public void TestTableHeaderWithRepeatHeader()
         {
             Table tbl = new Table();
             tbl.SetRepeatTableHeaderOnEveryPage();
@@ -68,7 +68,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testTableDefinition()
+        public void TestTableDefinition()
         {
             TableDefinition tbldef = new TableDefinition();
             Assert.AreEqual(1, TestUtils.RegexCount(tbldef.Top, "<*w:tbl>"));
@@ -80,7 +80,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testTableCol()
+        public void TestTableCol()
         {
             TableCol tblcol = new TableCol();
             Assert.AreEqual(1, TestUtils.RegexCount(tblcol.Top, "<*w:tr"));
@@ -91,7 +91,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testTableFooter()
+        public void TestTableFooter()
         {
             TableFooter tblFooter = new TableFooter();
             Assert.AreEqual(1, TestUtils.RegexCount(tblFooter.Top, "<*w:tr"));
@@ -110,7 +110,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testNull()
+        public void TestNull()
         {
             Table tbl = new Table();
             tbl.AddTableEle(TableEle.TABLE_DEF, null);
@@ -118,7 +118,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testEmpty()
+        public void TestEmpty()
         {
             Table tbl = new Table();
             string[] arr = {};
@@ -128,7 +128,7 @@ namespace Test.W2004
 
         // ### Full Table!!! ###
         [Test]
-        public void testCreateFullTable()
+        public void TestCreateFullTable()
         {
             Table tbl = new Table();
             tbl.AddTableEle(TableEle.TH, "Name", "Salary");
@@ -171,7 +171,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testCreateEmptyCell()
+        public void TestCreateEmptyCell()
         {
             Table tbl = new Table();
             tbl.AddTableEle(TableEle.TD, "Leonardo", "");

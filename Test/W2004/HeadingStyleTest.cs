@@ -6,7 +6,7 @@ namespace Test.W2004
     public class HeadingStyleTest : Assert
     {
         [Test]
-        public void sanityTest()
+        public void SanityTest()
         {
             HeadingStyle style = new HeadingStyle();
             Assert.NotNull(style);

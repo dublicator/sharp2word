@@ -8,8 +8,8 @@ namespace Word.W2004.Elements
     /// 
     ///   You can use Heading1 to 3.
     /// </summary>
-    /// <typeparam name = "E"></typeparam>
-    public class AbstractHeading<E> : IElement, IFluentElementStylable<E> where E : class
+    /// <typeparam name = "T"></typeparam>
+    public class AbstractHeading<T> : IElement, IFluentElementStylable<T> where T : class
     {
         /// <summary>
         /// this is actual heading1, heading2 or heading3.
@@ -36,7 +36,7 @@ namespace Word.W2004.Elements
             + "\n	</w:r>"
             + "\n</w:p>";
 
-        private HeadingStyle style = new HeadingStyle();
+        private HeadingStyle _style = new HeadingStyle();
 
         public string Content
         {
@@ -48,7 +48,7 @@ namespace Word.W2004.Elements
                 }
 
                 //For convention, it should be the last thing before returning the xml content.
-                string txt = style.GetNewContentWithStyle(Template);
+                string txt = _style.GetNewContentWithStyle(Template);
 
                 return txt.Replace("{value}", this._value);
             }
@@ -62,15 +62,15 @@ namespace Word.W2004.Elements
 
         public HeadingStyle Style
         {
-            get { return style; }
-            set { this.style = style; }
+            get { return _style; }
+            set { this._style = _style; }
         }
 
         //Implements the stylable and the heading classes reuse it
-        public E WithStyle()
+        public T WithStyle()
         {
-            this.style.Element = this; //, Heading1.class
-            return this.style as E;
+            this._style.Element = this; //, Heading1.class
+            return this._style as T;
         }
     }
 }

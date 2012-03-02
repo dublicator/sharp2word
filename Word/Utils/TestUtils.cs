@@ -9,7 +9,7 @@ namespace Word.Utils
         {
             if (text == null || regex == null)
             {
-                throw new System.ArgumentNullException("Can't be null.");
+                return 0;
             }
             Regex pattern = new Regex(regex, RegexOptions.Compiled);
             MatchCollection matcher = pattern.Matches(text);

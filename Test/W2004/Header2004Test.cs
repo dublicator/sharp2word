@@ -8,14 +8,14 @@ namespace Test.W2004
     public class Header2004Test : Assert
     {
         [Test]
-        public void sanityTest()
+        public void SanityTest()
         {
             Header2004 hd = new Header2004();
             Assert.AreEqual("", hd.Content);
         }
 
         [Test]
-        public void testAddEle()
+        public void TestAddEle()
         {
             Header2004 hd = new Header2004();
             hd.AddEle(Paragraph.With("p1"));
@@ -24,7 +24,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testAddEleString()
+        public void TestAddEleString()
         {
             Header2004 hd = new Header2004();
             hd.AddEle("<w:t>p1</w:t>");
@@ -33,7 +33,7 @@ namespace Test.W2004
         }
 
         [Test]
-        public void testHideHeaderandFooter()
+        public void TestHideHeaderandFooter()
         {
             //this has to be tested in the body...
             Header2004 hd = new Header2004();

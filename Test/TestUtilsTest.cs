@@ -6,32 +6,32 @@ namespace Test
     public class TestUtilsTest : Assert
     {
         [Test]
-        public void testRegex()
+        public void TestRegex()
         {
             Assert.NotNull(new TestUtils());
             Assert.AreEqual(1, TestUtils.RegexCount("leonardo", "leo"));
         }
 
         [Test]
-        public void testRegexNotFound()
+        public void TestRegexNotFound()
         {
             Assert.AreEqual(0, TestUtils.RegexCount("xxxxx xxxx", "leo"));
         }
 
         [Test]
-        public void testRegexNull01()
+        public void TestRegexNull01()
         {
             Assert.AreEqual(0, TestUtils.RegexCount("xxxxxxxxx", null));
         }
 
         [Test]
-        public void testRegexNull02()
+        public void TestRegexNull02()
         {
             Assert.AreEqual(0, TestUtils.RegexCount(null, "xxx"));
         }
 
         [Test]
-        public void testRegexNull03()
+        public void TestRegexNull03()
         {
             Assert.AreEqual(0, TestUtils.RegexCount(null, null));
         }

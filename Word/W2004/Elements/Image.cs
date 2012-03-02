@@ -14,7 +14,7 @@ namespace Word.W2004.Elements
     /// </summary>
     public class Image : IImage, IFluentElement<Image>
     {
-        private const string img_template = "\n<w:pict>"
+        private const string ImgTemplate = "\n<w:pict>"
                                             +
                                             "\n	<v:shapetype id=\"_x0000_t75\" coordsize=\"21600,21600\" o:spt=\"75\" o:preferrelative=\"t\" path=\"m@4@5l@4@11@9@11@9@5xe\" filled=\"f\" stroked=\"f\">"
                                             + "		<v:stroke joinstyle=\"miter\"/>"
@@ -69,16 +69,16 @@ namespace Word.W2004.Elements
             _path = path;
             try
             {
-                if (imageLocation.Equals(ImageLocation.FULL_LOCAL_PATH))
+                if (imageLocation.Equals(ImageLocation.FullLocalPath))
                 {
                     _bufferedImage = BufferedImage.FromFile(path);
                 }
-                else if (imageLocation.Equals(ImageLocation.WEB_URL))
+                else if (imageLocation.Equals(ImageLocation.WebUrl))
                 {
                     Uri url = new Uri(path);
                     _bufferedImage = ImageFromUrl(url);
                 }
-                else if (imageLocation.Equals(ImageLocation.CLASSPATH))
+                else if (imageLocation.Equals(ImageLocation.Classpath))
                 {
                     throw new NotImplementedException();
 
@@ -163,7 +163,7 @@ namespace Word.W2004.Elements
 
                 SetUpSize();
 
-                string res = img_template;
+                string res = ImgTemplate;
                 res = res.Replace("{fileName}", fileName);
                 res = res.Replace("{internalFileName}", internalFileName);
                 res = res.Replace("{binary}", binary);
@@ -229,7 +229,7 @@ namespace Word.W2004.Elements
 
         private static byte[] StreamToByteArray(Stream stream)
         {
-            byte[] total_stream = new byte[0];
+            byte[] totalStream = new byte[0];
             using (Stream input = stream)
             {
                 // Setup whatever read size you want (small here for testing)
@@ -238,13 +238,13 @@ namespace Word.W2004.Elements
 
                 while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    byte[] stream_array = new byte[total_stream.Length + read];
-                    total_stream.CopyTo(stream_array, 0);
-                    Array.Copy(buffer, 0, stream_array, total_stream.Length, read);
-                    total_stream = stream_array;
+                    byte[] streamArray = new byte[totalStream.Length + read];
+                    totalStream.CopyTo(streamArray, 0);
+                    Array.Copy(buffer, 0, streamArray, totalStream.Length, read);
+                    totalStream = streamArray;
                 }
             }
-            return total_stream;
+            return totalStream;
         }
 
         private void SetUpSize()
@@ -271,9 +271,9 @@ namespace Word.W2004.Elements
         /// </summary>
         /// <param name = "path">Image full path. To know if it will work, you should be able to see this image in your browser</param>
         /// <returns></returns>
-        public static Image From_WEB_URL(string path)
+        public static Image FromUrl(string path)
         {
-            return new Image(path, ImageLocation.WEB_URL);
+            return new Image(path, ImageLocation.WebUrl);
         }
 
         /// <summary>
@@ -281,9 +281,9 @@ namespace Word.W2004.Elements
         /// </summary>
         /// <param name = "path">Image full path. To know if it will work, probably you should specify full path from the root of your system.</param>
         /// <returns></returns>
-        public static Image From_FULL_LOCAL_PATHL(string path)
+        public static Image FromFullLocalPath(string path)
         {
-            return new Image(path, ImageLocation.FULL_LOCAL_PATH);
+            return new Image(path, ImageLocation.FullLocalPath);
         }
     }
 }

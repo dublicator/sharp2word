@@ -1,6 +1,6 @@
 namespace Word.Api.Interfaces
 {
-    public interface IFluentElement<out F>
+    public interface IFluentElement<out T>
     {
         /// <summary>
         ///   This method is just to keep the API consistent when you do something like:
@@ -12,6 +12,6 @@ namespace Word.Api.Interfaces
         ///   Anyway, it is here for sake of consistency or semantic
         /// </summary>
         /// <returns></returns>
-        F Create();
+        T Create();
     }
 }
